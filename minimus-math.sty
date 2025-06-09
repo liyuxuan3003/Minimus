@@ -1,5 +1,52 @@
 \ProvidesPackage{minimus-math}
 
+% -------------------------------- %
+% Load package <amsmath> : AMS math
 \RequirePackage{amsmath}
 
-%
+% Load package <amsthm>  : AMS math theorem
+\RequirePackage{amsthm}
+
+% Load package <amssymb> : AMS math symbol
+\RequirePackage{amssymb}
+
+% -------------------------------- %
+% Load package <upgreek> : Upright greek character for math 
+\RequirePackage{upgreek}
+
+% -------------------------------- %
+% Load package <siunitx> : Support for si unit
+\RequirePackage{siunitx}
+% Rename \qty series command to \qnum
+% Avoid conflict of \qty provided by physics
+\NewCommandCopy\qnum\qty
+\NewCommandCopy\qnumlist\qtylist
+\NewCommandCopy\qnumrange\qtyrange
+\NewCommandCopy\qnumproduct\qtyproduct
+
+% Format of list
+% Example: 1.0nm, 1.5nm, 2.0nm
+\sisetup{list-separator={, }}
+\sisetup{list-pair-separator={, }}
+\sisetup{list-final-separator={, }}
+\sisetup{list-units=repeat}
+
+% Format of range
+% Example: 1.0 - 2.0nm
+\sisetup{range-phrase={\,\text{--}\,}}
+\sisetup{range-units=single}
+
+% Format of product
+% Example: 1.0nm x 1.5nm x 2.0nm
+\sisetup{product-symbol={\times}}
+\sisetup{product-units=repeat}
+
+% Do not group digits
+\sisetup{group-digits=none}
+
+% Use dot between units
+\sisetup{inter-unit-product={\cdot}}
+
+% -------------------------------- %
+% Load package <physics> : Support for derivatives, vector, bracket
+\RequirePackage{physics}
