@@ -191,6 +191,11 @@
 \DeclareMathOperator{\arcsch}{arcsch}
 
 % -------------------------------- %
+% Symbol for delta
+\NewDocumentCommand{\delt}{}{\Delta}
+\NewDocumentCommand{\detv}{mm}{\frac{\delt #1}{\delt #2}}
+
+% -------------------------------- %
 % Symbol of 0+,0-
 \NewDocumentCommand{\zp}{}{0_{+}}
 \NewDocumentCommand{\zm}{}{0_{-}}
@@ -287,3 +292,90 @@
 % Angle bracket
 \def\<#1>{\langle#1\rangle}
 
+% -------------------------------- %
+
+\NewDocumentCommand{\forcezero}{m}{\mathmakebox[0.3\linewidth]{#1}}
+\NewDocumentCommand{\forceline}{m}{\mathmakebox[1.0\linewidth]{#1}}
+
+% -------------------------------- %
+% Equation
+\NewDocumentEnvironment{Equation}{sot!t!b}%
+{%
+    \IfBooleanTF{#1}%
+    {%
+        \begin{equation*}%
+            \IfBooleanTF{#3}{\IfBooleanTF{#4}{\forceline{#5}}{\forcezero{#5}}}{#5}%
+        \end{equation*}%
+    }%
+    {%
+        \begin{equation}%
+            \IfBooleanTF{#3}{\IfBooleanTF{#4}{\forceline{#5}}{\forcezero{#5}}}{#5}%
+            \IfValueT{#2}{\label{eq:#2}}%
+        \end{equation}%
+    }%
+    \par%
+}{}%
+
+% -------------------------------- %
+% Split
+\NewDocumentEnvironment{Split}{soG{1.0}b}%
+{%
+    \setlength\jot{#3\jot}%
+    \IfBooleanTF{#1}%
+    {%
+        \begin{equation*}%
+            \begin{split}%
+                #4%
+            \end{split}%
+        \end{equation*}%
+    }%
+    {%
+        \begin{equation}%
+            \begin{split}%
+                #4%
+                \IfValueT{#2}{\label{eq:#2}}%
+            \end{split}%
+        \end{equation}%
+    }%
+    \par
+}{}%
+
+% -------------------------------- %
+% Multline
+\NewDocumentEnvironment{Multline}{soG{1.0}b}%
+{%
+    \setlength\jot{#3\jot}%
+    \IfBooleanTF{#1}%
+    {%
+        \begin{multline*}%
+            #4%
+        \end{multline*}%
+    }%
+    {%
+        \begin{multline}%
+            #4%
+            \IfValueT{#2}{\label{eq:#2}}%
+        \end{multline}%
+    }%
+    \par%
+}{}%
+
+% -------------------------------- %
+% Align
+\NewDocumentEnvironment{Align}{soG{1.0}b}%
+{%
+    \setlength\jot{#3\jot}%
+    \IfValueT{#2}{\NewDocumentCommand{\id}{m}{\label{eq:#2##1}}}%
+    \IfBooleanTF{#1}%
+    {%
+        \begin{align*}%
+            #4%
+        \end{align*}%
+    }%
+    {%
+        \begin{align}%
+            #4%
+        \end{align}%
+    }%
+    \par%
+}{}%
