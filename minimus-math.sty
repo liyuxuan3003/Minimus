@@ -257,8 +257,6 @@
 % Symbol of physics constant and quantity
 % Boltzmann Constant
 \NewDocumentCommand{\kB}{}{k_{\mathrm{B}}}
-% Avogadro Constant
-\NewDocumentCommand{\NA}{}{N_{\mathrm{A}}}
 % Electrodynamic Force
 \NewDocumentCommand{\Emf}{}{\mathscr{E}}
 
@@ -275,7 +273,7 @@
 % Above wide line
 \NewCommandCopy\xbar\overline
 % Define \bbar as under version of \bar
-\newcommand{\bbar}[1]{\underaccent{\bar}{#1}}
+\NewDocumentCommand{\bbar}{m}{\underaccent{\bar}{#1}}
 
 % -------------------------------- %
 % Relsize command
@@ -290,12 +288,12 @@
 
 % -------------------------------- %
 % Angle bracket
-\def\<#1>{\langle#1\rangle}
+\def\<#1>{\left\langle#1\right\rangle}
 
 % -------------------------------- %
 
-\NewDocumentCommand{\forcezero}{m}{\mathmakebox[0.3\linewidth]{#1}}
-\NewDocumentCommand{\forceline}{m}{\mathmakebox[1.0\linewidth]{#1}}
+\NewDocumentCommand{\forcezero}{m}{\mathmakebox[0.4\linewidth]{#1}}%
+\NewDocumentCommand{\forceline}{m}{\mathmakebox[1.0\linewidth]{#1}}%
 
 % -------------------------------- %
 % Equation
@@ -318,44 +316,80 @@
 
 % -------------------------------- %
 % Split
-\NewDocumentEnvironment{Split}{soG{1.0}b}%
+\NewDocumentEnvironment{Split}{soG{1.0}t!t!b}%
 {%
     \setlength\jot{#3\jot}%
     \IfBooleanTF{#1}%
     {%
         \begin{equation*}%
-            \begin{split}%
-                #4%
-            \end{split}%
+            \begin{aligned}%
+                #6%
+            \end{aligned}%
         \end{equation*}%
     }%
     {%
         \begin{equation}%
-            \begin{split}%
-                #4%
-                \IfValueT{#2}{\label{eq:#2}}%
-            \end{split}%
+            \IfBooleanTF{#4}%
+            {%
+                \IfBooleanTF{#5}%
+                {%
+                    \forceline{\begin{aligned}%
+                        #6%
+                    \end{aligned}}%
+                }%
+                {%
+                    \forcezero{\begin{aligned}%
+                        #6%
+                    \end{aligned}}%
+                }%
+            }%
+            {%
+                \begin{aligned}%
+                    #6%
+                \end{aligned}%
+            }%
+            \IfValueT{#2}{\label{eq:#2}}%
         \end{equation}%
     }%
-    \par
+    \par%
 }{}%
 
 % -------------------------------- %
 % Multline
-\NewDocumentEnvironment{Multline}{soG{1.0}b}%
+\NewDocumentEnvironment{Multline}{soG{1.0}t&gt!t!b}%
 {%
     \setlength\jot{#3\jot}%
     \IfBooleanTF{#1}%
     {%
-        \begin{multline*}%
-            #4%
-        \end{multline*}%
+        \begin{equation*}%
+            \IfValueTF{#5}{\begin{multlined}[#5\linewidth]}{\begin{multlined}}%
+                #8%
+            \end{multlined}%
+        \end{equation*}%
     }%
     {%
-        \begin{multline}%
-            #4%
+        \begin{equation}%
+            \IfBooleanTF{#6}%
+            {%
+                \IfBooleanTF{#7}%
+                {%
+                    \forceline{\IfValueTF{#5}{\begin{multlined}[#5\linewidth]}{\begin{multlined}}%
+                        #8%
+                    \end{multlined}}%
+                }%
+                {%
+                    \forcezero{\IfValueTF{#5}{\begin{multlined}[#5\linewidth]}{\begin{multlined}}%
+                        #8%
+                    \end{multlined}}%
+                }%
+            }%
+            {%
+                \IfValueTF{#5}{\begin{multlined}[#5\linewidth]}{\begin{multlined}}%
+                    #8%
+                \end{multlined}%
+            }%
             \IfValueT{#2}{\label{eq:#2}}%
-        \end{multline}%
+        \end{equation}%
     }%
     \par%
 }{}%
@@ -376,6 +410,26 @@
         \begin{align}%
             #4%
         \end{align}%
+    }%
+    \par%
+}{}%
+
+% -------------------------------- %
+% Gather
+\NewDocumentEnvironment{Gather}{soG{1.0}b}%
+{%
+    \setlength\jot{#3\jot}%
+    \IfValueT{#2}{\NewDocumentCommand{\id}{m}{\label{eq:#2##1}}}%
+    \IfBooleanTF{#1}%
+    {%
+        \begin{gather*}%
+            #4%
+        \end{gather*}%
+    }%
+    {%
+        \begin{gather}%
+            #4%
+        \end{gather}%
     }%
     \par%
 }{}%
