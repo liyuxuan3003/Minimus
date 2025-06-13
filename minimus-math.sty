@@ -291,8 +291,23 @@
 \def\<#1>{\left\langle#1\right\rangle}
 
 % -------------------------------- %
+% Macro to force center equation
 
+% Default Behaviour
+% 1. For short equation, it will be at the center of page.
+% 2. For medium equation, it will be at the center of available space beyond the tag (BAD!).
+% 3. For lone equation, it will be at the center of page, and the tag will move to the next line.
+% \forcezero can turn case2. -> case1.
+% \forceline can turn case2. -> case3. 
+
+% Set equation into a zero width math box to force it center
+% Tag will stay at the same line
+% However, if relly set to zero width, it will abnormally reduce vertical spacing before the equation.
+% It's uncertain what the minimum value should be, but 0.4\linewidth usually does the trick. 
 \NewDocumentCommand{\forcezero}{m}{\mathmakebox[0.4\linewidth]{#1}}%
+
+% Set equation into a line width math box to force it center
+% Tag will move to the next lien
 \NewDocumentCommand{\forceline}{m}{\mathmakebox[1.0\linewidth]{#1}}%
 
 % -------------------------------- %
