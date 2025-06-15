@@ -310,8 +310,39 @@
 % Tag will move to the next lien
 \NewDocumentCommand{\forceline}{m}{\mathmakebox[1.0\linewidth]{#1}}%
 
+% \mathmakebox is provided by mathtools
+
 % -------------------------------- %
-% Equation
+% Environments for math (Equation, Split, Multline, Align, Gather)
+
+% General Usage
+% 1.  *          -> no tag
+% 2.  [label]    -> label for Equation, Split, Multline. label prefix for Align, Gather.
+% 3.  {factor}   -> vertical space factor for Split, Multline, Align, Gather.
+% 4.  &{width}   -> set total width for Multiline.
+% 5a. !          -> force zero width center for Equation, Split, Multline.
+% 5b. !!         -> force line width center for Equation, Split, Multline.
+
+% The different behaviour of ! and !! is achieved by two "t!" arguments.
+% The purpose of &{width} is using meaningless "t&" to seperate {factor} and {width}
+
+% \jot and \origjot are provided by mathtools
+% \jot adjusts the vertical spacing between lines in a math environment.
+% {factor} -> \setlength{\jot}{factor\origjot}
+% \origjot = 3pt
+
+% ----------------
+% Equation : For short equation
+% Equation is a wrapper for equation
+% ----------------
+% \begin{Equation}*[label]!!
+%     f(x)=x^2+y^2          
+% \end{Equation}
+% #1 *          -> no tag
+% #2 [label]    -> label, add \label{eq:label} if assigned
+% #3 !          -> force zero width center (as !)
+% #4 !          -> force line width center (as !!)
+% #5            -> body
 \NewDocumentEnvironment{Equation}{sot!t!b}%
 {%
     \IfBooleanTF{#1}%
@@ -329,11 +360,24 @@
     \par%
 }{}%
 
-% -------------------------------- %
-% Split
+% ----------------
+% Split : For long equation needs more than one line, use & to align.
+% Split is a wrapper for equation + aligned
+% Environment split can not work with \mathmakebox, so use aligned instead.
+% ----------------
+% \begin{Split}*[label]{factor}!!
+%     f(x)&=x^2+y^2\\
+%         &+\alpha+\beta+\gamma
+% \end{Split}
+% #1 *          -> no tag
+% #2 [label]    -> label, add \label{eq:label} if assigned
+% #3 {factor}   -> vertical space, set \jot to factor\jot, default=1.0
+% #4 !          -> force zero width center (as !)
+% #5 !          -> force line width center (as !!)
+% #6            -> body
 \NewDocumentEnvironment{Split}{soG{1.0}t!t!b}%
 {%
-    \setlength\jot{#3\jot}%
+    \setlength{\jot}{#3\origjot}%
     \IfBooleanTF{#1}%
     {%
         \begin{equation*}%
@@ -366,14 +410,31 @@
             \IfValueT{#2}{\label{eq:#2}}%
         \end{equation}%
     }%
+    \setlength{\jot}{\origjot}
     \par%
 }{}%
 
-% -------------------------------- %
-% Multline
+% ----------------
+% Multline : For lone equation more than one line, stepped arrangement.
+% Multline is a wrapper for equation + multlined
+% Environment multline is a standalone version that can be used without equation.
+% However, multline has some bugs with vertical space between preceding text, so use multlined instead.
+% ----------------
+% \begin{Multline}*[label]{factor}&{width}!!
+%     f(x)=x^2+y^2\\
+%         +\alpha+\beta+\gamma
+% \end{Multline}
+% #1 *          -> no tag
+% #2 [label]    -> label, add \label{eq:label} if assigned
+% #3 {factor}   -> vertical space, set \jot to factor\jot, default=1.0
+% #4 &          -> no use, seperator of #3 and #5, should always used with #5
+% #5 {width}    -> set total width to width\linewidth if assigned, or use flexible total width
+% #6 !          -> force zero width center (as !)
+% #7 !          -> force line width center (as !!)
+% #8            -> body
 \NewDocumentEnvironment{Multline}{soG{1.0}t&gt!t!b}%
 {%
-    \setlength\jot{#3\jot}%
+    \setlength{\jot}{#3\origjot}%
     \IfBooleanTF{#1}%
     {%
         \begin{equation*}%
@@ -406,14 +467,26 @@
             \IfValueT{#2}{\label{eq:#2}}%
         \end{equation}%
     }%
+    \setlength{\jot}{\origjot}
     \par%
 }{}%
 
+% ----------------
+% Align : For equation groups, use & to align.
+% Align is a wrapper for align.
 % -------------------------------- %
-% Align
+% \begin{Align}*[label]{factor}
+%     f(x)&=x^2+y^2\id{a}\\
+%     g(x)&=\alpha+\beta+\gamma\id{b}
+% \end{Align}
+% \id{} can be used inside Align to add label with eq:#2 prefix for every line
+% #1 *          -> no tag
+% #2 [label]    -> label prefix, for every \id{a} -> \label{eq:labela}
+% #3 {factor}   -> vertical space, set \jot to factor\jot, default=1.0
+% #4            -> body
 \NewDocumentEnvironment{Align}{soG{1.0}b}%
 {%
-    \setlength\jot{#3\jot}%
+    \setlength{\jot}{#3\origjot}%
     \IfValueT{#2}{\NewDocumentCommand{\id}{m}{\label{eq:#2##1}}}%
     \IfBooleanTF{#1}%
     {%
@@ -426,14 +499,26 @@
             #4%
         \end{align}%
     }%
+    \setlength{\jot}{\origjot}
     \par%
 }{}%
 
+% ----------------
+% Gather : For equation groups, center align.
+% Gather is a wrapper for gather.
 % -------------------------------- %
-% Gather
+% \begin{Gather}*[label]{factor}
+%     f(x)=x^2+y^2\id{a}\\
+%     g(x)=\alpha+\beta+\gamma\id{b}
+% \end{Gather}
+% \id{} can be used inside Gather to add label with eq:#2 prefix for every line
+% #1 *          -> no tag
+% #2 [label]    -> label prefix, for every \id{a} -> \label{eq:labela}
+% #3 {factor}   -> vertical space, set \jot to factor\jot, default=1.0
+% #4            -> body
 \NewDocumentEnvironment{Gather}{soG{1.0}b}%
 {%
-    \setlength\jot{#3\jot}%
+    \setlength{\jot}{#3\origjot}%
     \IfValueT{#2}{\NewDocumentCommand{\id}{m}{\label{eq:#2##1}}}%
     \IfBooleanTF{#1}%
     {%
@@ -446,5 +531,6 @@
             #4%
         \end{gather}%
     }%
+    \setlength{\jot}{\origjot}
     \par%
 }{}%
