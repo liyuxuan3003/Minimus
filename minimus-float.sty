@@ -1,7 +1,10 @@
 \ProvidesPackage{minimus-float}
 
 % -------------------------------- %
+% Load package <etoolbox> : Toolbox for class and package
 \RequirePackage{etoolbox}
+% Load package <xparse> : New way to define command and environment
+\RequirePackage{xparse} 
 
 % -------------------------------- %
 % Load package <float> : Provide [H] to disable float
@@ -18,55 +21,124 @@
 % Load package <tabularray> : Ultimate solution for table
 \RequirePackage{tabularray}
 
+% -------------------------------- %
+% Load package <graphicx> : Support for include graphics
+\RequirePackage{graphicx}
+
+% -------------------------------- %
+% Load package <subcaption> : Support for subfigure
+\RequirePackage{subcaption}
+\subcaptionsetup{labelformat=simple}
+\renewcommand\thesubfigure{(\alph{subfigure})} 
+
+% -------------------------------- %
+% Define line thin
 \newlength{\linethin}
 \setlength{\linethin}{0.4pt}
-
+% Define line thick
 \newlength{\linethick}
 \setlength{\linethick}{1.0pt}
 
 % -------------------------------- %
-% \NewDocumentCommand{\xa@table}{}{}%
-% \NewDocumentCommand{\xb@table}{}{}%
-
+% Environment Table
+% Design to use with tblr from tabularray
+% ----------------
+% \begin{Table}*[caption;label]!!
+%    \begin{tblr}{colspec={XX}}
+%        A&alpha\\
+%        B&beta\\
+%    \end{tblr}
+% \end{Table}
+% ----------------
 % #1 *                  -> no caption
 % #2 [caption;label]    -> caption and label
-% #3 {inner}            -> inner-spec of tlbr (format inside table)
-% #4 [outer]            -> outer-spec of tlbr (format outside table)
-% #5 !                  -> enable float, use [htbp] instead [H]
-% #6 !                  -> enable longtable
-% #7                    -> body
-
-\NewDocumentEnvironment{Table}{s>{\SplitArgument{1}{;}}O{}G{}O{}t!t!b}%
+% #3 !                  -> enable float, use [htbp] instead [H] (as !)
+% #4 !                  -> enable longtable (as !!)
+% #5                    -> body
+\NewDocumentEnvironment{Table}{s>{\SplitArgument{1}{;}}O{}t!t!b}%
 {%
     %----------------
+    % \split@table split #2 to \xa@table (caption) and \xb@table (label)
     \NewDocumentCommand{\split@table}{mm}%
     {%
+        % Assign \xa@table (caption)
         \NewExpandableDocumentCommand{\xa@table}{}{##1}%
+        % Assign \xb@table (label)
+        % If label is not given, use caption as label
         \IfValueTF{##2}%
         {\NewExpandableDocumentCommand{\xb@table}{}{##2}}%
         {\NewExpandableDocumentCommand{\xb@table}{}{##1}}%
     }%
     %----------------
+    % Split #2
     \split@table#2%
-    \IfBooleanTF{#6}%
+    % Test if it is long table
+    \IfBooleanTF{#4}%
     {%
+        % ---- Long Table ----%
+        % Long table do not need table environment!
+        %----------------
+        % Disable hypcap here to remove warning for \captionof*
         \captionsetup{hypcap=false}
+        % Remove default foot text for continue
         \DefTblrTemplate{contfoot-text}{default}{}%
-        \DefTblrTemplate{firsthead}{default}{\captionof{table}{\xa@table}\ifdefempty{\xb@table}{}{\label{tab:\xb@table}}}%
+        % Long table have its own way to generate caption by outer settings
+        % However, it does not use \caption to do so, which cause \captionsetup not working
+        % So, we have to fully override the definition of firsthead
+        % Define firsthead
+        \DefTblrTemplate{firsthead}{default}%
+        {%
+            % Test if caption is need
+            \IfBooleanTF{#1}{}%
+            {%
+                % Make caption (\captionof can use outside float)
+                \captionof{table}{\xa@table}%
+                % Make label if the label text is not empty
+                \ifdefempty{\xb@table}{}{\label{tab:\xb@table}}%
+            }%
+        }%
+        % Define middlehead
         \DefTblrTemplate{middlehead}{default}{\captionof*{table}{续表}}%
+        % Define lasthead
         \DefTblrTemplate{lasthead}{default}{\captionof*{table}{续表}}%
-        \begin{longtblr}[headsep=0pt,entry=none,label=none,#4]{hline{1,Z}={1.0pt},hline{2}={0.4pt},rowhead=1,cells={font=\small},#3}%
-            #7%
-        \end{longtblr}%
+        % Set inner
+        % hline{1,Z}={\linethick} -> head line and foot line
+        % hline{2}={\linethin} -> middle line
+        % rowhead = 1 -> repeat first line for every new page
+        % cells={font=\small} -> set font to small
+        \SetTblrInner[tblr]{hline{1,Z}={\linethick},hline{2}={\linethin},rowhead=1,cells={font=\small}}
+        % Set outer
+        % long -> use long table
+        % headsep=0pt -> remove headsep (\captionof have already taken care of this)
+        % entry=none -> do not add an entry in list of table (\captionof have done this)
+        % label=none -> do not step table counter (\captionof have done this)
+        \SetTblrOuter[tblr]{long,headsep=0pt,entry=none,label=none}
+        % Body here
+        #5%
     }%
     {%
-        \IfBooleanTF{#5}{\begin{table}[htbp]}{\begin{table}[H]}%
+        % ---- Short Table ---- %
+        % Set inner
+        % hline{1,Z}={\linethick} -> head line and foot line
+        % hline{2}={\linethin} -> middle line
+        % cells={font=\small} -> set font to small
+        \SetTblrInner[tblr]{hline{1,Z}={\linethick},hline{2}={\linethin},cells={font=\small}}
+        % Set outer
+        \SetTblrOuter[tblr]{}
+        % Use table environment [htbp] / [H]
+        \IfBooleanTF{#3}{\begin{table}[htbp]}{\begin{table}[H]}%
+            % Center the table
             \centering%
-            \caption{\xa@table}%
-            \ifdefempty{\xb@table}{}{\label{tab:\xb@table}}%
-            \begin{tblr}[#4]{hline{1,Z}={\linethick},hline{2}={\linethin},cells={font=\small},#3}%
-                #7%
-            \end{tblr}%
+            % Test if caption is need
+            \IfBooleanF{#1}%
+            {%
+                % Make caption 
+                \caption{\xa@table}%
+                % Make label if the label text is not empty
+                \ifdefempty{\xb@table}{}{\label{tab:\xb@table}}%
+            }%
+            % Body here
+            #5%
         \end{table}%
     }%
 }{}%
