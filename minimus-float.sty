@@ -1,12 +1,16 @@
 \ProvidesPackage{minimus-float}
 
 % -------------------------------- %
+\RequirePackage{etoolbox}
+
+% -------------------------------- %
 % Load package <float> : Provide [H] to disable float
 \RequirePackage{float}
 
 % -------------------------------- %
 % Load package <caption> : Adjust caption format
 \RequirePackage{caption}
+% Set the vertical space between caption and table/figure
 \captionsetup[table]{skip=6.0pt}
 \captionsetup[figure]{skip=6.0pt}
 
@@ -14,4 +18,56 @@
 % Load package <tabularray> : Ultimate solution for table
 \RequirePackage{tabularray}
 
+\newlength{\linethin}
+\setlength{\linethin}{0.4pt}
+
+\newlength{\linethick}
+\setlength{\linethick}{1.0pt}
+
+% -------------------------------- %
+% \NewDocumentCommand{\xa@table}{}{}%
+% \NewDocumentCommand{\xb@table}{}{}%
+
+% #1 *                  -> no caption
+% #2 [caption;label]    -> caption and label
+% #3 {inner}            -> inner-spec of tlbr (format inside table)
+% #4 [outer]            -> outer-spec of tlbr (format outside table)
+% #5 !                  -> enable float, use [htbp] instead [H]
+% #6 !                  -> enable longtable
+% #7                    -> body
+
+\NewDocumentEnvironment{Table}{s>{\SplitArgument{1}{;}}O{}G{}O{}t!t!b}%
+{%
+    %----------------
+    \NewDocumentCommand{\split@table}{mm}%
+    {%
+        \NewExpandableDocumentCommand{\xa@table}{}{##1}%
+        \IfValueTF{##2}%
+        {\NewExpandableDocumentCommand{\xb@table}{}{##2}}%
+        {\NewExpandableDocumentCommand{\xb@table}{}{##1}}%
+    }%
+    %----------------
+    \split@table#2%
+    \IfBooleanTF{#6}%
+    {%
+        \captionsetup{hypcap=false}
+        \DefTblrTemplate{contfoot-text}{default}{}%
+        \DefTblrTemplate{firsthead}{default}{\captionof{table}{\xa@table}\ifdefempty{\xb@table}{}{\label{tab:\xb@table}}}%
+        \DefTblrTemplate{middlehead}{default}{\captionof*{table}{续表}}%
+        \DefTblrTemplate{lasthead}{default}{\captionof*{table}{续表}}%
+        \begin{longtblr}[headsep=0pt,entry=none,label=none,#4]{hline{1,Z}={1.0pt},hline{2}={0.4pt},rowhead=1,cells={font=\small},#3}%
+            #7%
+        \end{longtblr}%
+    }%
+    {%
+        \IfBooleanTF{#5}{\begin{table}[htbp]}{\begin{table}[H]}%
+            \centering%
+            \caption{\xa@table}%
+            \ifdefempty{\xb@table}{}{\label{tab:\xb@table}}%
+            \begin{tblr}[#4]{hline{1,Z}={\linethick},hline{2}={\linethin},cells={font=\small},#3}%
+                #7%
+            \end{tblr}%
+        \end{table}%
+    }%
+}{}%
 
