@@ -15,7 +15,22 @@
 \RequirePackage{caption}
 % Set the vertical space between caption and table/figure
 \captionsetup[table]{skip=6.0pt}
-\captionsetup[figure]{skip=6.0pt}
+\captionsetup[figure]{skip=6.0pt,belowskip=-8pt}
+\captionsetup[subfigure]{belowskip=0pt}
+
+% -------------------------------- %
+% Load package <subcaption> : Support for subfigure
+\RequirePackage{subcaption}
+% Default behaviour
+% Counter in caption looks like "3.1(a)"
+% Counter in reference looks like "3.1a"
+% Solution: add brackets to counter and set labelformat to simple (or there will be two brackets)
+%----------------
+% Add brackets to counter
+\renewcommand\thesubfigure{(\alph{subfigure})} 
+\renewcommand\thesubtable{(\alph{subtable})} 
+% Set label format to simple, or we will get "3.1((a))" in caption
+\subcaptionsetup{labelformat=simple}
 
 % -------------------------------- %
 % Load package <tabularray> : Ultimate solution for table
@@ -24,12 +39,6 @@
 % -------------------------------- %
 % Load package <graphicx> : Support for include graphics
 \RequirePackage{graphicx}
-
-% -------------------------------- %
-% Load package <subcaption> : Support for subfigure
-\RequirePackage{subcaption}
-\subcaptionsetup{labelformat=simple}
-\renewcommand\thesubfigure{(\alph{subfigure})} 
 
 % -------------------------------- %
 % Define line thin
@@ -50,24 +59,22 @@
 %    \end{tblr}
 % \end{Table}
 % ----------------
-% #1 *                  -> no caption
+% #1 *                  -> no number
 % #2 [caption;label]    -> caption and label
 % #3 !                  -> enable float, use [htbp] instead [H] (as !)
 % #4 !                  -> enable longtable (as !!)
-% #5                    -> body
-\NewDocumentEnvironment{Table}{s>{\SplitArgument{1}{;}}O{}t!t!b}%
+% #5                    -> body (+b to allow paragraph break)
+\NewDocumentEnvironment{Table}{s>{\SplitArgument{1}{;}}O{}t!t!+b}%
 {%
     %----------------
     % \split@table split #2 to \xa@table (caption) and \xb@table (label)
     \NewDocumentCommand{\split@table}{mm}%
     {%
         % Assign \xa@table (caption)
-        \NewExpandableDocumentCommand{\xa@table}{}{##1}%
+        \def\xa@table{##1}%
         % Assign \xb@table (label)
         % If label is not given, use caption as label
-        \IfValueTF{##2}%
-        {\NewExpandableDocumentCommand{\xb@table}{}{##2}}%
-        {\NewExpandableDocumentCommand{\xb@table}{}{##1}}%
+        \IfValueTF{##2}{\def\xb@table{##2}}{\def\xb@table{##1}}%
     }%
     %----------------
     % Split #2
@@ -79,7 +86,7 @@
         % Long table do not need table environment!
         %----------------
         % Disable hypcap here to remove warning for \captionof*
-        \captionsetup{hypcap=false}
+        \captionsetup{hypcap=false}%
         % Remove default foot text for continue
         \DefTblrTemplate{contfoot-text}{default}{}%
         % Long table have its own way to generate caption by outer settings
@@ -88,12 +95,17 @@
         % Define firsthead
         \DefTblrTemplate{firsthead}{default}%
         {%
-            % Test if caption is need
-            \IfBooleanTF{#1}{}%
+            % Test if caption needs number
+            % Use \captionof instead of \caption here (\captionof can use outside float)
+            \IfBooleanTF{#1}%
             {%
-                % Make caption (\captionof can use outside float)
-                \captionof{table}{\xa@table}%
-                % Make label if the label text is not empty
+                % Make caption*
+                \ifdefempty{\xa@table}{}{\captionof*{table}{\xa@table}}%
+            }%
+            {%
+                % Make caption
+                \ifdefempty{\xa@table}{\captionof{table}{}}{\captionof{table}{\xa@table}}%
+                % Make label
                 \ifdefempty{\xb@table}{}{\label{tab:\xb@table}}%
             }%
         }%
@@ -106,13 +118,13 @@
         % hline{2}={\linethin} -> middle line
         % rowhead = 1 -> repeat first line for every new page
         % cells={font=\small} -> set font to small
-        \SetTblrInner[tblr]{hline{1,Z}={\linethick},hline{2}={\linethin},rowhead=1,cells={font=\small}}
+        \SetTblrInner[tblr]{hline{1,Z}={\linethick},hline{2}={\linethin},rowhead=1,cells={font=\small}}%
         % Set outer
         % long -> use long table
         % headsep=0pt -> remove headsep (\captionof have already taken care of this)
         % entry=none -> do not add an entry in list of table (\captionof have done this)
         % label=none -> do not step table counter (\captionof have done this)
-        \SetTblrOuter[tblr]{long,headsep=0pt,entry=none,label=none}
+        \SetTblrOuter[tblr]{long,headsep=0pt,entry=none,label=none}%
         % Body here
         #5%
     }%
@@ -122,19 +134,23 @@
         % hline{1,Z}={\linethick} -> head line and foot line
         % hline{2}={\linethin} -> middle line
         % cells={font=\small} -> set font to small
-        \SetTblrInner[tblr]{hline{1,Z}={\linethick},hline{2}={\linethin},cells={font=\small}}
+        \SetTblrInner[tblr]{hline{1,Z}={\linethick},hline{2}={\linethin},cells={font=\small}}%
         % Set outer
-        \SetTblrOuter[tblr]{}
+        \SetTblrOuter[tblr]{}%
         % Use table environment [htbp] / [H]
         \IfBooleanTF{#3}{\begin{table}[htbp]}{\begin{table}[H]}%
             % Center the table
             \centering%
-            % Test if caption is need
-            \IfBooleanF{#1}%
+            % Test if caption needs number
+            \IfBooleanTF{#1}%
+            {%
+                % Make caption*
+                \ifdefempty{\xa@table}{}{\caption*{\xa@table}}%
+            }%
             {%
                 % Make caption 
-                \caption{\xa@table}%
-                % Make label if the label text is not empty
+                \ifdefempty{\xa@table}{\caption{}}{\caption{\xa@table}}%
+                % Make label
                 \ifdefempty{\xb@table}{}{\label{tab:\xb@table}}%
             }%
             % Body here
@@ -143,3 +159,95 @@
     }%
 }{}%
 
+% -------------------------------- %
+% Environment Figure
+% ----------------
+% \begin{Figure}*[caption;label]!
+%     \includegraphics{Test01.fig.pdf}
+% \end{Table}
+% ----------------
+% #1 *                  -> no number
+% #2 [caption;label]    -> caption and label
+% #3 !                  -> enable float, use [htbp] instead [H] (as !)
+% #4                    -> body (+b to allow paragraph break)
+\NewDocumentEnvironment{Figure}{s>{\SplitArgument{1}{;}}O{}t!+b}%
+{%
+    %----------------
+    % \split@figure split #2 to \xa@figure (caption) and \xb@figure (label)
+    \NewDocumentCommand{\split@figure}{mm}%
+    {%
+        % Assign \xa@figure (caption)
+        \def\xa@figure{##1}%
+        % Assign \xb@figure (label)
+        % If label is not given, use caption as label
+        \IfValueTF{##2}{\def\xb@figure{##2}}{\def\xb@figure{##1}}%
+    }%
+    %----------------
+    % Split #2
+    \split@figure#2%
+    % Use figure environment [htbp] / [H]
+    \IfBooleanTF{#3}{\begin{figure}[htbp]}{\begin{figure}[H]}%
+        % Center the figure
+        \centering%
+        % Set parskip in case of multline subfigure
+        \setlength{\parskip}{6pt}%
+        % Body here
+        #4%
+        % Test if caption needs number
+        \IfBooleanTF{#1}%
+        {%
+            % Make caption*
+            \ifdefempty{\xa@figure}{}{\caption*{\xa@figure}}%
+        }%
+        {%
+            % Make caption 
+            \ifdefempty{\xa@figure}{\caption{}}{\caption{\xa@figure}}%
+            % Make label
+            \ifdefempty{\xb@figure}{}{\label{fig:\xb@figure}}%
+        }%
+    \end{figure}%
+}{}%
+
+% -------------------------------- %
+% Command \figuresub
+% Use inside Figure environment
+% ----------------
+% \figuresub*[caption;label]{\includegraphics{Test01.fig.pdf}}{0.5}
+% ----------------
+% #1 *                  -> no number
+% #2 [caption;label]    -> caption and label
+% #3 {graphics}         -> include graphics command
+% #4 {length}           -> width of subfigure (length\linewidth)
+\NewDocumentCommand{\figuresub}{s>{\SplitArgument{1}{;}}O{}mg}%
+{{%
+    %----------------
+    % \split@figuresub split #2 to \xa@figuresub (caption) and \xb@figuresub (label)
+    \NewDocumentCommand{\split@figuresub}{mm}%
+    {%
+        % Assign \xa@figuresub (caption)
+        \def\xa@figuresub{##1}%
+        % Assign \xb@figuresub (label)
+        % If label is not given, use caption as label
+        \IfValueTF{##2}{\def\xb@figuresub{##2}}{\def\xb@figuresub{##1}}%
+    }%
+    %----------------
+    % Split #2
+    \split@figuresub#2%
+    % Test if caption needs number
+    \IfBooleanTF{#1}%
+    {%
+        % Make subcaptionbox*
+        % In this case, if caption also has empty text, just use makebox instead 
+        % Test if sub caption width is assigned
+        \IfValueTF{#4}%
+        {\ifdefempty{\xa@figuresub}{\makebox*[#4\linewidth]{#3}}{\subcaptionbox*{\xa@figuresub}[#4\linewidth]{#3}}}%
+        {\ifdefempty{\xa@figuresub}{\makebox*{#3}}{\subcaptionbox*{\xa@figuresub}{#3}}}%
+    }%
+    {%
+        % Make subcaptionbox
+        % Test if sub caption width is assigned
+        \IfValueTF{#4}%
+        {\subcaptionbox{\xa@figuresub\ifdefempty{\xb@figuresub}{}{\label{fig:\xb@figuresub}}}[#4\linewidth]{#3}}%
+        {\subcaptionbox{\xa@figuresub\ifdefempty{\xb@figuresub}{}{\label{fig:\xb@figuresub}}}{#3}}%
+    }%
+}}%
