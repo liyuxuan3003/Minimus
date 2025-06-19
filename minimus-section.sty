@@ -1,0 +1,235 @@
+\ProvidesPackage{minimus-section}
+
+% -------------------------------- %
+% Load package <etoolbox> : Toolbox for class and package
+\RequirePackage{etoolbox}
+% Load package <xparse> : New way to define command and environment
+\RequirePackage{xparse}
+
+% -------------------------------- %
+% Load package <apptools> : Macro about appendix (\IfAppendix)
+\RequirePackage{apptools}
+
+% -------------------------------- %
+% Add auto label and bookmark only short title to section commands
+
+% \section*[short-title]{full-title;label}!
+% #1 *                   -> no number
+% #2 [short-title]       -> title for toc,header,bookmark (default=full-title)
+% #3 {full-title;label}  -> title for text ; label (default=full-title) 
+% #4 !                   -> short-title usage
+% |---- If false         -> short-title will be use in bookmark only
+% |---- If true          -> short-title will be use in toc,header,bookmark
+
+% Label of \part
+\let\partold=\part
+\RenewDocumentCommand{\part}{so>{\SplitArgument{1}{;}}mt!}%
+{{%
+    % ----------------
+    \NewDocumentCommand{\split@part}{mm}%
+    {%
+        % \xa@part -> title
+        \def\xa@part{##1}%
+        % \xb@part -> label
+        \IfValueTF{##2}{\def\xb@part{##2}}{\def\xb@part{##1}}%
+    }%
+    % ----------------
+    \split@part#3
+    \IfBooleanTF{#1}%
+    {%
+        % Without number
+        \IfValueTF{#2}%
+        {%
+            \IfBooleanTF{#4}%
+            {\partold*[#2]{\xa@part}}%
+            {\partold*{\texorpdfstring{\xa@part}{#2}}}%
+        }%
+        {%
+            \partold*{\xa@part}%
+        }%
+    }%
+    {%
+        % With number
+        \IfValueTF{#2}%
+        {%
+            \IfBooleanTF{#4}%
+            {\partold[#2]{\xa@part}}%
+            {\partold{\texorpdfstring{\xa@part}{#2}}}%
+        }%
+        {%
+            \partold{\xa@part}%
+        }%
+        \ifdefempty{\xb@part}{}{\label{part:\xb@part}}%
+    }%
+}}%
+
+% Label of \chapter
+\let\chapterold=\chapter
+\RenewDocumentCommand{\chapter}{so>{\SplitArgument{1}{;}}mt!}%
+{{%
+    % ----------------
+    \NewDocumentCommand{\split@chapter}{mm}%
+    {%
+        % \xa@chapter -> title
+        \def\xa@chapter{##1}%
+        % \xb@chapter -> label
+        \IfValueTF{##2}{\def\xb@chapter{##2}}{\def\xb@chapter{##1}}%
+    }%
+    % ----------------
+    \split@chapter#3
+    \IfBooleanTF{#1}%
+    {%
+        % Without number
+        \IfValueTF{#2}%
+        {%
+            \IfBooleanTF{#4}%
+            {\chapterold*[#2]{\xa@chapter}}%
+            {\chapterold*{\texorpdfstring{\xa@chapter}{#2}}}%
+        }%
+        {%
+            \chapterold*{\xa@chapter}%
+        }%
+    }%
+    {%
+        % With number
+        \IfValueTF{#2}%
+        {%
+            \IfBooleanTF{#4}%
+            {\chapterold[#2]{\xa@chapter}}%
+            {\chapterold{\texorpdfstring{\xa@chapter}{#2}}}%
+        }%
+        {%
+            \chapterold{\xa@chapter}%
+        }%
+        % Special treatment for chapter / appendix
+        \ifdefempty{\xb@chapter}{}{\IfAppendix{\label{ap:\xb@chapter}}{\label{chap:\xb@chapter}}}%
+    }%
+}}%
+
+% Label of \section
+\let\sectionold=\section
+\RenewDocumentCommand{\section}{so>{\SplitArgument{1}{;}}mt!}%
+{{%
+    % ----------------
+    \NewDocumentCommand{\split@section}{mm}%
+    {%
+        % \xa@section -> title
+        \def\xa@section{##1}%
+        % \xb@section -> label
+        \IfValueTF{##2}{\def\xb@section{##2}}{\def\xb@section{##1}}%
+    }%
+    % ----------------
+    \split@section#3
+    \IfBooleanTF{#1}%
+    {%
+        % Without number
+        \IfValueTF{#2}%
+        {%
+            \IfBooleanTF{#4}%
+            {\sectionold*[#2]{\xa@section}}%
+            {\sectionold*{\texorpdfstring{\xa@section}{#2}}}%
+        }%
+        {%
+            \sectionold*{\xa@section}%
+        }%
+    }%
+    {%
+        % With number
+        \IfValueTF{#2}%
+        {%
+            \IfBooleanTF{#4}%
+            {\sectionold[#2]{\xa@section}}%
+            {\sectionold{\texorpdfstring{\xa@section}{#2}}}%
+        }%
+        {%
+            \sectionold{\xa@section}%
+        }%
+        \ifdefempty{\xb@section}{}{\label{sec:\xb@section}}%
+    }%
+}}%
+
+% Label of \subsection
+\let\subsectionold=\subsection
+\RenewDocumentCommand{\subsection}{so>{\SplitArgument{1}{;}}mt!}%
+{{%
+    % ----------------
+    \NewDocumentCommand{\split@subsection}{mm}%
+    {%
+        % \xa@subsection -> title
+        \def\xa@subsection{##1}%
+        % \xb@subsection -> label
+        \IfValueTF{##2}{\def\xb@subsection{##2}}{\def\xb@subsection{##1}}%
+    }%
+    % ----------------
+    \split@subsection#3
+    \IfBooleanTF{#1}%
+    {%
+        % Without number
+        \IfValueTF{#2}%
+        {%
+            \IfBooleanTF{#4}%
+            {\subsectionold*[#2]{\xa@subsection}}%
+            {\subsectionold*{\texorpdfstring{\xa@subsection}{#2}}}%
+        }%
+        {%
+            \subsectionold*{\xa@subsection}%
+        }%
+    }%
+    {%
+        % With number
+        \IfValueTF{#2}%
+        {%
+            \IfBooleanTF{#4}%
+            {\subsectionold[#2]{\xa@subsection}}%
+            {\subsectionold{\texorpdfstring{\xa@subsection}{#2}}}%
+        }%
+        {%
+            \subsectionold{\xa@subsection}%
+        }%
+        \ifdefempty{\xb@subsection}{}{\label{subsec:\xb@subsection}}%
+    }%
+}}%
+
+% Label of \subsubsection
+\let\subsubsectionold=\subsubsection
+\RenewDocumentCommand{\subsubsection}{so>{\SplitArgument{1}{;}}mt!}%
+{{%
+    % ----------------
+    \NewDocumentCommand{\split@subsubsection}{mm}%
+    {%
+        % \xa@subsubsection -> title
+        \def\xa@subsubsection{##1}%
+        % \xb@subsubsection -> label
+        \IfValueTF{##2}{\def\xb@subsubsection{##2}}{\def\xb@subsubsection{##1}}%
+    }%
+    % ----------------
+    \split@subsubsection#3
+    \IfBooleanTF{#1}%
+    {%
+        % Without number
+        \IfValueTF{#2}%
+        {%
+            \IfBooleanTF{#4}%
+            {\subsubsectionold*[#2]{\xa@subsubsection}}%
+            {\subsubsectionold*{\texorpdfstring{\xa@subsubsection}{#2}}}%
+        }%
+        {%
+            \subsubsectionold*{\xa@subsubsection}%
+        }%
+    }%
+    {%
+        % With number
+        \IfValueTF{#2}%
+        {%
+            \IfBooleanTF{#4}%
+            {\subsubsectionold[#2]{\xa@subsubsection}}%
+            {\subsubsectionold{\texorpdfstring{\xa@subsubsection}{#2}}}%
+        }%
+        {%
+            \subsubsectionold{\xa@subsubsection}%
+        }%
+        \ifdefempty{\xb@subsubsection}{}{\label{subsubsec:\xb@subsubsection}}%
+    }%
+}}%
+
+
