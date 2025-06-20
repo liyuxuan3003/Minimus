@@ -1,0 +1,39 @@
+\ProvidesPackage{minimus-text}
+
+% -------------------------------- %
+% Load package <etoolbox> : Toolbox for class and package
+\RequirePackage{etoolbox}
+% Load package <xparse> : New way to define command and environment
+\RequirePackage{xparse}
+
+% -------------------------------- %
+% Load package <ulem> : Provide various types of underlines that can span across lines
+\RequirePackage{ulem}
+% Load package <xeCJKfntef> : Fixed ulem can not work with chinese
+\RequirePackage{xeCJKfntef}
+
+% \dotcnuline -> only one dot for every chinese character
+\NewDocumentCommand{\dotcnuline}{m}{\CJKunderdot{#1}}
+
+% -------------------------------- %
+% Load package <xurl> : Fixed url can not break properly
+\RequirePackage{xurl}
+
+% -------------------------------- %
+% Load package <xcolor> : More colors
+% dvipsnames, svgnames, x11names -> predefined colors set
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+\RequirePackage{xcolor}
+
+% -------------------------------- %
+% Load package <pifont> : Access to postscript symbol 
+\RequirePackage{pifont}
+
+% number with circle (1-10 only)
+% \ding provides by pifont
+\NewDocumentCommand{\circnum}{m}{\ding{\numexpr 171+#1}}
+\NewDocumentCommand{\circnumdark}{m}{\ding{\numexpr 181+#1}}
+
+% number in roman format
+\NewDocumentCommand{\romannum}{m}{\romannumeral #1}
+\NewDocumentCommand{\Romannum}{m}{\expandafter\@slowromancap\romannumeral #1@}
