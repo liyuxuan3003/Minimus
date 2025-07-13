@@ -1,0 +1,61 @@
+\ProvidesPackage{minimus-tikz}
+
+% -------------------------------- %
+% Load package <tikz> : Draw all kinds of figures
+% TikZ -> TikZ ist kein Zeichenprogramm
+\RequirePackage{tikz}
+
+% Support for coordinate calculation
+\usetikzlibrary{calc}
+
+% Support for intersection
+\usetikzlibrary{intersections}
+
+% Draw angles
+\usetikzlibrary{angles}
+
+% Draw simple 3d figure
+\usetikzlibrary{perspective}
+
+% -------------------------------- %
+% Load package <circuitikz> : Draw circuit diagram
+% europeanresistors : use block shape resistor
+% americaninductors : use 4-bumps shape inductor
+% americanvoltages  : use +/- as symbol of voltage source and voltage marks
+% americancurrents  : use --> as symbol of current source
+% RPvoltages        : rising potential voltages
+% draw from + to - for component
+% draw from - to + for source
+\PassOptionsToPackage{europeanresistors,americaninductors,americanvoltages,americancurrents,RPvoltages}{circuitikz}
+\RequirePackage{circuitikz}
+
+% The following values are the perfect version after long-term adjusting
+
+% Distance of voltage marks
+\ctikzset{voltage/distance from node=0.85}
+
+% Style of resistor  (R)
+\ctikzset{resistors/scale=0.65}
+% Style of capacitor (C)
+\ctikzset{capacitors/scale=0.75}
+% Style of inductor  (L)
+\ctikzset{inductors/scale=0.70}
+% Style of diode     (D)
+\ctikzset{diodes/scale=0.75}
+
+% Style of independent source (vsouce/isource)
+\ctikzset{sources/scale=0.9}
+% Style of control source (cvsource/cisource)
+\ctikzset{csources/scale=0.9}
+
+% Style of mosfet (nmos/pmos)
+% Use both arrow and circle for mosfet
+\ctikzset{tripoles/mos style/arrows}
+
+% Style of logic gate
+% Use ieee style for logic ports
+\ctikzset{logic ports=ieee}
+\ctikzset{logic ports/scale=0.65}
+
+\tikzset{tlvdd/.style={vdd,anchor=north}}
+\tikzset{tlvss/.style={vss,anchor=south}}
