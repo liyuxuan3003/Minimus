@@ -1,0 +1,176 @@
+\ProvidesPackage{minimus-colorbox}
+
+% -------------------------------- %
+% Load package <etoolbox> : Toolbox for class and package
+\RequirePackage{etoolbox}
+% Load package <xparse> : New way to define command and environment
+\RequirePackage{xparse} 
+
+% -------------------------------- %
+% Load package <aliascnt> : Create alian for counter
+\RequirePackage{aliascnt}
+
+% Define base counter for box env
+\newcounter{cntboxdef}[section]
+\newcounter{cntboxthm}[section]
+\newcounter{cntboxexp}[section]
+
+% Define alias counter for box env
+\newaliascnt{boxdefinition}{cntboxdef}
+\newaliascnt{boxtheorem}{cntboxthm}
+\newaliascnt{boxlemma}{cntboxthm}
+\newaliascnt{boxcorollary}{cntboxthm}
+\newaliascnt{boxproposition}{cntboxthm}
+\newaliascnt{boxproperty}{cntboxthm}
+\newaliascnt{boxformula}{cntboxthm}
+\newaliascnt{boxequation}{cntboxthm}
+\newaliascnt{boxexample}{cntboxexp}
+
+% -------------------------------- %
+% Load package <tcolorbox> : Provides colored and framed text boxes
+\RequirePackage{tcolorbox}
+
+% Support for breakable box
+\tcbuselibrary{breakable}
+
+% Support for theorem box
+\tcbuselibrary{theorems}
+
+% Commmon settings for tcolorbox
+% breakable					-> box will break into multi pages if necessary
+% nobeforeafter 			-> remove strange spaces before box
+% separator sign	    	-> for theorem box, use " " for separator of title
+% theorem hanging indent	-> for theorem box, second line of long title will start from left border
+\tcbset{%
+    arc=0.1mm,%
+    colback=black!3!white,%
+    fonttitle=\bfseries,%
+    left=0.2cm,%
+    right=0.2cm,%
+    toptitle=0.05cm,%
+    bottomtitle=0.05cm,%
+    breakable,%
+    nobeforeafter,%
+    separator sign={\ },%
+    theorem hanging indent=0pt}
+
+% Define base style for box
+% Type def -> green
+\tcbset{boxdefstyle/.style={colframe=gray!80!green!80!black}}
+% Type thm -> blue
+\tcbset{boxthmstyle/.style={colframe=gray!70!blue}}
+% Type exp -> cyan
+\tcbset{boxexpstyle/.style={colframe=black!50!cyan}}
+
+% -------------------------------- %
+% Generate wrapper for color box
+% ----------------
+% \make@boxwrapper{wrapper}{base}
+% ---------------- Level 1
+% #1 {wrapper}
+% #2 {base}
+% ----------------
+% For example, \make@boxwrapper{BoxDefinition}{boxdefinition} will 
+% 1. Create env BoxDefinition as wrapper of boxdefinition (##)
+% 2. Create command \split@box inside BoxDefinition (####)
+% \begin{BoxDefinition}*[title;label]
+%      ...
+% \end{BoxDefinition}
+% ---------------- Level 2
+% ##1 *                   -> no number
+% ##2 [title;label]       -> title and label -> \split@box##2
+% ##3                     -> body (+b to allow paragraph break)
+% ---------------- Level 3
+% ####1                   -> title
+% ####2                   -> label
+% ---------------- 
+% Hints: Use 2^{n-1} # for Level n arguments
+% So Level 3's arguments start with "####" instead of "###"
+% ---------------- 
+% Package etoolbox provides useful commands based on \csname \endcsname
+% All the "cs" commands are some how about convert text (e.g a) to command (e.g \a)
+% \csdef{a}{b} = \def\a{b}
+% \csuse{a} = \a
+% \ifcsempty{a}{...}{...} = \ifdefempty{\a}{...}{...}
+\NewDocumentCommand{\make@boxwrapper}{mm}%
+{%
+    % Create wrapper env (BoxDefinition) based on base env (boxdefinition)
+    \NewDocumentEnvironment{#1}{s>{\SplitArgument{1}{;}}O{}+b}%
+    {%
+        % Define split command \split@box
+        \NewDocumentCommand{\split@box}{mm}%
+        {%
+            % \xa@#2 (\xa@boxdefinition) -> title
+            \csdef{xa@#2}{####1}%
+            % \xb@#2 (\xb@boxdefinition) -> label
+            \IfValueTF{####2}{\csdef{xb@#2}{####2}}{\csdef{xb@#2}{####1}}%
+        }%
+        % ----------------
+        % Split title and label 
+        \split@box##2
+        % Box should always be a new paragraph
+        \par%
+        % Test if title needs number
+        \IfBooleanTF{##1}%
+        {%
+            % Call base env with * (boxdefinition*)
+            \begin{#2*}{\csuse{xa@#2}}%
+                ##3%
+            \end{#2*}%
+        }%
+        {%
+            % Call base env without * (boxdefinition)
+            % Only create label when label (\xb@#2) is not empty
+            \ifcsempty{xb@#2}%
+            {\begin{#2}{\csuse{xa@#2}}}%
+            {\begin{#2}{\csuse{xa@#2}}{\csuse{xb@#2}}}%
+                ##3%
+            \end{#2}%
+        }%
+    }{}%
+}%
+
+% -------------------------------- %
+% Environment BoxDefinition
+\NewTcbTheorem[number within=section,use counter=boxdefinition]{boxdefinition}{定义}{boxdefstyle}{def}
+\make@boxwrapper{BoxDefinition}{boxdefinition}
+
+% -------------------------------- %
+% Environment BoxTheorem
+\NewTcbTheorem[number within=section,use counter=boxtheorem]{boxtheorem}{定理}{boxthmstyle}{thm}
+\make@boxwrapper{BoxTheorem}{boxtheorem}
+
+% -------------------------------- %
+% Environment BoxLemma
+\NewTcbTheorem[number within=section,use counter=boxlemma]{boxlemma}{引理}{boxthmstyle}{thm}
+\make@boxwrapper{BoxLemma}{boxlemma}
+
+% -------------------------------- %
+% Environment BoxCorollary
+\NewTcbTheorem[number within=section,use counter=boxcorollary]{boxcorollary}{推论}{boxthmstyle}{thm}
+\make@boxwrapper{BoxCorollary}{boxcorollary}
+
+% -------------------------------- %
+% Environment BoxProposition
+\NewTcbTheorem[number within=section,use counter=boxproposition]{boxproposition}{命题}{boxthmstyle}{thm}
+\make@boxwrapper{BoxProposition}{boxproposition}
+
+% -------------------------------- %
+% Environment BoxProperty
+\NewTcbTheorem[number within=section,use counter=boxproperty]{boxproperty}{性质}{boxthmstyle}{thm}
+\make@boxwrapper{BoxProperty}{boxproperty}
+
+% -------------------------------- %
+% Environment BoxFormula
+\NewTcbTheorem[number within=section,use counter=boxformula]{boxformula}{公式}{boxthmstyle}{thm}
+\make@boxwrapper{BoxFormula}{boxformula}
+
+% -------------------------------- %
+% Environment BoxEquation
+\NewTcbTheorem[number within=section,use counter=boxequation]{boxequation}{方程}{boxthmstyle}{thm}
+\make@boxwrapper{BoxEquation}{boxequation}
+
+% -------------------------------- %
+% Environment BoxExample
+\NewTcbTheorem[number within=section,use counter=boxexample]{boxexample}{例}{boxexpstyle}{thm}
+\make@boxwrapper{BoxExample}{boxexample}

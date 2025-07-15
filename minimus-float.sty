@@ -25,7 +25,7 @@
 % Counter in caption looks like "3.1(a)"
 % Counter in reference looks like "3.1a"
 % Solution: add brackets to counter and set labelformat to simple (or there will be two brackets)
-%----------------
+% ----------------
 % Add brackets to counter
 \renewcommand\thesubfigure{(\alph{subfigure})} 
 \renewcommand\thesubtable{(\alph{subtable})} 
@@ -70,7 +70,7 @@
 % #5                    -> body (+b to allow paragraph break)
 \NewDocumentEnvironment{Table}{s>{\SplitArgument{1}{;}}O{}t!t!+b}%
 {%
-    %----------------
+    % ----------------
     % \split@table split #2 to \xa@table (caption) and \xb@table (label)
     \NewDocumentCommand{\split@table}{mm}%
     {%
@@ -80,7 +80,7 @@
         % If label is not given, use caption as label
         \IfValueTF{##2}{\def\xb@table{##2}}{\def\xb@table{##1}}%
     }%
-    %----------------
+    % ----------------
     % Split #2
     \split@table#2%
     % Test if it is long table
@@ -88,7 +88,7 @@
     {%
         % ---- Long Table ----%
         % Long table do not need table environment!
-        %----------------
+        % ----------------
         % Disable hypcap here to remove warning for \captionof*
         \captionsetup{hypcap=false}%
         % Remove default foot text for continue
@@ -176,7 +176,7 @@
 % #4                    -> body (+b to allow paragraph break)
 \NewDocumentEnvironment{Figure}{s>{\SplitArgument{1}{;}}O{}t!+b}%
 {%
-    %----------------
+    % ----------------
     % \split@figure split #2 to \xa@figure (caption) and \xb@figure (label)
     \NewDocumentCommand{\split@figure}{mm}%
     {%
@@ -186,7 +186,7 @@
         % If label is not given, use caption as label
         \IfValueTF{##2}{\def\xb@figure{##2}}{\def\xb@figure{##1}}%
     }%
-    %----------------
+    % ----------------
     % Split #2
     \split@figure#2%
     % Use figure environment [htbp] / [H]
@@ -224,7 +224,7 @@
 % #4 {length}           -> width of subfigure (length\linewidth)
 \NewDocumentCommand{\figuresub}{s>{\SplitArgument{1}{;}}O{}mg}%
 {{%
-    %----------------
+    % ----------------
     % \split@figuresub split #2 to \xa@figuresub (caption) and \xb@figuresub (label)
     \NewDocumentCommand{\split@figuresub}{mm}%
     {%
@@ -234,7 +234,7 @@
         % If label is not given, use caption as label
         \IfValueTF{##2}{\def\xb@figuresub{##2}}{\def\xb@figuresub{##1}}%
     }%
-    %----------------
+    % ----------------
     % Split #2
     \split@figuresub#2%
     % Test if caption needs number
