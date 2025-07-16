@@ -66,320 +66,412 @@
 % It is ok as long as both format are defined
 % Example: Figure 1.1-1.4, 1.5, 2.1-2.3 and 2.9
 
-% -------------------------------- %
-% Part
-% ----------------
-\crefformat{part}
-{\CJKsetecglue{}#2{第{#1}部分}#3}
-\Crefformat{part}
-{\CJKsetecglue{}#2{第{#1}部分}#3}
-% ----------------
-\crefrangeformat{part}
-{\CJKsetecglue{}#3{第{#1}部分}#4至#5{第{#2}部分}#6}
-\Crefrangeformat{part}
-{\CJKsetecglue{}#3{第{#1}部分}#4至#5{第{#2}部分}#6}
-% ----------------
-\crefmultiformat{part}
-{\CJKsetecglue{}#2{第{#1}部分}#3}
-{\CJKsetecglue{}和#2{第{#1}部分}#3}
-{\CJKsetecglue{}、#2{第{#1}部分}#3}
-{\CJKsetecglue{}、#2{第{#1}部分}#3}
-\Crefmultiformat{part}
-{\CJKsetecglue{}#2{第{#1}部分}#3}
-{\CJKsetecglue{}和#2{第{#1}部分}#3}
-{\CJKsetecglue{}、#2{第{#1}部分}#3}
-{\CJKsetecglue{}、#2{第{#1}部分}#3}
-% ----------------
-\crefrangemultiformat{part}
-{\CJKsetecglue{}#3{第{#1}部分}#4至#5{第{#2}部分}#6}
-{\CJKsetecglue{}和#3{第{#1}部分}#4至#5{第{#2}部分}#6}
-{\CJKsetecglue{}、#3{第{#1}部分}#4至#5{第{#2}部分}#6}
-{\CJKsetecglue{}、#3{第{#1}部分}#4至#5{第{#2}部分}#6}
-\Crefrangemultiformat{part}
-{\CJKsetecglue{}#3{第{#1}部分}#4至#5{第{#2}部分}#6}
-{\CJKsetecglue{}和#3{第{#1}部分}#4至#5{第{#2}部分}#6}
-{\CJKsetecglue{}、#3{第{#1}部分}#4至#5{第{#2}部分}#6}
-{\CJKsetecglue{}、#3{第{#1}部分}#4至#5{第{#2}部分}#6}
+\NewDocumentCommand{\make@crefformat@innerjoin}{mmm}%
+{%
+    % ----------------
+    \crefformat{#1}
+    {\CJKsetecglue{}##2{{#2}{##1}{#3}}##3}
+    \Crefformat{#1}
+    {\CJKsetecglue{}##2{{#2}{##1}{#3}}##3}
+    % ----------------
+    \crefrangeformat{#1}
+    {\CJKsetecglue{}##3{{#2}{##1}}##4--##5{{##2}{#3}}##6}
+    \Crefrangeformat{#1}
+    {\CJKsetecglue{}##3{{#2}{##1}}##4--##5{{##2}{#3}}##6}
+    % ----------------
+    \crefmultiformat{#1}
+    {\CJKsetecglue{}##2{{#2}{##1}}##3}
+    {\CJKsetecglue{},\,##2{{##1}{#3}}##3}
+    {\CJKsetecglue{},\,##2{{##1}}##3}
+    {\CJKsetecglue{},\,##2{{##1}{#3}}##3}
+    \Crefmultiformat{#1}
+    {\CJKsetecglue{}##2{{#2}{##1}}##3}
+    {\CJKsetecglue{},\,##2{{##1}{#3}}##3}
+    {\CJKsetecglue{},\,##2{{##1}}##3}
+    {\CJKsetecglue{},\,##2{{##1}{#3}}##3}
+    % ----------------
+    \crefrangemultiformat{#1}
+    {\CJKsetecglue{}##3{{#2}{##1}}##4--##5{{##2}{#3}}##6}
+    {\CJKsetecglue{},\,##3{{#2}{##1}}##4--##5{{##2}{#3}}##6}
+    {\CJKsetecglue{},\,##3{{#2}{##1}}##4--##5{{##2}{#3}}##6}
+    {\CJKsetecglue{},\,##3{{#2}{##1}}##4--##5{{##2}{#3}}##6}
+    \Crefrangemultiformat{#1}
+    {\CJKsetecglue{}##3{{#2}{##1}}##4--##5{{##2}{#3}}##6}
+    {\CJKsetecglue{},\,##3{{#2}{##1}}##4--##5{{##2}{#3}}##6}
+    {\CJKsetecglue{},\,##3{{#2}{##1}}##4--##5{{##2}{#3}}##6}
+    {\CJKsetecglue{},\,##3{{#2}{##1}}##4--##5{{##2}{#3}}##6}  
+}%
 
-% -------------------------------- %
-% Chapter
-% ----------------
-\crefformat{chapter}
-{\CJKsetecglue{}#2{第{#1}章}#3}
-\Crefformat{chapter}
-{\CJKsetecglue{}#2{第{#1}章}#3}
-% ----------------
-\crefrangeformat{chapter}
-{\CJKsetecglue{}#3{第{#1}章}#4至#5{第{#2}章}#6}
-\Crefrangeformat{chapter}
-{\CJKsetecglue{}#3{第{#1}章}#4至#5{第{#2}章}#6}
-% ----------------
-\crefmultiformat{chapter}
-{\CJKsetecglue{}#2{第{#1}章}#3}
-{\CJKsetecglue{}和#2{第{#1}章}#3}
-{\CJKsetecglue{}、#2{第{#1}章}#3}
-{\CJKsetecglue{}、#2{第{#1}章}#3}
-\Crefmultiformat{chapter}
-{\CJKsetecglue{}#2{第{#1}章}#3}
-{\CJKsetecglue{}和#2{第{#1}章}#3}
-{\CJKsetecglue{}、#2{第{#1}章}#3}
-{\CJKsetecglue{}、#2{第{#1}章}#3}
-% ----------------
-\crefrangemultiformat{chapter}
-{\CJKsetecglue{}#3{第{#1}章}#4至#5{第{#2}章}#6}
-{\CJKsetecglue{}和#3{第{#1}章}#4至#5{第{#2}章}#6}
-{\CJKsetecglue{}、#3{第{#1}章}#4至#5{第{#2}章}#6}
-{\CJKsetecglue{}、#3{第{#1}章}#4至#5{第{#2}章}#6}
-\Crefrangemultiformat{chapter}
-{\CJKsetecglue{}#3{第{#1}章}#4至#5{第{#2}章}#6}
-{\CJKsetecglue{}和#3{第{#1}章}#4至#5{第{#2}章}#6}
-{\CJKsetecglue{}、#3{第{#1}章}#4至#5{第{#2}章}#6}
-{\CJKsetecglue{}、#3{第{#1}章}#4至#5{第{#2}章}#6}
+\NewDocumentCommand{\make@crefformat@outerjoin}{mmm}%
+{%
+    % ----------------
+    \crefformat{#1}
+    {\CJKsetecglue{}##2{{#2}{##1}{#3}}##3}
+    \Crefformat{#1}
+    {\CJKsetecglue{}##2{{#2}{##1}{#3}}##3}
+    % ----------------
+    \crefrangeformat{#1}
+    {\CJKsetecglue{}##3{{#2}{##1}{#3}}##4至##5{{#2}{##2}{#3}}##6}
+    \Crefrangeformat{#1}
+    {\CJKsetecglue{}##3{{#2}{##1}{#3}}##4至##5{{#2}{##2}{#3}}##6}
+    % ----------------
+    \crefmultiformat{#1}
+    {\CJKsetecglue{}##2{{#2}{##1}{#3}}##3}
+    {\CJKsetecglue{}和##2{{#2}{##1}{#3}}##3}
+    {\CJKsetecglue{}、##2{{#2}{##1}{#3}}##3}
+    {\CJKsetecglue{}、##2{{#2}{##1}{#3}}##3}
+    \Crefmultiformat{#1}
+    {\CJKsetecglue{}##2{{#2}{##1}{#3}}##3}
+    {\CJKsetecglue{}和##2{{#2}{##1}{#3}}##3}
+    {\CJKsetecglue{}、##2{{#2}{##1}{#3}}##3}
+    {\CJKsetecglue{}、##2{{#2}{##1}{#3}}##3}
+    % ----------------
+    \crefrangemultiformat{#1}
+    {\CJKsetecglue{}##3{{#2}{##1}{#3}}##4至##5{{#2}{##2}{#3}}##6}
+    {\CJKsetecglue{}和##3{{#2}{##1}{#3}}##4至##5{{#2}{##2}{#3}}##6}
+    {\CJKsetecglue{}、##3{{#2}{##1}{#3}}##4至##5{{#2}{##2}{#3}}##6}
+    {\CJKsetecglue{}、##3{{#2}{##1}{#3}}##4至##5{{#2}{##2}{#3}}##6}
+    \Crefrangemultiformat{#1}
+    {\CJKsetecglue{}##3{{#2}{##1}{#3}}##4至##5{{#2}{##2}{#3}}##6}
+    {\CJKsetecglue{}和##3{{#2}{##1}{#3}}##4至##5{{#2}{##2}{#3}}##6}
+    {\CJKsetecglue{}、##3{{#2}{##1}{#3}}##4至##5{{#2}{##2}{#3}}##6}
+    {\CJKsetecglue{}、##3{{#2}{##1}{#3}}##4至##5{{#2}{##2}{#3}}##6}
+}%
 
-% -------------------------------- %
-% Section
-% ----------------
-\crefformat{section}
-{\CJKsetecglue{}#2{第{#1}节}#3}
-\Crefformat{section}
-{\CJKsetecglue{}#2{第{#1}节}#3}
-% ----------------
-\crefrangeformat{section}
-{\CJKsetecglue{}#3{第{#1}}#4--#5{{#2}节}#6}
-\Crefrangeformat{section}
-{\CJKsetecglue{}#3{第{#1}}#4--#5{{#2}节}#6}
-% ----------------
-\crefmultiformat{section}
-{\CJKsetecglue{}#2{第{#1}}#3}
-{\CJKsetecglue{},\,#2{{#1}节}#3}
-{\CJKsetecglue{},\,#2{{#1}}#3}
-{\CJKsetecglue{},\,#2{{#1}节}#3}
-\Crefmultiformat{section}
-{\CJKsetecglue{}#2{第{#1}}#3}
-{\CJKsetecglue{},\,#2{{#1}节}#3}
-{\CJKsetecglue{},\,#2{{#1}}#3}
-{\CJKsetecglue{},\,#2{{#1}节}#3}
-% ----------------
-\crefrangemultiformat{section}
-{\CJKsetecglue{}#3{第{#1}}#4--#5{{#2}节}#6}
-{\CJKsetecglue{},\,#3{第{#1}}#4--#5{{#2}节}#6}
-{\CJKsetecglue{},\,#3{第{#1}}#4--#5{{#2}节}#6}
-{\CJKsetecglue{},\,#3{第{#1}}#4--#5{{#2}节}#6}
-\Crefrangemultiformat{section}
-{\CJKsetecglue{}#3{第{#1}}#4--#5{{#2}节}#6}
-{\CJKsetecglue{},\,#3{第{#1}}#4--#5{{#2}节}#6}
-{\CJKsetecglue{},\,#3{第{#1}}#4--#5{{#2}节}#6}
-{\CJKsetecglue{},\,#3{第{#1}}#4--#5{{#2}节}#6}
+\make@crefformat@outerjoin{part}{第}{部分}
+\make@crefformat@outerjoin{chapter}{第}{章}
+\make@crefformat@innerjoin{section}{第}{节}
+\make@crefformat@innerjoin{subsection}{第}{小节}
+\make@crefformat@innerjoin{subsubsection}{第}{小节}
+\make@crefformat@innerjoin{appendix}{附录}{}
+\make@crefformat@innerjoin{figure}{图}{}
+\make@crefformat@innerjoin{table}{表}{}
+\make@crefformat@innerjoin{equation}{式(}{)}
 
-% -------------------------------- %
-% Subsection
-% ----------------
-\crefformat{subsection}
-{\CJKsetecglue{}#2{第{#1}小节}#3}
-\Crefformat{subsection}
-{\CJKsetecglue{}#2{第{#1}小节}#3}
-% ----------------
-\crefrangeformat{subsection}
-{\CJKsetecglue{}#3{第{#1}}#4--#5{{#2}小节}#6}
-\Crefrangeformat{subsection}
-{\CJKsetecglue{}#3{第{#1}}#4--#5{{#2}小节}#6}
-% ----------------
-\crefmultiformat{subsection}
-{\CJKsetecglue{}#2{第{#1}}#3}
-{\CJKsetecglue{},\,#2{{#1}小节}#3}
-{\CJKsetecglue{},\,#2{{#1}}#3}
-{\CJKsetecglue{},\,#2{{#1}小节}#3}
-\Crefmultiformat{subsection}
-{\CJKsetecglue{}#2{第{#1}}#3}
-{\CJKsetecglue{},\,#2{{#1}小节}#3}
-{\CJKsetecglue{},\,#2{{#1}}#3}
-{\CJKsetecglue{},\,#2{{#1}小节}#3}
-% ----------------
-\crefrangemultiformat{subsection}
-{\CJKsetecglue{}#3{第{#1}}#4--#5{{#2}小节}#6}
-{\CJKsetecglue{},\,#3{第{#1}}#4--#5{{#2}小节}#6}
-{\CJKsetecglue{},\,#3{第{#1}}#4--#5{{#2}小节}#6}
-{\CJKsetecglue{},\,#3{第{#1}}#4--#5{{#2}小节}#6}
-\Crefrangemultiformat{subsection}
-{\CJKsetecglue{}#3{第{#1}}#4--#5{{#2}小节}#6}
-{\CJKsetecglue{},\,#3{第{#1}}#4--#5{{#2}小节}#6}
-{\CJKsetecglue{},\,#3{第{#1}}#4--#5{{#2}小节}#6}
-{\CJKsetecglue{},\,#3{第{#1}}#4--#5{{#2}小节}#6}
+\make@crefformat@innerjoin{boxdefinition}{定义}{}
+\make@crefformat@innerjoin{boxtheorem}{定理}{}
+\make@crefformat@innerjoin{boxlemma}{引理}{}
+\make@crefformat@innerjoin{boxcorollary}{推论}{}
+\make@crefformat@innerjoin{boxproposition}{命题}{}
+\make@crefformat@innerjoin{boxproperty}{性质}{}
+\make@crefformat@innerjoin{boxformula}{公式}{}
+\make@crefformat@innerjoin{boxequation}{方程}{}
+\make@crefformat@innerjoin{boxexample}{例}{}
 
-% -------------------------------- %
-% Subsubsection
-% ----------------
-\crefformat{subsubsection}
-{\CJKsetecglue{}#2{第{#1}小节}#3}
-\Crefformat{subsubsection}
-{\CJKsetecglue{}#2{第{#1}小节}#3}
-% ----------------
-\crefrangeformat{subsubsection}
-{\CJKsetecglue{}#3{第{#1}}#4--#5{{#2}小节}#6}
-\Crefrangeformat{subsubsection}
-{\CJKsetecglue{}#3{第{#1}}#4--#5{{#2}小节}#6}
-% ----------------
-\crefmultiformat{subsubsection}
-{\CJKsetecglue{}#2{第{#1}}#3}
-{\CJKsetecglue{},\,#2{{#1}小节}#3}
-{\CJKsetecglue{},\,#2{{#1}}#3}
-{\CJKsetecglue{},\,#2{{#1}小节}#3}
-\Crefmultiformat{subsubsection}
-{\CJKsetecglue{}#2{第{#1}}#3}
-{\CJKsetecglue{},\,#2{{#1}小节}#3}
-{\CJKsetecglue{},\,#2{{#1}}#3}
-{\CJKsetecglue{},\,#2{{#1}小节}#3}
-% ----------------
-\crefrangemultiformat{subsubsection}
-{\CJKsetecglue{}#3{第{#1}}#4--#5{{#2}小节}#6}
-{\CJKsetecglue{},\,#3{第{#1}}#4--#5{{#2}小节}#6}
-{\CJKsetecglue{},\,#3{第{#1}}#4--#5{{#2}小节}#6}
-{\CJKsetecglue{},\,#3{第{#1}}#4--#5{{#2}小节}#6}
-\Crefrangemultiformat{subsubsection}
-{\CJKsetecglue{}#3{第{#1}}#4--#5{{#2}小节}#6}
-{\CJKsetecglue{},\,#3{第{#1}}#4--#5{{#2}小节}#6}
-{\CJKsetecglue{},\,#3{第{#1}}#4--#5{{#2}小节}#6}
-{\CJKsetecglue{},\,#3{第{#1}}#4--#5{{#2}小节}#6}
+% % -------------------------------- %
+% % Part
+% % ----------------
+% \crefformat{part}
+% {\CJKsetecglue{}#2{第{#1}部分}#3}
+% \Crefformat{part}
+% {\CJKsetecglue{}#2{第{#1}部分}#3}
+% % ----------------
+% \crefrangeformat{part}
+% {\CJKsetecglue{}#3{第{#1}部分}#4至#5{第{#2}部分}#6}
+% \Crefrangeformat{part}
+% {\CJKsetecglue{}#3{第{#1}部分}#4至#5{第{#2}部分}#6}
+% % ----------------
+% \crefmultiformat{part}
+% {\CJKsetecglue{}#2{第{#1}部分}#3}
+% {\CJKsetecglue{}和#2{第{#1}部分}#3}
+% {\CJKsetecglue{}、#2{第{#1}部分}#3}
+% {\CJKsetecglue{}、#2{第{#1}部分}#3}
+% \Crefmultiformat{part}
+% {\CJKsetecglue{}#2{第{#1}部分}#3}
+% {\CJKsetecglue{}和#2{第{#1}部分}#3}
+% {\CJKsetecglue{}、#2{第{#1}部分}#3}
+% {\CJKsetecglue{}、#2{第{#1}部分}#3}
+% % ----------------
+% \crefrangemultiformat{part}
+% {\CJKsetecglue{}#3{第{#1}部分}#4至#5{第{#2}部分}#6}
+% {\CJKsetecglue{}和#3{第{#1}部分}#4至#5{第{#2}部分}#6}
+% {\CJKsetecglue{}、#3{第{#1}部分}#4至#5{第{#2}部分}#6}
+% {\CJKsetecglue{}、#3{第{#1}部分}#4至#5{第{#2}部分}#6}
+% \Crefrangemultiformat{part}
+% {\CJKsetecglue{}#3{第{#1}部分}#4至#5{第{#2}部分}#6}
+% {\CJKsetecglue{}和#3{第{#1}部分}#4至#5{第{#2}部分}#6}
+% {\CJKsetecglue{}、#3{第{#1}部分}#4至#5{第{#2}部分}#6}
+% {\CJKsetecglue{}、#3{第{#1}部分}#4至#5{第{#2}部分}#6}
 
-% -------------------------------- %
-% Appendix
-% ----------------
-\crefformat{appendix}
-{\CJKsetecglue{}#2{附录{#1}}#3}
-\Crefformat{appendix}
-{\CJKsetecglue{}#2{附录{#1}}#3}
-% ----------------
-\crefrangeformat{appendix}
-{\CJKsetecglue{}#3{附录{#1}}#4--#5{{#2}}#6}
-\Crefrangeformat{appendix}
-{\CJKsetecglue{}#3{附录{#1}}#4--#5{{#2}}#6}
-% ----------------
-\crefmultiformat{appendix}
-{\CJKsetecglue{}#2{附录{#1}}#3}
-{\CJKsetecglue{},\,#2{{#1}}#3}
-{\CJKsetecglue{},\,#2{{#1}}#3}
-{\CJKsetecglue{},\,#2{{#1}}#3}
-\Crefmultiformat{appendix}
-{\CJKsetecglue{}#2{附录{#1}}#3}
-{\CJKsetecglue{},\,#2{{#1}}#3}
-{\CJKsetecglue{},\,#2{{#1}}#3}
-{\CJKsetecglue{},\,#2{{#1}}#3}
-% ----------------
-\crefrangemultiformat{appendix}
-{\CJKsetecglue{}#3{附录{#1}}#4--#5{{#2}}#6}
-{\CJKsetecglue{},\,#3{附录{#1}}#4--#5{{#2}}#6}
-{\CJKsetecglue{},\,#3{附录{#1}}#4--#5{{#2}}#6}
-{\CJKsetecglue{},\,#3{附录{#1}}#4--#5{{#2}}#6}
-\Crefrangemultiformat{appendix}
-{\CJKsetecglue{}#3{附录{#1}}#4--#5{{#2}}#6}
-{\CJKsetecglue{},\,#3{附录{#1}}#4--#5{{#2}}#6}
-{\CJKsetecglue{},\,#3{附录{#1}}#4--#5{{#2}}#6}
-{\CJKsetecglue{},\,#3{附录{#1}}#4--#5{{#2}}#6}
+% % -------------------------------- %
+% % Chapter
+% % ----------------
+% \crefformat{chapter}
+% {\CJKsetecglue{}#2{第{#1}章}#3}
+% \Crefformat{chapter}
+% {\CJKsetecglue{}#2{第{#1}章}#3}
+% % ----------------
+% \crefrangeformat{chapter}
+% {\CJKsetecglue{}#3{第{#1}章}#4至#5{第{#2}章}#6}
+% \Crefrangeformat{chapter}
+% {\CJKsetecglue{}#3{第{#1}章}#4至#5{第{#2}章}#6}
+% % ----------------
+% \crefmultiformat{chapter}
+% {\CJKsetecglue{}#2{第{#1}章}#3}
+% {\CJKsetecglue{}和#2{第{#1}章}#3}
+% {\CJKsetecglue{}、#2{第{#1}章}#3}
+% {\CJKsetecglue{}、#2{第{#1}章}#3}
+% \Crefmultiformat{chapter}
+% {\CJKsetecglue{}#2{第{#1}章}#3}
+% {\CJKsetecglue{}和#2{第{#1}章}#3}
+% {\CJKsetecglue{}、#2{第{#1}章}#3}
+% {\CJKsetecglue{}、#2{第{#1}章}#3}
+% % ----------------
+% \crefrangemultiformat{chapter}
+% {\CJKsetecglue{}#3{第{#1}章}#4至#5{第{#2}章}#6}
+% {\CJKsetecglue{}和#3{第{#1}章}#4至#5{第{#2}章}#6}
+% {\CJKsetecglue{}、#3{第{#1}章}#4至#5{第{#2}章}#6}
+% {\CJKsetecglue{}、#3{第{#1}章}#4至#5{第{#2}章}#6}
+% \Crefrangemultiformat{chapter}
+% {\CJKsetecglue{}#3{第{#1}章}#4至#5{第{#2}章}#6}
+% {\CJKsetecglue{}和#3{第{#1}章}#4至#5{第{#2}章}#6}
+% {\CJKsetecglue{}、#3{第{#1}章}#4至#5{第{#2}章}#6}
+% {\CJKsetecglue{}、#3{第{#1}章}#4至#5{第{#2}章}#6}
 
-% -------------------------------- %
-% Equation
-% ----------------
-\crefformat{equation}
-{\CJKsetecglue{}#2{式({#1})}#3}
-\Crefformat{equation}
-{\CJKsetecglue{}#2{式({#1})}#3}
-% ----------------
-\crefrangeformat{equation}
-{\CJKsetecglue{}#3{式({#1}}#4--#5{{#2})}#6}
-\Crefrangeformat{equation}
-{\CJKsetecglue{}#3{式({#1}}#4--#5{{#2})}#6}
-% ----------------
-\crefmultiformat{equation}
-{\CJKsetecglue{}#2{式({#1}}#3}
-{\CJKsetecglue{},\,#2{{#1})}#3}
-{\CJKsetecglue{},\,#2{{#1}}#3}
-{\CJKsetecglue{},\,#2{{#1})}#3}
-\Crefmultiformat{equation}
-{\CJKsetecglue{}#2{式({#1}}#3}
-{\CJKsetecglue{},\,#2{{#1})}#3}
-{\CJKsetecglue{},\,#2{{#1}}#3}
-{\CJKsetecglue{},\,#2{{#1})}#3}
-% ----------------
-\crefrangemultiformat{equation}
-{\CJKsetecglue{}#3{式({#1}}#4--#5{{#2})}#6}
-{\CJKsetecglue{},\,#3{式({#1}}#4--#5{{#2})}#6}
-{\CJKsetecglue{},\,#3{式({#1}}#4--#5{{#2})}#6}
-{\CJKsetecglue{},\,#3{式({#1}}#4--#5{{#2})}#6}
-\Crefrangemultiformat{equation}
-{\CJKsetecglue{}#3{式({#1}}#4--#5{{#2})}#6}
-{\CJKsetecglue{},\,#3{式({#1}}#4--#5{{#2})}#6}
-{\CJKsetecglue{},\,#3{式({#1}}#4--#5{{#2})}#6}
-{\CJKsetecglue{},\,#3{式({#1}}#4--#5{{#2})}#6}
+% % -------------------------------- %
+% % Section
+% % ----------------
+% \crefformat{section}
+% {\CJKsetecglue{}#2{第{#1}节}#3}
+% \Crefformat{section}
+% {\CJKsetecglue{}#2{第{#1}节}#3}
+% % ----------------
+% \crefrangeformat{section}
+% {\CJKsetecglue{}#3{第{#1}}#4--#5{{#2}节}#6}
+% \Crefrangeformat{section}
+% {\CJKsetecglue{}#3{第{#1}}#4--#5{{#2}节}#6}
+% % ----------------
+% \crefmultiformat{section}
+% {\CJKsetecglue{}#2{第{#1}}#3}
+% {\CJKsetecglue{},\,#2{{#1}节}#3}
+% {\CJKsetecglue{},\,#2{{#1}}#3}
+% {\CJKsetecglue{},\,#2{{#1}节}#3}
+% \Crefmultiformat{section}
+% {\CJKsetecglue{}#2{第{#1}}#3}
+% {\CJKsetecglue{},\,#2{{#1}节}#3}
+% {\CJKsetecglue{},\,#2{{#1}}#3}
+% {\CJKsetecglue{},\,#2{{#1}节}#3}
+% % ----------------
+% \crefrangemultiformat{section}
+% {\CJKsetecglue{}#3{第{#1}}#4--#5{{#2}节}#6}
+% {\CJKsetecglue{},\,#3{第{#1}}#4--#5{{#2}节}#6}
+% {\CJKsetecglue{},\,#3{第{#1}}#4--#5{{#2}节}#6}
+% {\CJKsetecglue{},\,#3{第{#1}}#4--#5{{#2}节}#6}
+% \Crefrangemultiformat{section}
+% {\CJKsetecglue{}#3{第{#1}}#4--#5{{#2}节}#6}
+% {\CJKsetecglue{},\,#3{第{#1}}#4--#5{{#2}节}#6}
+% {\CJKsetecglue{},\,#3{第{#1}}#4--#5{{#2}节}#6}
+% {\CJKsetecglue{},\,#3{第{#1}}#4--#5{{#2}节}#6}
 
-% -------------------------------- %
-% Table
-% ----------------
-\crefformat{table}
-{\CJKsetecglue{}#2{表{#1}}#3}
-\Crefformat{table}
-{\CJKsetecglue{}#2{表{#1}}#3}
-% ----------------
-\crefrangeformat{table}
-{\CJKsetecglue{}#3{表{#1}}#4--#5{{#2}}#6}
-\Crefrangeformat{table}
-{\CJKsetecglue{}#3{表{#1}}#4--#5{{#2}}#6}
-% ----------------
-\crefmultiformat{table}
-{\CJKsetecglue{}#2{表{#1}}#3}
-{\CJKsetecglue{},\,#2{{#1}}#3}
-{\CJKsetecglue{},\,#2{{#1}}#3}
-{\CJKsetecglue{},\,#2{{#1}}#3}
-\Crefmultiformat{table}
-{\CJKsetecglue{}#2{表{#1}}#3}
-{\CJKsetecglue{},\,#2{{#1}}#3}
-{\CJKsetecglue{},\,#2{{#1}}#3}
-{\CJKsetecglue{},\,#2{{#1}}#3}
-% ----------------
-\crefrangemultiformat{table}
-{\CJKsetecglue{}#3{表{#1}}#4--#5{{#2}}#6}
-{\CJKsetecglue{},\,#3{表{#1}}#4--#5{{#2}}#6}
-{\CJKsetecglue{},\,#3{表{#1}}#4--#5{{#2}}#6}
-{\CJKsetecglue{},\,#3{表{#1}}#4--#5{{#2}}#6}
-\Crefrangemultiformat{table}
-{\CJKsetecglue{}#3{表{#1}}#4--#5{{#2}}#6}
-{\CJKsetecglue{},\,#3{表{#1}}#4--#5{{#2}}#6}
-{\CJKsetecglue{},\,#3{表{#1}}#4--#5{{#2}}#6}
-{\CJKsetecglue{},\,#3{表{#1}}#4--#5{{#2}}#6}
+% % -------------------------------- %
+% % Subsection
+% % ----------------
+% \crefformat{subsection}
+% {\CJKsetecglue{}#2{第{#1}小节}#3}
+% \Crefformat{subsection}
+% {\CJKsetecglue{}#2{第{#1}小节}#3}
+% % ----------------
+% \crefrangeformat{subsection}
+% {\CJKsetecglue{}#3{第{#1}}#4--#5{{#2}小节}#6}
+% \Crefrangeformat{subsection}
+% {\CJKsetecglue{}#3{第{#1}}#4--#5{{#2}小节}#6}
+% % ----------------
+% \crefmultiformat{subsection}
+% {\CJKsetecglue{}#2{第{#1}}#3}
+% {\CJKsetecglue{},\,#2{{#1}小节}#3}
+% {\CJKsetecglue{},\,#2{{#1}}#3}
+% {\CJKsetecglue{},\,#2{{#1}小节}#3}
+% \Crefmultiformat{subsection}
+% {\CJKsetecglue{}#2{第{#1}}#3}
+% {\CJKsetecglue{},\,#2{{#1}小节}#3}
+% {\CJKsetecglue{},\,#2{{#1}}#3}
+% {\CJKsetecglue{},\,#2{{#1}小节}#3}
+% % ----------------
+% \crefrangemultiformat{subsection}
+% {\CJKsetecglue{}#3{第{#1}}#4--#5{{#2}小节}#6}
+% {\CJKsetecglue{},\,#3{第{#1}}#4--#5{{#2}小节}#6}
+% {\CJKsetecglue{},\,#3{第{#1}}#4--#5{{#2}小节}#6}
+% {\CJKsetecglue{},\,#3{第{#1}}#4--#5{{#2}小节}#6}
+% \Crefrangemultiformat{subsection}
+% {\CJKsetecglue{}#3{第{#1}}#4--#5{{#2}小节}#6}
+% {\CJKsetecglue{},\,#3{第{#1}}#4--#5{{#2}小节}#6}
+% {\CJKsetecglue{},\,#3{第{#1}}#4--#5{{#2}小节}#6}
+% {\CJKsetecglue{},\,#3{第{#1}}#4--#5{{#2}小节}#6}
 
-% -------------------------------- %
-% Figure
-% ----------------
-\crefformat{figure}
-{\CJKsetecglue{}#2{图{#1}}#3}
-\Crefformat{figure}
-{\CJKsetecglue{}#2{图{#1}}#3}
-% ----------------
-\crefrangeformat{figure}
-{\CJKsetecglue{}#3{图{#1}}#4--#5{{#2}}#6}
-\Crefrangeformat{figure}
-{\CJKsetecglue{}#3{图{#1}}#4--#5{{#2}}#6}
-% ----------------
-\crefmultiformat{figure}
-{\CJKsetecglue{}#2{图{#1}}#3}
-{\CJKsetecglue{},\,#2{{#1}}#3}
-{\CJKsetecglue{},\,#2{{#1}}#3}
-{\CJKsetecglue{},\,#2{{#1}}#3}
-\Crefmultiformat{figure}
-{\CJKsetecglue{}#2{图{#1}}#3}
-{\CJKsetecglue{},\,#2{{#1}}#3}
-{\CJKsetecglue{},\,#2{{#1}}#3}
-{\CJKsetecglue{},\,#2{{#1}}#3}
-% ----------------
-\crefrangemultiformat{figure}
-{\CJKsetecglue{}#3{图{#1}}#4--#5{{#2}}#6}
-{\CJKsetecglue{},\,#3{{#1}}#4--#5{{#2}}#6}
-{\CJKsetecglue{},\,#3{{#1}}#4--#5{{#2}}#6}
-{\CJKsetecglue{},\,#3{{#1}}#4--#5{{#2}}#6}
-\Crefrangemultiformat{figure}
-{\CJKsetecglue{}#3{图{#1}}#4--#5{{#2}}#6}
-{\CJKsetecglue{},\,#3{{#1}}#4--#5{{#2}}#6}
-{\CJKsetecglue{},\,#3{{#1}}#4--#5{{#2}}#6}
-{\CJKsetecglue{},\,#3{{#1}}#4--#5{{#2}}#6}
+% % -------------------------------- %
+% % Subsubsection
+% % ----------------
+% \crefformat{subsubsection}
+% {\CJKsetecglue{}#2{第{#1}小节}#3}
+% \Crefformat{subsubsection}
+% {\CJKsetecglue{}#2{第{#1}小节}#3}
+% % ----------------
+% \crefrangeformat{subsubsection}
+% {\CJKsetecglue{}#3{第{#1}}#4--#5{{#2}小节}#6}
+% \Crefrangeformat{subsubsection}
+% {\CJKsetecglue{}#3{第{#1}}#4--#5{{#2}小节}#6}
+% % ----------------
+% \crefmultiformat{subsubsection}
+% {\CJKsetecglue{}#2{第{#1}}#3}
+% {\CJKsetecglue{},\,#2{{#1}小节}#3}
+% {\CJKsetecglue{},\,#2{{#1}}#3}
+% {\CJKsetecglue{},\,#2{{#1}小节}#3}
+% \Crefmultiformat{subsubsection}
+% {\CJKsetecglue{}#2{第{#1}}#3}
+% {\CJKsetecglue{},\,#2{{#1}小节}#3}
+% {\CJKsetecglue{},\,#2{{#1}}#3}
+% {\CJKsetecglue{},\,#2{{#1}小节}#3}
+% % ----------------
+% \crefrangemultiformat{subsubsection}
+% {\CJKsetecglue{}#3{第{#1}}#4--#5{{#2}小节}#6}
+% {\CJKsetecglue{},\,#3{第{#1}}#4--#5{{#2}小节}#6}
+% {\CJKsetecglue{},\,#3{第{#1}}#4--#5{{#2}小节}#6}
+% {\CJKsetecglue{},\,#3{第{#1}}#4--#5{{#2}小节}#6}
+% \Crefrangemultiformat{subsubsection}
+% {\CJKsetecglue{}#3{第{#1}}#4--#5{{#2}小节}#6}
+% {\CJKsetecglue{},\,#3{第{#1}}#4--#5{{#2}小节}#6}
+% {\CJKsetecglue{},\,#3{第{#1}}#4--#5{{#2}小节}#6}
+% {\CJKsetecglue{},\,#3{第{#1}}#4--#5{{#2}小节}#6}
+
+% % -------------------------------- %
+% % Appendix
+% % ----------------
+% \crefformat{appendix}
+% {\CJKsetecglue{}#2{附录{#1}}#3}
+% \Crefformat{appendix}
+% {\CJKsetecglue{}#2{附录{#1}}#3}
+% % ----------------
+% \crefrangeformat{appendix}
+% {\CJKsetecglue{}#3{附录{#1}}#4--#5{{#2}}#6}
+% \Crefrangeformat{appendix}
+% {\CJKsetecglue{}#3{附录{#1}}#4--#5{{#2}}#6}
+% % ----------------
+% \crefmultiformat{appendix}
+% {\CJKsetecglue{}#2{附录{#1}}#3}
+% {\CJKsetecglue{},\,#2{{#1}}#3}
+% {\CJKsetecglue{},\,#2{{#1}}#3}
+% {\CJKsetecglue{},\,#2{{#1}}#3}
+% \Crefmultiformat{appendix}
+% {\CJKsetecglue{}#2{附录{#1}}#3}
+% {\CJKsetecglue{},\,#2{{#1}}#3}
+% {\CJKsetecglue{},\,#2{{#1}}#3}
+% {\CJKsetecglue{},\,#2{{#1}}#3}
+% % ----------------
+% \crefrangemultiformat{appendix}
+% {\CJKsetecglue{}#3{附录{#1}}#4--#5{{#2}}#6}
+% {\CJKsetecglue{},\,#3{附录{#1}}#4--#5{{#2}}#6}
+% {\CJKsetecglue{},\,#3{附录{#1}}#4--#5{{#2}}#6}
+% {\CJKsetecglue{},\,#3{附录{#1}}#4--#5{{#2}}#6}
+% \Crefrangemultiformat{appendix}
+% {\CJKsetecglue{}#3{附录{#1}}#4--#5{{#2}}#6}
+% {\CJKsetecglue{},\,#3{附录{#1}}#4--#5{{#2}}#6}
+% {\CJKsetecglue{},\,#3{附录{#1}}#4--#5{{#2}}#6}
+% {\CJKsetecglue{},\,#3{附录{#1}}#4--#5{{#2}}#6}
+
+% % -------------------------------- %
+% % Equation
+% % ----------------
+% \crefformat{equation}
+% {\CJKsetecglue{}#2{式({#1})}#3}
+% \Crefformat{equation}
+% {\CJKsetecglue{}#2{式({#1})}#3}
+% % ----------------
+% \crefrangeformat{equation}
+% {\CJKsetecglue{}#3{式({#1}}#4--#5{{#2})}#6}
+% \Crefrangeformat{equation}
+% {\CJKsetecglue{}#3{式({#1}}#4--#5{{#2})}#6}
+% % ----------------
+% \crefmultiformat{equation}
+% {\CJKsetecglue{}#2{式({#1}}#3}
+% {\CJKsetecglue{},\,#2{{#1})}#3}
+% {\CJKsetecglue{},\,#2{{#1}}#3}
+% {\CJKsetecglue{},\,#2{{#1})}#3}
+% \Crefmultiformat{equation}
+% {\CJKsetecglue{}#2{式({#1}}#3}
+% {\CJKsetecglue{},\,#2{{#1})}#3}
+% {\CJKsetecglue{},\,#2{{#1}}#3}
+% {\CJKsetecglue{},\,#2{{#1})}#3}
+% % ----------------
+% \crefrangemultiformat{equation}
+% {\CJKsetecglue{}#3{式({#1}}#4--#5{{#2})}#6}
+% {\CJKsetecglue{},\,#3{式({#1}}#4--#5{{#2})}#6}
+% {\CJKsetecglue{},\,#3{式({#1}}#4--#5{{#2})}#6}
+% {\CJKsetecglue{},\,#3{式({#1}}#4--#5{{#2})}#6}
+% \Crefrangemultiformat{equation}
+% {\CJKsetecglue{}#3{式({#1}}#4--#5{{#2})}#6}
+% {\CJKsetecglue{},\,#3{式({#1}}#4--#5{{#2})}#6}
+% {\CJKsetecglue{},\,#3{式({#1}}#4--#5{{#2})}#6}
+% {\CJKsetecglue{},\,#3{式({#1}}#4--#5{{#2})}#6}
+
+% % -------------------------------- %
+% % Table
+% % ----------------
+% \crefformat{table}
+% {\CJKsetecglue{}#2{表{#1}}#3}
+% \Crefformat{table}
+% {\CJKsetecglue{}#2{表{#1}}#3}
+% % ----------------
+% \crefrangeformat{table}
+% {\CJKsetecglue{}#3{表{#1}}#4--#5{{#2}}#6}
+% \Crefrangeformat{table}
+% {\CJKsetecglue{}#3{表{#1}}#4--#5{{#2}}#6}
+% % ----------------
+% \crefmultiformat{table}
+% {\CJKsetecglue{}#2{表{#1}}#3}
+% {\CJKsetecglue{},\,#2{{#1}}#3}
+% {\CJKsetecglue{},\,#2{{#1}}#3}
+% {\CJKsetecglue{},\,#2{{#1}}#3}
+% \Crefmultiformat{table}
+% {\CJKsetecglue{}#2{表{#1}}#3}
+% {\CJKsetecglue{},\,#2{{#1}}#3}
+% {\CJKsetecglue{},\,#2{{#1}}#3}
+% {\CJKsetecglue{},\,#2{{#1}}#3}
+% % ----------------
+% \crefrangemultiformat{table}
+% {\CJKsetecglue{}#3{表{#1}}#4--#5{{#2}}#6}
+% {\CJKsetecglue{},\,#3{表{#1}}#4--#5{{#2}}#6}
+% {\CJKsetecglue{},\,#3{表{#1}}#4--#5{{#2}}#6}
+% {\CJKsetecglue{},\,#3{表{#1}}#4--#5{{#2}}#6}
+% \Crefrangemultiformat{table}
+% {\CJKsetecglue{}#3{表{#1}}#4--#5{{#2}}#6}
+% {\CJKsetecglue{},\,#3{表{#1}}#4--#5{{#2}}#6}
+% {\CJKsetecglue{},\,#3{表{#1}}#4--#5{{#2}}#6}
+% {\CJKsetecglue{},\,#3{表{#1}}#4--#5{{#2}}#6}
+
+% % -------------------------------- %
+% % Figure
+% % ----------------
+% \crefformat{figure}
+% {\CJKsetecglue{}#2{图{#1}}#3}
+% \Crefformat{figure}
+% {\CJKsetecglue{}#2{图{#1}}#3}
+% % ----------------
+% \crefrangeformat{figure}
+% {\CJKsetecglue{}#3{图{#1}}#4--#5{{#2}}#6}
+% \Crefrangeformat{figure}
+% {\CJKsetecglue{}#3{图{#1}}#4--#5{{#2}}#6}
+% % ----------------
+% \crefmultiformat{figure}
+% {\CJKsetecglue{}#2{图{#1}}#3}
+% {\CJKsetecglue{},\,#2{{#1}}#3}
+% {\CJKsetecglue{},\,#2{{#1}}#3}
+% {\CJKsetecglue{},\,#2{{#1}}#3}
+% \Crefmultiformat{figure}
+% {\CJKsetecglue{}#2{图{#1}}#3}
+% {\CJKsetecglue{},\,#2{{#1}}#3}
+% {\CJKsetecglue{},\,#2{{#1}}#3}
+% {\CJKsetecglue{},\,#2{{#1}}#3}
+% % ----------------
+% \crefrangemultiformat{figure}
+% {\CJKsetecglue{}#3{图{#1}}#4--#5{{#2}}#6}
+% {\CJKsetecglue{},\,#3{{#1}}#4--#5{{#2}}#6}
+% {\CJKsetecglue{},\,#3{{#1}}#4--#5{{#2}}#6}
+% {\CJKsetecglue{},\,#3{{#1}}#4--#5{{#2}}#6}
+% \Crefrangemultiformat{figure}
+% {\CJKsetecglue{}#3{图{#1}}#4--#5{{#2}}#6}
+% {\CJKsetecglue{},\,#3{{#1}}#4--#5{{#2}}#6}
+% {\CJKsetecglue{},\,#3{{#1}}#4--#5{{#2}}#6}
+% {\CJKsetecglue{},\,#3{{#1}}#4--#5{{#2}}#6}
 
 % -------------------------------- %
 % Define format between different type of reference

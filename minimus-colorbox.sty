@@ -37,10 +37,11 @@
 \tcbuselibrary{theorems}
 
 % Commmon settings for tcolorbox
-% breakable					-> box will break into multi pages if necessary
-% nobeforeafter 			-> remove strange spaces before box
-% separator sign	    	-> for theorem box, use " " for separator of title
-% theorem hanging indent	-> for theorem box, second line of long title will start from left border
+% breakable                 -> box will break into multi pages if necessary
+% lines before break=1      -> box can break if at least 1 line is placed
+% nobeforeafter             -> remove strange spaces before box
+% separator sign            -> for theorem box, use " " for separator of title
+% theorem hanging indent=0pt-> for theorem box, second line of long title will start from left border
 \tcbset{%
     arc=0.1mm,%
     colback=black!3!white,%
@@ -50,6 +51,7 @@
     toptitle=0.05cm,%
     bottomtitle=0.05cm,%
     breakable,%
+    lines before break=1,%
     nobeforeafter,%
     separator sign={\ },%
     theorem hanging indent=0pt}
@@ -142,35 +144,35 @@
 
 % -------------------------------- %
 % Environment BoxLemma
-\NewTcbTheorem[number within=section,use counter=boxlemma]{boxlemma}{引理}{boxthmstyle}{thm}
+\NewTcbTheorem[number within=section,use counter=boxlemma]{boxlemma}{引理}{boxthmstyle}{lem}
 \make@boxwrapper{BoxLemma}{boxlemma}
 
 % -------------------------------- %
 % Environment BoxCorollary
-\NewTcbTheorem[number within=section,use counter=boxcorollary]{boxcorollary}{推论}{boxthmstyle}{thm}
+\NewTcbTheorem[number within=section,use counter=boxcorollary]{boxcorollary}{推论}{boxthmstyle}{col}
 \make@boxwrapper{BoxCorollary}{boxcorollary}
 
 % -------------------------------- %
 % Environment BoxProposition
-\NewTcbTheorem[number within=section,use counter=boxproposition]{boxproposition}{命题}{boxthmstyle}{thm}
+\NewTcbTheorem[number within=section,use counter=boxproposition]{boxproposition}{命题}{boxthmstyle}{pps}
 \make@boxwrapper{BoxProposition}{boxproposition}
 
 % -------------------------------- %
 % Environment BoxProperty
-\NewTcbTheorem[number within=section,use counter=boxproperty]{boxproperty}{性质}{boxthmstyle}{thm}
+\NewTcbTheorem[number within=section,use counter=boxproperty]{boxproperty}{性质}{boxthmstyle}{ppt}
 \make@boxwrapper{BoxProperty}{boxproperty}
 
 % -------------------------------- %
 % Environment BoxFormula
-\NewTcbTheorem[number within=section,use counter=boxformula]{boxformula}{公式}{boxthmstyle}{thm}
+\NewTcbTheorem[number within=section,use counter=boxformula]{boxformula}{公式}{boxthmstyle}{fml}
 \make@boxwrapper{BoxFormula}{boxformula}
 
 % -------------------------------- %
 % Environment BoxEquation
-\NewTcbTheorem[number within=section,use counter=boxequation]{boxequation}{方程}{boxthmstyle}{thm}
+\NewTcbTheorem[number within=section,use counter=boxequation]{boxequation}{方程}{boxthmstyle}{eqt}
 \make@boxwrapper{BoxEquation}{boxequation}
 
 % -------------------------------- %
 % Environment BoxExample
-\NewTcbTheorem[number within=section,use counter=boxexample]{boxexample}{例}{boxexpstyle}{thm}
+\NewTcbTheorem[number within=section,use counter=boxexample]{boxexample}{例}{boxexpstyle}{exp}
 \make@boxwrapper{BoxExample}{boxexample}
