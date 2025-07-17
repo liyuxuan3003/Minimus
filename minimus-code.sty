@@ -1,0 +1,105 @@
+\ProvidesPackage{minimus-code}
+
+% -------------------------------- %
+% Load package <etoolbox> : Toolbox for class and package
+\RequirePackage{etoolbox}
+% Load package <xparse> : New way to define command and environment
+\RequirePackage{xparse}
+
+% -------------------------------- %
+% Load package <listings> : Typeset source code
+\RequirePackage{listings}
+
+\renewcommand{\lstlistlistingname}{代码}
+\renewcommand{\lstlistingname}{代码}
+
+\lstset%
+{%
+    basicstyle=\ttfamily,%
+    keywordstyle=\bfseries\color{blue},%
+    ndkeywordstyle=\bfseries\color{teal},%
+    commentstyle=\color{red},%
+    stringstyle=\color{magenta},%
+    flexiblecolumns,%            
+    numbers=left,%
+    showspaces=false,%
+    numberstyle=\tiny\ttfamily,%
+    showstringspaces=false,%
+    captionpos=t,%
+    frame=lrtb,%
+    breaklines=true,% 
+    columns=fixed,%
+    basewidth=0.5em,%
+}%
+
+\lstdefinestyle{c}%
+{%
+    language=C,%
+    identifierstyle=\color{black!50!green},%
+}%
+
+\lstdefinestyle{cpp}%
+{%
+    language=C++,%
+    identifierstyle=\color{black!50!green},%
+}%
+
+\lstdefinestyle{python}%
+{%
+    language=Python,%
+    identifierstyle=\color{black!50!green},%
+}%
+
+\lstdefinestyle{scala}%
+{%
+    language=Scala,%
+    identifierstyle=\color{black!50!green},%
+}%
+
+\lstdefinestyle{verilog}%
+{%
+    language=Verilog,%
+    identifierstyle=\color{black!50!green},%
+}%
+
+\lstdefinestyle{riscv}%
+{%
+    morekeywords={lui,li,auipc,j,jr,jal,jalr,ret,beq,bne,blt,bgt,ble,bge,bltu,bgtu,bleu,bgeu,lb,lh,lw,lbu,lhu,sb,sh,sw,addi,nop,mv,slti,sltiu,xori,ori,andi,slli,srli,srai,add,sub,neg,sll,srl,sra,xor,or,and,not,slt,sltu},%
+    morecomment=[l][commentstyle]{\#},%
+    identifierstyle=\color{black!50!green},%
+}%
+
+\lstdefinestyle{latex}%
+{%
+    language=[LaTeX]TeX,%
+}%
+
+\lstdefinestyle{plain}{}
+
+\NewDocumentEnvironment{Code}{s>{\SplitArgument{1}{;}}O{}G{plain}b}%
+{%
+    % ----------------
+    \NewDocumentCommand{\split@code}{mm}%
+    {%
+        % \xa@code -> title
+        \def\xa@code{##1}%
+        % \xb@code -> label
+        \IfValueTF{##2}{\def\xb@code{##2}}{\def\xb@code{##1}}%
+    }%
+    % ----------------
+    \split@code#2%
+    \lstset{style=#3,nolol=true}%
+    % Disable hypcap here to remove warning for \captionof*
+    \captionsetup{hypcap=false}%
+    \IfBooleanTF{#1}%
+    {%
+        \captionof*{lstlisting}{\xa@code}%
+    }%
+    {%
+        \ifdefempty{\xa@code}%
+        {\captionof{lstlisting}{}}%
+        {\captionof{lstlisting}{\xa@code}}%
+        \ifdefempty{\xb@code}{}{\label{code:\xb@code}}%
+    }%
+    #4%
+}{}%
