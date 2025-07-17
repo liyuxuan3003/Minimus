@@ -14,6 +14,7 @@
 \newcounter{cntboxdef}[section]
 \newcounter{cntboxthm}[section]
 \newcounter{cntboxexp}[section]
+\newcounter{cntboxdespri}[section]
 
 % Define alias counter for box env
 \newaliascnt{boxdefinition}{cntboxdef}
@@ -25,6 +26,7 @@
 \newaliascnt{boxformula}{cntboxthm}
 \newaliascnt{boxequation}{cntboxthm}
 \newaliascnt{boxexample}{cntboxexp}
+\newaliascnt{boxdesignprinciple}{cntboxdespri}
 
 % -------------------------------- %
 % Load package <tcolorbox> : Provides colored and framed text boxes
@@ -39,7 +41,6 @@
 % Commmon settings for tcolorbox
 % breakable                 -> box will break into multi pages if necessary
 % lines before break=1      -> box can break if at least 1 line is placed
-% nobeforeafter             -> remove strange spaces before box
 % separator sign            -> for theorem box, use " " for separator of title
 % theorem hanging indent=0pt-> for theorem box, second line of long title will start from left border
 \tcbset{%
@@ -52,27 +53,32 @@
     bottomtitle=0.05cm,%
     breakable,%
     lines before break=1,%
-    nobeforeafter,%
     separator sign={\ },%
     theorem hanging indent=0pt}
 
-% Define base style for box
-% Type def -> green
+% Define style for box
+% Type def
 \tcbset{boxdefstyle/.style={colframe=gray!80!green!80!black}}
-% Type thm -> blue
+% Type thm
 \tcbset{boxthmstyle/.style={colframe=gray!70!blue}}
-% Type exp -> cyan
+% Type exp
 \tcbset{boxexpstyle/.style={colframe=black!50!cyan}}
+% Type txt
+\tcbset{boxtxtstyle/.style={colframe=gray!70!red}}
+% Type jpset
+\tcbset{boxjpsetstyle/.style={colframe=blue!50!black,colback=blue!5!white,arc=1.0mm}}
+% Type jpcov
+\tcbset{boxjpcovstyle/.style={colframe=green!50!black,colback=green!5!white,arc=1.0mm}}
 
 % -------------------------------- %
-% Generate wrapper for color box
+% Generate wrapper for theorem like color box
 % ----------------
-% \make@boxwrapper{wrapper}{base}
+% \make@boxthm{envname}{base}
 % ---------------- Level 1
-% #1 {wrapper}
+% #1 {envname}
 % #2 {base}
 % ----------------
-% For example, \make@boxwrapper{BoxDefinition}{boxdefinition} will 
+% \make@boxthm{BoxDefinition}{boxdefinition} will 
 % 1. Create env BoxDefinition as wrapper of boxdefinition (##)
 % 2. Create command \split@box inside BoxDefinition (####)
 % \begin{BoxDefinition}*[title;label]
@@ -94,7 +100,7 @@
 % \csdef{a}{b} = \def\a{b}
 % \csuse{a} = \a
 % \ifcsempty{a}{...}{...} = \ifdefempty{\a}{...}{...}
-\NewDocumentCommand{\make@boxwrapper}{mm}%
+\NewDocumentCommand{\make@boxthm}{mm}%
 {%
     % Create wrapper env (BoxDefinition) based on base env (boxdefinition)
     \NewDocumentEnvironment{#1}{s>{\SplitArgument{1}{;}}O{}+b}%
@@ -109,7 +115,7 @@
         }%
         % ----------------
         % Split title and label 
-        \split@box##2
+        \split@box##2%
         % Box should always be a new paragraph
         \par%
         % Test if title needs number
@@ -117,6 +123,9 @@
         {%
             % Call base env with * (boxdefinition*)
             \begin{#2*}{\csuse{xa@#2}}%
+                % Set paragraph skip inside box
+                \setlength{\parskip}{6pt}%
+                % Body here
                 ##3%
             \end{#2*}%
         }%
@@ -124,8 +133,11 @@
             % Call base env without * (boxdefinition)
             % Only create label when label (\xb@#2) is not empty
             \ifcsempty{xb@#2}%
-            {\begin{#2}{\csuse{xa@#2}}}%
+            {\begin{#2}{\csuse{xa@#2}}{}}%
             {\begin{#2}{\csuse{xa@#2}}{\csuse{xb@#2}}}%
+                % Set paragraph skip inside box
+                \setlength{\parskip}{6pt}%
+                % Body here
                 ##3%
             \end{#2}%
         }%
@@ -135,44 +147,112 @@
 % -------------------------------- %
 % Environment BoxDefinition
 \NewTcbTheorem[number within=section,use counter=boxdefinition]{boxdefinition}{定义}{boxdefstyle}{def}
-\make@boxwrapper{BoxDefinition}{boxdefinition}
+\make@boxthm{BoxDefinition}{boxdefinition}
 
 % -------------------------------- %
 % Environment BoxTheorem
 \NewTcbTheorem[number within=section,use counter=boxtheorem]{boxtheorem}{定理}{boxthmstyle}{thm}
-\make@boxwrapper{BoxTheorem}{boxtheorem}
+\make@boxthm{BoxTheorem}{boxtheorem}
 
 % -------------------------------- %
 % Environment BoxLemma
 \NewTcbTheorem[number within=section,use counter=boxlemma]{boxlemma}{引理}{boxthmstyle}{lem}
-\make@boxwrapper{BoxLemma}{boxlemma}
+\make@boxthm{BoxLemma}{boxlemma}
 
 % -------------------------------- %
 % Environment BoxCorollary
 \NewTcbTheorem[number within=section,use counter=boxcorollary]{boxcorollary}{推论}{boxthmstyle}{col}
-\make@boxwrapper{BoxCorollary}{boxcorollary}
+\make@boxthm{BoxCorollary}{boxcorollary}
 
 % -------------------------------- %
 % Environment BoxProposition
 \NewTcbTheorem[number within=section,use counter=boxproposition]{boxproposition}{命题}{boxthmstyle}{pps}
-\make@boxwrapper{BoxProposition}{boxproposition}
+\make@boxthm{BoxProposition}{boxproposition}
 
 % -------------------------------- %
 % Environment BoxProperty
 \NewTcbTheorem[number within=section,use counter=boxproperty]{boxproperty}{性质}{boxthmstyle}{ppt}
-\make@boxwrapper{BoxProperty}{boxproperty}
+\make@boxthm{BoxProperty}{boxproperty}
 
 % -------------------------------- %
 % Environment BoxFormula
 \NewTcbTheorem[number within=section,use counter=boxformula]{boxformula}{公式}{boxthmstyle}{fml}
-\make@boxwrapper{BoxFormula}{boxformula}
+\make@boxthm{BoxFormula}{boxformula}
 
 % -------------------------------- %
 % Environment BoxEquation
 \NewTcbTheorem[number within=section,use counter=boxequation]{boxequation}{方程}{boxthmstyle}{eqt}
-\make@boxwrapper{BoxEquation}{boxequation}
+\make@boxthm{BoxEquation}{boxequation}
 
 % -------------------------------- %
 % Environment BoxExample
 \NewTcbTheorem[number within=section,use counter=boxexample]{boxexample}{例}{boxexpstyle}{exp}
-\make@boxwrapper{BoxExample}{boxexample}
+\make@boxthm{BoxExample}{boxexample}
+
+% -------------------------------- %
+% Environment BoxDesignPrinciple
+\NewTcbTheorem[use counter=boxdesignprinciple]{boxdesignprinciple}{设计原则}{boxtxtstyle}{despri}
+\make@boxthm{BoxDesignPrinciple}{boxdesignprinciple}
+
+\NewDocumentCommand{\make@boxjp}{mm}%
+{%
+    % Create wrapper env (JPSentence) based on base env (jpsentence)
+    \NewDocumentEnvironment{#1}{+g+b}%
+    {%
+        % Box should always be a new paragraph
+        \par%
+        % Call base env
+        \begin{#2}%
+            % Set footnote symbol
+            \renewcommand{\thempfootnote}{\arabic{mpfootnote}}%
+            % Set paragraph skip inside box
+            \setlength{\parskip}{6pt}%
+            % Show japanese (##2 body)
+            ##2%
+            % Show chinese if given (##1)
+            % \tcblower will start the second part of box
+            \IfValueT{#1}{\tcblower\setlength{\parskip}{6pt}##1}%
+        \end{#2}%
+    }{}%
+}%
+
+\NewTColorBox{jpsentence}{}{boxjpsetstyle}
+\make@boxjp{JPSentence}{jpsentence}
+
+\NewTColorBox{jpconversation}{}{boxjpcovstyle}
+\make@boxjp{JPConversation}{jpconversation}
+
+% -------------------------------- %
+% Generate proof like environment
+% ---------------- 
+% \make@proof{envname}{title}
+% ---------------- Level 1
+% #1 {envname}      -> the name of proof like env to create
+% #2 {title}        -> text at the start of proof
+% ----------------
+% \make@proof{Proof}{证明} will generate env Proof (##)
+% \begin{Proof}[\cref{thm:Test}]
+%     So easy.
+% \end{Proof}
+% ---------------- Level 2
+% ##1 {reference}   -> reference to the proof target
+% ##2               -> body (+b to allow paragraph break)
+\NewDocumentCommand{\make@proof}{mm}%
+{%
+    \NewDocumentEnvironment{#1}{O{}+b}%
+    {%
+        \begin{proof}[\bfseries #2]%
+            \dotfill\, ##1\par%
+            ##2%
+        \end{proof}%
+        \hrule\par\vspace{15pt plus 10pt minus 10pt}%
+    }{}%
+}%
+
+% -------------------------------- %
+% Environment Proof
+\make@proof{Proof}{证明}
+
+% -------------------------------- %
+% Environment Solution
+\make@proof{Solution}{解}
