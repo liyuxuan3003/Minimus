@@ -29,11 +29,53 @@
 % Load package <pifont> : Access to postscript symbol 
 \RequirePackage{pifont}
 
-% number with circle (1-10 only)
+% Number with circle (1-10 only)
 % \ding provides by pifont
 \NewDocumentCommand{\circnum}{m}{\ding{\numexpr 171+#1}}
 \NewDocumentCommand{\circnumdark}{m}{\ding{\numexpr 181+#1}}
 
-% number in roman format
+% Number in roman format
 \NewDocumentCommand{\romannum}{m}{\romannumeral #1}
 \NewDocumentCommand{\Romannum}{m}{\expandafter\@slowromancap\romannumeral #1@}
+
+% -------------------------------- %
+% Load package <tikz> : Draw all kinds of figure
+% Load tikz and positioning here to support definition of \fg command
+\RequirePackage{tikz}
+\usetikzlibrary{positioning}
+
+% Size correction of hiragana
+\NewDocumentCommand{\vsizecorrectorhira}{}{\vphantom{もりぼゃ}}
+% Size correction of kanji
+\NewDocumentCommand{\vsizecorrectorkanji}{}{\vphantom{中国}}
+
+% Typset furigana (hiragana above kanji)
+% ----------------
+% \fg{kanji}{furigana}
+% ----------------
+% #1 {kanji}
+% #2 {furigana}
+\NewDocumentCommand{\fg}{mm}
+{
+    % Use tikzpicture to typset furigana
+    \begin{tikzpicture}[baseline=(kanji.base)]%
+        % Draw kanji
+        \node(kanji)[%
+            inner sep=0pt,%
+        ]{%
+            \vsizecorrectorkanji%
+            #1%
+        };%
+        % Draw furigana
+        \node(furigana)[%
+            above=1pt of kanji,%
+            inner sep=0pt,%
+            xscale=0.55,%
+            yscale=0.55%
+        ]{%
+            \tiny%
+            \vsizecorrectorhira%
+            #2%
+        };%
+    \end{tikzpicture}%
+}
