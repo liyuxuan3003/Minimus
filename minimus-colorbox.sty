@@ -78,9 +78,7 @@
 % #1 {envname}
 % #2 {base}
 % ----------------
-% \make@boxthm{BoxDefinition}{boxdefinition} will 
-% 1. Create env BoxDefinition as wrapper of boxdefinition (##)
-% 2. Create command \split@box inside BoxDefinition (####)
+% \make@boxthm{BoxDefinition}{boxdefinition} will generate env BoxDefinition as wrapper of boxdefinition
 % \begin{BoxDefinition}*[title;label]
 %      ...
 % \end{BoxDefinition}
@@ -88,7 +86,7 @@
 % ##1 *                   -> no number
 % ##2 [title;label]       -> title and label -> \split@box##2
 % ##3                     -> body (+b to allow paragraph break)
-% ---------------- Level 3
+% ---------------- Level 3 (\split@box)
 % ####1                   -> title
 % ####2                   -> label
 % ---------------- 
@@ -194,6 +192,21 @@
 \NewTcbTheorem[use counter=boxdesignprinciple]{boxdesignprinciple}{设计原则}{boxtxtstyle}{despri}
 \make@boxthm{BoxDesignPrinciple}{boxdesignprinciple}
 
+% -------------------------------- %
+% Generate wrapper for japanese color box
+% ----------------
+% \make@boxjp{envname}{base}
+% ---------------- Level 1
+% #1 {envname}
+% #2 {base}
+% ----------------
+% \make@boxthm{JPSetntence}{jpsentence} will generate env JPSentence as wrapper of jpsentence
+% \begin{JPSentence}{translation}
+%      ...
+% \end{JPSentence}
+% ---------------- Level 2
+% ##1 {translation}       -> write chinese translation (+g to allow paragraph break)
+% ##2                     -> write japanese, body (+b to allow paragraph break)
 \NewDocumentCommand{\make@boxjp}{mm}%
 {%
     % Create wrapper env (JPSentence) based on base env (jpsentence)
@@ -211,14 +224,20 @@
             ##2%
             % Show chinese if given (##1)
             % \tcblower will start the second part of box
+            % \parskip have to be set again for the second part
             \IfValueT{#1}{\tcblower\setlength{\parskip}{6pt}##1}%
         \end{#2}%
     }{}%
 }%
 
+
+% -------------------------------- %
+% Environment JPSentence
 \NewTColorBox{jpsentence}{}{boxjpsetstyle}
 \make@boxjp{JPSentence}{jpsentence}
 
+% -------------------------------- %
+% Environment JPConversation
 \NewTColorBox{jpconversation}{}{boxjpcovstyle}
 \make@boxjp{JPConversation}{jpconversation}
 
@@ -230,7 +249,7 @@
 % #1 {envname}      -> the name of proof like env to create
 % #2 {title}        -> text at the start of proof
 % ----------------
-% \make@proof{Proof}{证明} will generate env Proof (##)
+% \make@proof{Proof}{...} will generate env Proof (##)
 % \begin{Proof}[\cref{thm:Test}]
 %     So easy.
 % \end{Proof}

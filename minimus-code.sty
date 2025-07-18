@@ -10,9 +10,12 @@
 % Load package <listings> : Typeset source code
 \RequirePackage{listings}
 
-\renewcommand{\lstlistlistingname}{代码}
+% Define the title of \lstinputlisting{}
 \renewcommand{\lstlistingname}{代码}
+% Define the title of \lstlistoflistings
+\renewcommand{\lstlistlistingname}{代码}
 
+% Define the base style of listings
 \lstset%
 {%
     basicstyle=\ttfamily,%
@@ -22,8 +25,8 @@
     stringstyle=\color{magenta},%
     flexiblecolumns,%            
     numbers=left,%
-    showspaces=false,%
     numberstyle=\tiny\ttfamily,%
+    showspaces=false,%
     showstringspaces=false,%
     captionpos=t,%
     frame=lrtb,%
@@ -32,36 +35,42 @@
     basewidth=0.5em,%
 }%
 
+% Style for C
 \lstdefinestyle{c}%
 {%
     language=C,%
     identifierstyle=\color{black!50!green},%
 }%
 
+% Style for C++
 \lstdefinestyle{cpp}%
 {%
     language=C++,%
     identifierstyle=\color{black!50!green},%
 }%
 
+% Style for Python
 \lstdefinestyle{python}%
 {%
     language=Python,%
     identifierstyle=\color{black!50!green},%
 }%
 
+% Style for Scala
 \lstdefinestyle{scala}%
 {%
     language=Scala,%
     identifierstyle=\color{black!50!green},%
 }%
 
+% Style for Verilog
 \lstdefinestyle{verilog}%
 {%
     language=Verilog,%
     identifierstyle=\color{black!50!green},%
 }%
 
+% Style for RISCV Assembly
 \lstdefinestyle{riscv}%
 {%
     morekeywords={lui,li,auipc,j,jr,jal,jalr,ret,beq,bne,blt,bgt,ble,bge,bltu,bgtu,bleu,bgeu,lb,lh,lw,lbu,lhu,sb,sh,sw,addi,nop,mv,slti,sltiu,xori,ori,andi,slli,srli,srai,add,sub,neg,sll,srl,sra,xor,or,and,not,slt,sltu},%
@@ -69,37 +78,60 @@
     identifierstyle=\color{black!50!green},%
 }%
 
+% Style for LaTeX
 \lstdefinestyle{latex}%
 {%
     language=[LaTeX]TeX,%
 }%
 
+% Style for Plain Text
 \lstdefinestyle{plain}{}
 
+% -------------------------------- %
+% Environment Code
+% ----------------
+% \begin{Code}*[caption;label]{language}
+%     \lstinputlisting{}
+% \end{Code}
+% ----------------
+% #1 *                  -> no number
+% #2 [caption;label]    -> caption and label
+% #3 {language}         -> language (should be a lst style, default=plain)
 \NewDocumentEnvironment{Code}{s>{\SplitArgument{1}{;}}O{}G{plain}b}%
 {%
     % ----------------
+    % \split@code split #2 to \xa@code (caption) and \xb@code (label)
     \NewDocumentCommand{\split@code}{mm}%
     {%
-        % \xa@code -> title
+        % Assign \xa@code (caption)
         \def\xa@code{##1}%
-        % \xb@code -> label
+        % Assign \xb@code (label)
+        % If label is not given, use caption as label
         \IfValueTF{##2}{\def\xb@code{##2}}{\def\xb@code{##1}}%
     }%
     % ----------------
+    % Split #2
     \split@code#2%
+    % Set the lst style and do not add to \lstlistoflistings
+    % The caption of \lstinputlisting[]{} can not handle empty caption properly
+    % So use \captionof{code}{} to take over
     \lstset{style=#3,nolol=true}%
     % Disable hypcap here to remove warning for \captionof*
     \captionsetup{hypcap=false}%
+    % Test if caption needs number
     \IfBooleanTF{#1}%
     {%
+        % Make caption*
         \captionof*{lstlisting}{\xa@code}%
     }%
     {%
+        % Make caption
         \ifdefempty{\xa@code}%
         {\captionof{lstlisting}{}}%
         {\captionof{lstlisting}{\xa@code}}%
+        % Make label
         \ifdefempty{\xb@code}{}{\label{code:\xb@code}}%
     }%
+    % Body here
     #4%
 }{}%
