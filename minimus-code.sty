@@ -135,3 +135,14 @@
     % Body here
     #4%
 }{}%
+
+% -------------------------------- %
+% Define \code as wrapper of \lstinline
+% \code add dummy math $\hphantom{}$ to keep proper distance inside chinese
+% \code{content} can use {} as delimiter only, and the content
+% 1. For free to use most of the symbol
+% 2. More {} is allowed, but have to be closed.
+% 3. % is not allowed, use \% for workaround
+% 4. \ is not allowed, use \\ for workaround
+% 5. # will output ##, use \# for workaround
+\NewDocumentCommand{\code}{m}{$\hphantom{}$\lstinline{#1}$\hphantom{}$}
