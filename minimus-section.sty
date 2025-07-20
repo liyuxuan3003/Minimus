@@ -22,9 +22,9 @@
 % |---- If true          -> short-title will be use in toc,header,bookmark
 
 % Label of \part
-\ifdef{\part}
-{
-    \NewCommandCopy\partold\part
+\ifdef{\part}%
+{%
+    \NewCommandCopy\partold\part%
     \RenewDocumentCommand{\part}{so>{\SplitArgument{1}{;}}mt!}%
     {{%
         % ----------------
@@ -64,11 +64,11 @@
             \ifdefempty{\xb@part}{}{\label{part:\xb@part}}%
         }%
     }}%
-}{}
+}{}%
 
 % Label of \chapter
-\ifdef{\chapter}
-{
+\ifdef{\chapter}%
+{%
     \NewCommandCopy\chapterold\chapter
     \RenewDocumentCommand{\chapter}{so>{\SplitArgument{1}{;}}mt!}%
     {{%
@@ -110,12 +110,12 @@
             \ifdefempty{\xb@chapter}{}{\IfAppendix{\label{ap:\xb@chapter}}{\label{chap:\xb@chapter}}}%
         }%
     }}%
-}{}
+}{}%
 
 % Label of \section
-\ifdef{\section}
-{
-    \NewCommandCopy\sectionold\section
+\ifdef{\section}%
+{%
+    \NewCommandCopy\sectionold\section%
     \RenewDocumentCommand{\section}{so>{\SplitArgument{1}{;}}mt!}%
     {{%
         % ----------------
@@ -155,12 +155,12 @@
             \ifdefempty{\xb@section}{}{\label{sec:\xb@section}}%
         }%
     }}%
-}
+}{}%
 
 % Label of \subsection
-\ifdef{\subsection}
-{
-    \NewCommandCopy\subsectionold\subsection
+\ifdef{\subsection}%
+{%
+    \NewCommandCopy\subsectionold\subsection%
     \RenewDocumentCommand{\subsection}{so>{\SplitArgument{1}{;}}mt!}%
     {{%
         % ----------------
@@ -200,12 +200,12 @@
             \ifdefempty{\xb@subsection}{}{\label{subsec:\xb@subsection}}%
         }%
     }}%
-}{}
+}{}%
 
 % Label of \subsubsection
-\ifdef{\subsubsection}
-{
-    \NewCommandCopy\subsubsectionold\subsubsection
+\ifdef{\subsubsection}%
+{%
+    \NewCommandCopy\subsubsectionold\subsubsection%
     \RenewDocumentCommand{\subsubsection}{so>{\SplitArgument{1}{;}}mt!}%
     {{%
         % ----------------
@@ -245,4 +245,4 @@
             \ifdefempty{\xb@subsubsection}{}{\label{subsubsec:\xb@subsubsection}}%
         }%
     }}%
-}{}
+}{}%
