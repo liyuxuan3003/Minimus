@@ -220,6 +220,30 @@
 
 % -------------------------------- %
 % Fix \cref on \section will cause error in beamer class
-% Can not add \@ifloadclass on these
+% Can not add \@ifclassloaded on these
 \patchcmd\refstepcounter@noarg{\csname p@#1\endcsname}{\csname p@#1\expandafter\endcsname}{}{}%
 \patchcmd\refstepcounter@optarg{\csname p@#2\endcsname}{\csname p@#2\expandafter\endcsname}{}{}%
+
+% -------------------------------- %
+% Fix \cref in beamer lost hyperref
+% It is only a workaround, the ref text will only hyperlink to first target
+\@ifclassloaded{beamer}%
+{%
+    % Backup \cref and \Cref
+    \NewCommandCopy{\crefold}{\cref}%
+    \NewCommandCopy{\Crefold}{\Cref}%
+    % Add hyperlink of fisrt target to \cref and \Cref
+    % Accept nine target (with eight ,) at most
+    \RenewDocumentCommand{\cref}{m>{\SplitArgument{8}{,}}D(){#1}}%
+    {{%
+        \NewDocumentCommand{\split@hyperlinkpatch@cref}{mmmmmmmmm}{\def\first@cref{##1}}%
+        \split@hyperlinkpatch@cref#2%
+        {\hyperlink{\first@cref}{\crefold{#1}}}%
+    }}%
+    \RenewDocumentCommand{\Cref}{m>{\SplitArgument{8}{,}}D(){#1}}%
+    {{%
+        \NewDocumentCommand{\split@hyperlinkpatch@Cref}{mmmmmmmmm}{\def\first@cref{##1}}%
+        \split@hyperlinkpatch@Cref#2%
+        {\hyperlink{\first@cref}{\Crefold{#1}}}%
+    }}%
+}{}%
