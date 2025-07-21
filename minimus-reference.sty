@@ -217,3 +217,9 @@
 \NewDocumentCommand{\crefmiddlegroupconjunction}{}{、}
 % multi-range last
 \NewDocumentCommand{\creflastgroupconjunction}{}{、}
+
+% -------------------------------- %
+% Fix \cref on \section will cause error in beamer
+% Can not add \@ifloadclass on these
+\patchcmd\refstepcounter@noarg{\csname p@#1\endcsname}{\csname p@#1\expandafter\endcsname}{}{\fail}%
+\patchcmd\refstepcounter@optarg{\csname p@#2\endcsname}{\csname p@#2\expandafter\endcsname}{}{\fail}%
