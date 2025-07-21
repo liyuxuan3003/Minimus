@@ -45,9 +45,9 @@
 \usetikzlibrary{positioning}
 
 % Size correction of hiragana
-\NewDocumentCommand{\vsizecorrectorhira}{}{\vphantom{もりぼゃ}}
+\NewDocumentCommand{\vsizecorrector@hira}{}{\vphantom{もりぼゃ}}
 % Size correction of kanji
-\NewDocumentCommand{\vsizecorrectorkanji}{}{\vphantom{中国}}
+\NewDocumentCommand{\vsizecorrector@kanji}{}{\vphantom{中国}}
 
 % Typset furigana (hiragana above kanji)
 % ----------------
@@ -63,7 +63,7 @@
         \node(kanji)[%
             inner sep=0pt,%
         ]{%
-            \vsizecorrectorkanji%
+            \vsizecorrector@kanji%
             #1%
         };%
         % Draw furigana
@@ -74,7 +74,7 @@
             yscale=0.55%
         ]{%
             \tiny%
-            \vsizecorrectorhira%
+            \vsizecorrector@hira%
             #2%
         };%
     \end{tikzpicture}%
