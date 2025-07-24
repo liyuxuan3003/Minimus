@@ -54,18 +54,25 @@
 
 % -------------------------------- %
 % Define extra vspace for long table to align with short table
+% vskip above caption (by \vspace{\ltabcapvskipabove} before \captionof{table}{...})
 \newlength{\ltabcapvskipabove}
+% vskip below caption (by \vspace{\ltabcapvskipbelow} after  \captionof{table}{...})
 \newlength{\ltabcapvskipbelow}
+% vskip above table (by presep=\ltabpresep) (does not work for beamer!)
 \newlength{\ltabpresep}
+% vskip below table (by postsep=\ltabpostsep)
 \newlength{\ltabpostsep}
+
 % For beamer
+% 1.5\bigskipamount is the default value of presep
 \@ifclassloaded{beamer}%
 {%
     \setlength{\ltabcapvskipabove}{6.3pt}%
     \setlength{\ltabcapvskipbelow}{2.0pt}%
-    \setlength{\ltabpresep}{0.0pt}%
+    \setlength{\ltabpresep}{1.5\bigskipamount}%
     \setlength{\ltabpostsep}{10.0pt}%
 }{}%
+
 % For book
 \@ifclassloaded{book}%
 {%
@@ -127,10 +134,12 @@
             \IfBooleanTF{#1}%
             {%
                 % Make caption*
+                % Use \vspace{\ltabcapvskipabove} and \vspace{\ltabcapvskipbelow} here
                 \ifdefempty{\xa@table}{}{\vspace{\ltabcapvskipabove}\captionof*{table}{\xa@table}\vspace{\ltabcapvskipbelow}}%
             }%
             {%
                 % Make caption
+                % Use \vspace{\ltabcapvskipabove} and \vspace{\ltabcapvskipbelow} here
                 \ifdefempty{\xa@table}{\vspace{\ltabcapvskipabove}\captionof{table}{}\vspace{\ltabcapvskipbelow}}{\vspace{\ltabcapvskipabove}\captionof{table}{\xa@table}\vspace{\ltabcapvskipbelow}}%
                 % Make label
                 \ifdefempty{\xb@table}{}{\label{tab:\xb@table}}%
