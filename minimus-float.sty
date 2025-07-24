@@ -53,6 +53,29 @@
 \setlength{\linethick}{1.0pt}
 
 % -------------------------------- %
+% Define extra vspace for long table to align with short table
+\newlength{\ltabcapvskipabove}
+\newlength{\ltabcapvskipbelow}
+\newlength{\ltabpresep}
+\newlength{\ltabpostsep}
+% For beamer
+\@ifclassloaded{beamer}%
+{%
+    \setlength{\ltabcapvskipabove}{6.3pt}%
+    \setlength{\ltabcapvskipbelow}{2.0pt}%
+    \setlength{\ltabpresep}{0.0pt}%
+    \setlength{\ltabpostsep}{10.0pt}%
+}%
+% For book
+\@ifclassloaded{book}%
+{%
+    \setlength{\ltabcapvskipabove}{0.0pt}%
+    \setlength{\ltabcapvskipbelow}{0.0pt}%
+    \setlength{\ltabpresep}{13.0pt}%
+    \setlength{\ltabpostsep}{20.9pt}%
+}%
+
+% -------------------------------- %
 % Environment Table
 % Design to use with tblr from tabularray
 % ----------------
@@ -104,11 +127,11 @@
             \IfBooleanTF{#1}%
             {%
                 % Make caption*
-                \ifdefempty{\xa@table}{}{\vspace{6.3pt}\captionof*{table}{\xa@table}\vspace{2pt}}%
+                \ifdefempty{\xa@table}{}{\vspace{\ltabcapvskipabove}\captionof*{table}{\xa@table}\vspace{\ltabcapvskipbelow}}%
             }%
             {%
                 % Make caption
-                \ifdefempty{\xa@table}{\vspace{6.3pt}\captionof{table}{}\vspace{2pt}}{\vspace{6.3pt}\captionof{table}{\xa@table}\vspace{2pt}}%
+                \ifdefempty{\xa@table}{\vspace{\ltabcapvskipabove}\captionof{table}{}\vspace{\ltabcapvskipbelow}}{\vspace{\ltabcapvskipabove}\captionof{table}{\xa@table}\vspace{\ltabcapvskipbelow}}%
                 % Make label
                 \ifdefempty{\xb@table}{}{\label{tab:\xb@table}}%
             }%
@@ -128,7 +151,9 @@
         % headsep=0pt -> remove headsep (\captionof have already taken care of this)
         % entry=none -> do not add an entry in list of table (\captionof have done this)
         % label=none -> do not step table counter (\captionof have done this)
-        \SetTblrOuter[tblr]{long,headsep=0pt,entry=none,label=none,postsep=10pt}%
+        % presep=\ltabpresep   -> vskip above table, align with short table (does not work for beamer!)
+        % postsep=\ltabpostsep -> vskip below table, align with short table
+        \SetTblrOuter[tblr]{long,headsep=0pt,entry=none,label=none,presep=\ltabpresep,postsep=\ltabpostsep}%
         % Body here
         #5%
     }%
