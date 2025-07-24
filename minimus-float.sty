@@ -53,6 +53,36 @@
 \setlength{\linethick}{1.0pt}
 
 % -------------------------------- %
+% Define extra vspace for long table to align with short table
+% vskip above caption (by \vspace{\ltabcapvskipabove} before \captionof{table}{...})
+\newlength{\ltabcapvskipabove}
+% vskip below caption (by \vspace{\ltabcapvskipbelow} after  \captionof{table}{...})
+\newlength{\ltabcapvskipbelow}
+% vskip above table (by presep=\ltabpresep) (does not work for beamer!)
+\newlength{\ltabpresep}
+% vskip below table (by postsep=\ltabpostsep)
+\newlength{\ltabpostsep}
+
+% For beamer
+% 1.5\bigskipamount is the default value of presep
+\@ifclassloaded{beamer}%
+{%
+    \setlength{\ltabcapvskipabove}{6.3pt}%
+    \setlength{\ltabcapvskipbelow}{2.0pt}%
+    \setlength{\ltabpresep}{1.5\bigskipamount}%
+    \setlength{\ltabpostsep}{10.0pt}%
+}{}%
+
+% For book
+\@ifclassloaded{book}%
+{%
+    \setlength{\ltabcapvskipabove}{0.0pt}%
+    \setlength{\ltabcapvskipbelow}{0.0pt}%
+    \setlength{\ltabpresep}{13.0pt}%
+    \setlength{\ltabpostsep}{20.9pt}%
+}{}%
+
+% -------------------------------- %
 % Environment Table
 % Design to use with tblr from tabularray
 % ----------------
@@ -104,11 +134,13 @@
             \IfBooleanTF{#1}%
             {%
                 % Make caption*
-                \ifdefempty{\xa@table}{}{\captionof*{table}{\xa@table}}%
+                % Use \vspace{\ltabcapvskipabove} and \vspace{\ltabcapvskipbelow} here
+                \ifdefempty{\xa@table}{}{\vspace{\ltabcapvskipabove}\captionof*{table}{\xa@table}\vspace{\ltabcapvskipbelow}}%
             }%
             {%
                 % Make caption
-                \ifdefempty{\xa@table}{\captionof{table}{}}{\captionof{table}{\xa@table}}%
+                % Use \vspace{\ltabcapvskipabove} and \vspace{\ltabcapvskipbelow} here
+                \ifdefempty{\xa@table}{\vspace{\ltabcapvskipabove}\captionof{table}{}\vspace{\ltabcapvskipbelow}}{\vspace{\ltabcapvskipabove}\captionof{table}{\xa@table}\vspace{\ltabcapvskipbelow}}%
                 % Make label
                 \ifdefempty{\xb@table}{}{\label{tab:\xb@table}}%
             }%
@@ -128,7 +160,9 @@
         % headsep=0pt -> remove headsep (\captionof have already taken care of this)
         % entry=none -> do not add an entry in list of table (\captionof have done this)
         % label=none -> do not step table counter (\captionof have done this)
-        \SetTblrOuter[tblr]{long,headsep=0pt,entry=none,label=none}%
+        % presep=\ltabpresep   -> vskip above table, align with short table (does not work for beamer!)
+        % postsep=\ltabpostsep -> vskip below table, align with short table
+        \SetTblrOuter[tblr]{long,headsep=0pt,entry=none,label=none,presep=\ltabpresep,postsep=\ltabpostsep}%
         % Body here
         #5%
     }%
@@ -146,19 +180,20 @@
             % Center the table
             \centering%
             % Test if caption needs number
+            % Also use \captionof here because \caption will add extra vertical spaces
             \IfBooleanTF{#1}%
             {%
                 % Make caption*
-                \ifdefempty{\xa@table}{}{\caption*{\xa@table}}%
+                \ifdefempty{\xa@table}{}{\captionof{table}*{\xa@table}}%
             }%
             {%
                 % Make caption 
-                \ifdefempty{\xa@table}{\caption{}}{\caption{\xa@table}}%
+                \ifdefempty{\xa@table}{\captionof{table}{}}{\captionof{table}{\xa@table}}%
                 % Make label
                 \ifdefempty{\xb@table}{}{\label{tab:\xb@table}}%
             }%
             % Body here
-            #5%
+            \makebox[\linewidth]{#5}%
         \end{table}%
     }%
 }{}%
