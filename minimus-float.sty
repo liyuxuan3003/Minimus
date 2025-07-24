@@ -244,8 +244,8 @@
         % In this case, if caption also has empty text, just use makebox instead 
         % Test if sub caption width is assigned
         \IfValueTF{#4}%
-        {\ifdefempty{\xa@figuresub}{\makebox*[#4\linewidth]{#3}}{\subcaptionbox*{\xa@figuresub}[#4\linewidth]{#3}}}%
-        {\ifdefempty{\xa@figuresub}{\makebox*{#3}}{\subcaptionbox*{\xa@figuresub}{#3}}}%
+        {\ifdefempty{\xa@figuresub}{\makebox[#4\linewidth]{#3}}{\subcaptionbox*{\xa@figuresub}[#4\linewidth]{#3}}}%
+        {\ifdefempty{\xa@figuresub}{\makebox{#3}}{\subcaptionbox*{\xa@figuresub}{#3}}}%
     }%
     {%
         % Make subcaptionbox
