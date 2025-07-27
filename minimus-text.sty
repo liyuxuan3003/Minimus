@@ -55,8 +55,8 @@
 % ----------------
 % #1 {kanji}
 % #2 {furigana}
-\NewDocumentCommand{\fg}{mm}
-{
+\NewDocumentCommand{\fg}{mm}%
+{%
     % Use tikzpicture to typset furigana
     \begin{tikzpicture}[baseline=(kanji.base)]%
         % Draw kanji
@@ -78,4 +78,4 @@
             #2%
         };%
     \end{tikzpicture}%
-}
+}%
