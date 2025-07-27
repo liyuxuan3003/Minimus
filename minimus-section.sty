@@ -24,33 +24,32 @@
 % \@ifclassloaded        -> All of these command can not work with beamer
 % \ifdef                 -> In case of \chapter undefined in article
 
+\NewDocumentCommand{\split@two}{mm}%
+{%
+    % \xa -> title
+    \def\xa{#1}%
+    % \xb -> label
+    \IfValueTF{#2}{\def\xb{#2}}{\def\xb{#1}}%
+}%
+
 % Label of \part
 \@ifclassloaded{beamer}{}{\ifdef{\part}%
 {%
     \NewCommandCopy\partold\part%
     \RenewDocumentCommand{\part}{so>{\SplitArgument{1}{;}}mt!}%
-    {{%
-        % ----------------
-        \NewDocumentCommand{\split@part}{mm}%
-        {%
-            % \xa@part -> title
-            \def\xa@part{##1}%
-            % \xb@part -> label
-            \IfValueTF{##2}{\def\xb@part{##2}}{\def\xb@part{##1}}%
-        }%
-        % ----------------
-        \split@part#3%
+    {%
+        \split@two#3%
         \IfBooleanTF{#1}%
         {%
             % Without number
             \IfValueTF{#2}%
             {%
                 \IfBooleanTF{#4}%
-                {\partold*[#2]{\xa@part}}%
-                {\partold*{\texorpdfstring{\xa@part}{#2}}}%
+                {\partold*[#2]{\xa}}%
+                {\partold*{\texorpdfstring{\xa}{#2}}}%
             }%
             {%
-                \partold*{\xa@part}%
+                \partold*{\xa}%
             }%
         }%
         {%
@@ -58,15 +57,15 @@
             \IfValueTF{#2}%
             {%
                 \IfBooleanTF{#4}%
-                {\partold[#2]{\xa@part}}%
-                {\partold{\texorpdfstring{\xa@part}{#2}}}%
+                {\partold[#2]{\xa}}%
+                {\partold{\texorpdfstring{\xa}{#2}}}%
             }%
             {%
-                \partold{\xa@part}%
+                \partold{\xa}%
             }%
-            \ifdefempty{\xb@part}{}{\label{part:\xb@part}}%
+            \ifdefempty{\xb}{}{\label{part:\xb}}%
         }%
-    }}%
+    }%
 }{}}%
 
 % Label of \chapter
@@ -74,28 +73,19 @@
 {%
     \NewCommandCopy\chapterold\chapter
     \RenewDocumentCommand{\chapter}{so>{\SplitArgument{1}{;}}mt!}%
-    {{%
-        % ----------------
-        \NewDocumentCommand{\split@chapter}{mm}%
-        {%
-            % \xa@chapter -> title
-            \def\xa@chapter{##1}%
-            % \xb@chapter -> label
-            \IfValueTF{##2}{\def\xb@chapter{##2}}{\def\xb@chapter{##1}}%
-        }%
-        % ----------------
-        \split@chapter#3%
+    {%
+        \split@two#3%
         \IfBooleanTF{#1}%
         {%
             % Without number
             \IfValueTF{#2}%
             {%
                 \IfBooleanTF{#4}%
-                {\chapterold*[#2]{\xa@chapter}}%
-                {\chapterold*{\texorpdfstring{\xa@chapter}{#2}}}%
+                {\chapterold*[#2]{\xa}}%
+                {\chapterold*{\texorpdfstring{\xa}{#2}}}%
             }%
             {%
-                \chapterold*{\xa@chapter}%
+                \chapterold*{\xa}%
             }%
         }%
         {%
@@ -103,45 +93,37 @@
             \IfValueTF{#2}%
             {%
                 \IfBooleanTF{#4}%
-                {\chapterold[#2]{\xa@chapter}}%
-                {\chapterold{\texorpdfstring{\xa@chapter}{#2}}}%
+                {\chapterold[#2]{\xa}}%
+                {\chapterold{\texorpdfstring{\xa}{#2}}}%
             }%
             {%
-                \chapterold{\xa@chapter}%
+                \chapterold{\xa}%
             }%
             % Special treatment for chapter / appendix
-            \ifdefempty{\xb@chapter}{}{\IfAppendix{\label{ap:\xb@chapter}}{\label{chap:\xb@chapter}}}%
+            \ifdefempty{\xb}{}{\IfAppendix{\label{ap:\xb}}{\label{chap:\xb}}}%
         }%
-    }}%
+    }%
 }{}}%
+
 
 % Label of \section
 \@ifclassloaded{beamer}{}{\ifdef{\section}%
 {%
     \NewCommandCopy\sectionold\section%
     \RenewDocumentCommand{\section}{so>{\SplitArgument{1}{;}}mt!}%
-    {{%
-        % ----------------
-        \NewDocumentCommand{\split@section}{mm}%
-        {%
-            % \xa@section -> title
-            \def\xa@section{##1}%
-            % \xb@section -> label
-            \IfValueTF{##2}{\def\xb@section{##2}}{\def\xb@section{##1}}%
-        }%
-        % ----------------
-        \split@section#3%
+    {%
+        \split@two#3
         \IfBooleanTF{#1}%
         {%
             % Without number
             \IfValueTF{#2}%
             {%
                 \IfBooleanTF{#4}%
-                {\sectionold*[#2]{\xa@section}}%
-                {\sectionold*{\texorpdfstring{\xa@section}{#2}}}%
+                {\sectionold*[#2]{\xa}}%
+                {\sectionold*{\texorpdfstring{\xa}{#2}}}%
             }%
             {%
-                \sectionold*{\xa@section}%
+                \sectionold*{\xa}%
             }%
         }%
         {%
@@ -149,15 +131,15 @@
             \IfValueTF{#2}%
             {%
                 \IfBooleanTF{#4}%
-                {\sectionold[#2]{\xa@section}}%
-                {\sectionold{\texorpdfstring{\xa@section}{#2}}}%
+                {\sectionold[#2]{\xa}}%
+                {\sectionold{\texorpdfstring{\xa}{#2}}}%
             }%
             {%
-                \sectionold{\xa@section}%
+                \sectionold{\xa}%
             }%
-            \ifdefempty{\xb@section}{}{\label{sec:\xb@section}}%
+            \ifdefempty{\xb}{}{\label{sec:\xb}}%
         }%
-    }}%
+    }%
 }{}}%
 
 % Label of \subsection
@@ -165,28 +147,19 @@
 {%
     \NewCommandCopy\subsectionold\subsection%
     \RenewDocumentCommand{\subsection}{so>{\SplitArgument{1}{;}}mt!}%
-    {{%
-        % ----------------
-        \NewDocumentCommand{\split@subsection}{mm}%
-        {%
-            % \xa@subsection -> title
-            \def\xa@subsection{##1}%
-            % \xb@subsection -> label
-            \IfValueTF{##2}{\def\xb@subsection{##2}}{\def\xb@subsection{##1}}%
-        }%
-        % ----------------
-        \split@subsection#3%
+    {%
+        \split@two#3%
         \IfBooleanTF{#1}%
         {%
             % Without number
             \IfValueTF{#2}%
             {%
                 \IfBooleanTF{#4}%
-                {\subsectionold*[#2]{\xa@subsection}}%
-                {\subsectionold*{\texorpdfstring{\xa@subsection}{#2}}}%
+                {\subsectionold*[#2]{\xa}}%
+                {\subsectionold*{\texorpdfstring{\xa}{#2}}}%
             }%
             {%
-                \subsectionold*{\xa@subsection}%
+                \subsectionold*{\xa}%
             }%
         }%
         {%
@@ -194,15 +167,15 @@
             \IfValueTF{#2}%
             {%
                 \IfBooleanTF{#4}%
-                {\subsectionold[#2]{\xa@subsection}}%
-                {\subsectionold{\texorpdfstring{\xa@subsection}{#2}}}%
+                {\subsectionold[#2]{\xa}}%
+                {\subsectionold{\texorpdfstring{\xa}{#2}}}%
             }%
             {%
-                \subsectionold{\xa@subsection}%
+                \subsectionold{\xa}%
             }%
-            \ifdefempty{\xb@subsection}{}{\label{subsec:\xb@subsection}}%
+            \ifdefempty{\xb}{}{\label{subsec:\xb}}%
         }%
-    }}%
+    }%
 }{}}%
 
 % Label of \subsubsection
@@ -210,28 +183,19 @@
 {%
     \NewCommandCopy\subsubsectionold\subsubsection%
     \RenewDocumentCommand{\subsubsection}{so>{\SplitArgument{1}{;}}mt!}%
-    {{%
-        % ----------------
-        \NewDocumentCommand{\split@subsubsection}{mm}%
-        {%
-            % \xa@subsubsection -> title
-            \def\xa@subsubsection{##1}%
-            % \xb@subsubsection -> label
-            \IfValueTF{##2}{\def\xb@subsubsection{##2}}{\def\xb@subsubsection{##1}}%
-        }%
-        % ----------------
-        \split@subsubsection#3%
+    {%
+        \split@two#3%
         \IfBooleanTF{#1}%
         {%
             % Without number
             \IfValueTF{#2}%
             {%
                 \IfBooleanTF{#4}%
-                {\subsubsectionold*[#2]{\xa@subsubsection}}%
-                {\subsubsectionold*{\texorpdfstring{\xa@subsubsection}{#2}}}%
+                {\subsubsectionold*[#2]{\xa}}%
+                {\subsubsectionold*{\texorpdfstring{\xa}{#2}}}%
             }%
             {%
-                \subsubsectionold*{\xa@subsubsection}%
+                \subsubsectionold*{\xa}%
             }%
         }%
         {%
@@ -239,13 +203,13 @@
             \IfValueTF{#2}%
             {%
                 \IfBooleanTF{#4}%
-                {\subsubsectionold[#2]{\xa@subsubsection}}%
-                {\subsubsectionold{\texorpdfstring{\xa@subsubsection}{#2}}}%
+                {\subsubsectionold[#2]{\xa}}%
+                {\subsubsectionold{\texorpdfstring{\xa}{#2}}}%
             }%
             {%
-                \subsubsectionold{\xa@subsubsection}%
+                \subsubsectionold{\xa}%
             }%
-            \ifdefempty{\xb@subsubsection}{}{\label{subsubsec:\xb@subsubsection}}%
+            \ifdefempty{\xb}{}{\label{subsubsec:\xb}}%
         }%
-    }}%
+    }%
 }{}}%
