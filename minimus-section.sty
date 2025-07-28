@@ -5,6 +5,8 @@
 \RequirePackage{etoolbox}
 % Load package <xparse> : New way to define command and environment
 \RequirePackage{xparse}
+% Handler of split argument
+\RequirePackage{semi-split}
 
 % -------------------------------- %
 % Load package <apptools> : Macro about appendix (\IfAppendix)
@@ -24,14 +26,6 @@
 % \@ifclassloaded        -> All of these command can not work with beamer
 % \ifdef                 -> In case of \chapter undefined in article
 
-\NewDocumentCommand{\split@two}{mm}%
-{%
-    % \xa -> title
-    \def\xa{#1}%
-    % \xb -> label
-    \IfValueTF{#2}{\def\xb{#2}}{\def\xb{#1}}%
-}%
-
 % Label of \part
 \@ifclassloaded{beamer}{}{\ifdef{\part}%
 {%
@@ -45,11 +39,11 @@
             \IfValueTF{#2}%
             {%
                 \IfBooleanTF{#4}%
-                {\partold*[#2]{\xa}}%
-                {\partold*{\texorpdfstring{\xa}{#2}}}%
+                {\partold*[#2]{\x@a}}%
+                {\partold*{\texorpdfstring{\x@a}{#2}}}%
             }%
             {%
-                \partold*{\xa}%
+                \partold*{\x@a}%
             }%
         }%
         {%
@@ -57,13 +51,13 @@
             \IfValueTF{#2}%
             {%
                 \IfBooleanTF{#4}%
-                {\partold[#2]{\xa}}%
-                {\partold{\texorpdfstring{\xa}{#2}}}%
+                {\partold[#2]{\x@a}}%
+                {\partold{\texorpdfstring{\x@a}{#2}}}%
             }%
             {%
-                \partold{\xa}%
+                \partold{\x@a}%
             }%
-            \ifdefempty{\xb}{}{\label{part:\xb}}%
+            \ifdefempty{\x@b}{}{\label{part:\x@b}}%
         }%
     }%
 }{}}%
@@ -81,11 +75,11 @@
             \IfValueTF{#2}%
             {%
                 \IfBooleanTF{#4}%
-                {\chapterold*[#2]{\xa}}%
-                {\chapterold*{\texorpdfstring{\xa}{#2}}}%
+                {\chapterold*[#2]{\x@a}}%
+                {\chapterold*{\texorpdfstring{\x@a}{#2}}}%
             }%
             {%
-                \chapterold*{\xa}%
+                \chapterold*{\x@a}%
             }%
         }%
         {%
@@ -93,14 +87,14 @@
             \IfValueTF{#2}%
             {%
                 \IfBooleanTF{#4}%
-                {\chapterold[#2]{\xa}}%
-                {\chapterold{\texorpdfstring{\xa}{#2}}}%
+                {\chapterold[#2]{\x@a}}%
+                {\chapterold{\texorpdfstring{\x@a}{#2}}}%
             }%
             {%
-                \chapterold{\xa}%
+                \chapterold{\x@a}%
             }%
             % Special treatment for chapter / appendix
-            \ifdefempty{\xb}{}{\IfAppendix{\label{ap:\xb}}{\label{chap:\xb}}}%
+            \ifdefempty{\x@b}{}{\IfAppendix{\label{ap:\x@b}}{\label{chap:\x@b}}}%
         }%
     }%
 }{}}%
@@ -119,11 +113,11 @@
             \IfValueTF{#2}%
             {%
                 \IfBooleanTF{#4}%
-                {\sectionold*[#2]{\xa}}%
-                {\sectionold*{\texorpdfstring{\xa}{#2}}}%
+                {\sectionold*[#2]{\x@a}}%
+                {\sectionold*{\texorpdfstring{\x@a}{#2}}}%
             }%
             {%
-                \sectionold*{\xa}%
+                \sectionold*{\x@a}%
             }%
         }%
         {%
@@ -131,13 +125,13 @@
             \IfValueTF{#2}%
             {%
                 \IfBooleanTF{#4}%
-                {\sectionold[#2]{\xa}}%
-                {\sectionold{\texorpdfstring{\xa}{#2}}}%
+                {\sectionold[#2]{\x@a}}%
+                {\sectionold{\texorpdfstring{\x@a}{#2}}}%
             }%
             {%
-                \sectionold{\xa}%
+                \sectionold{\x@a}%
             }%
-            \ifdefempty{\xb}{}{\label{sec:\xb}}%
+            \ifdefempty{\x@b}{}{\label{sec:\x@b}}%
         }%
     }%
 }{}}%
@@ -155,11 +149,11 @@
             \IfValueTF{#2}%
             {%
                 \IfBooleanTF{#4}%
-                {\subsectionold*[#2]{\xa}}%
-                {\subsectionold*{\texorpdfstring{\xa}{#2}}}%
+                {\subsectionold*[#2]{\x@a}}%
+                {\subsectionold*{\texorpdfstring{\x@a}{#2}}}%
             }%
             {%
-                \subsectionold*{\xa}%
+                \subsectionold*{\x@a}%
             }%
         }%
         {%
@@ -167,13 +161,13 @@
             \IfValueTF{#2}%
             {%
                 \IfBooleanTF{#4}%
-                {\subsectionold[#2]{\xa}}%
-                {\subsectionold{\texorpdfstring{\xa}{#2}}}%
+                {\subsectionold[#2]{\x@a}}%
+                {\subsectionold{\texorpdfstring{\x@a}{#2}}}%
             }%
             {%
-                \subsectionold{\xa}%
+                \subsectionold{\x@a}%
             }%
-            \ifdefempty{\xb}{}{\label{subsec:\xb}}%
+            \ifdefempty{\x@b}{}{\label{subsec:\x@b}}%
         }%
     }%
 }{}}%
@@ -191,11 +185,11 @@
             \IfValueTF{#2}%
             {%
                 \IfBooleanTF{#4}%
-                {\subsubsectionold*[#2]{\xa}}%
-                {\subsubsectionold*{\texorpdfstring{\xa}{#2}}}%
+                {\subsubsectionold*[#2]{\x@a}}%
+                {\subsubsectionold*{\texorpdfstring{\x@a}{#2}}}%
             }%
             {%
-                \subsubsectionold*{\xa}%
+                \subsubsectionold*{\x@a}%
             }%
         }%
         {%
@@ -203,13 +197,13 @@
             \IfValueTF{#2}%
             {%
                 \IfBooleanTF{#4}%
-                {\subsubsectionold[#2]{\xa}}%
-                {\subsubsectionold{\texorpdfstring{\xa}{#2}}}%
+                {\subsubsectionold[#2]{\x@a}}%
+                {\subsubsectionold{\texorpdfstring{\x@a}{#2}}}%
             }%
             {%
-                \subsubsectionold{\xa}%
+                \subsubsectionold{\x@a}%
             }%
-            \ifdefempty{\xb}{}{\label{subsubsec:\xb}}%
+            \ifdefempty{\x@b}{}{\label{subsubsec:\x@b}}%
         }%
     }%
 }{}}%

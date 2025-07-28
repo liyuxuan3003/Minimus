@@ -5,6 +5,8 @@
 \RequirePackage{etoolbox}
 % Load package <xparse> : New way to define command and environment
 \RequirePackage{xparse} 
+% Handler of split argument
+\RequirePackage{semi-split}
 
 % -------------------------------- %
 % Load package <amsthm> : AMS math theorem
@@ -74,6 +76,15 @@
 % Type jpcov
 \tcbset{boxjpcovstyle/.style={colframe=green!50!black,colback=green!5!white,arc=1.0mm}}
 
+% Hints: Use 2^{n-1} # for Level n arguments
+% So Level 3's arguments start with "####" instead of "###"
+
+% Package etoolbox provides useful commands based on \csname \endcsname
+% All the "cs" commands are some how about convert text (e.g a) to command (e.g \a)
+% \csdef{a}{b} = \def\a{b}
+% \csuse{a} = \a
+% \ifcsempty{a}{...}{...} = \ifdefempty{\a}{...}{...}
+
 % -------------------------------- %
 % Generate wrapper for theorem like color box
 % ----------------
@@ -88,43 +99,19 @@
 % \end{BoxDefinition}
 % ---------------- Level 2
 % ##1 *                   -> no number
-% ##2 [title;label]       -> title and label -> \split@box##2
+% ##2 [title;label]       -> title and label
 % ##3                     -> body (+b to allow paragraph break)
-% ---------------- Level 3 (\split@box)
-% ####1                   -> title
-% ####2                   -> label
-% ---------------- 
-% Hints: Use 2^{n-1} # for Level n arguments
-% So Level 3's arguments start with "####" instead of "###"
-% ---------------- 
-% Package etoolbox provides useful commands based on \csname \endcsname
-% All the "cs" commands are some how about convert text (e.g a) to command (e.g \a)
-% \csdef{a}{b} = \def\a{b}
-% \csuse{a} = \a
-% \ifcsempty{a}{...}{...} = \ifdefempty{\a}{...}{...}
 \NewDocumentCommand{\make@boxthm}{mm}%
 {%
     % Create wrapper env (BoxDefinition) based on base env (boxdefinition)
     \NewDocumentEnvironment{#1}{s>{\SplitArgument{1}{;}}O{}+b}%
     {%
-        % Define split command \split@box
-        \NewDocumentCommand{\split@box}{mm}%
-        {%
-            % \xa@#2 (\xa@boxdefinition) -> title
-            \csdef{xa@#2}{####1}%
-            % \xb@#2 (\xb@boxdefinition) -> label
-            \IfValueTF{####2}{\csdef{xb@#2}{####2}}{\csdef{xb@#2}{####1}}%
-        }%
-        % ----------------
-        % Split title and label 
-        \split@box##2%
-        % Box should always be a new paragraph
-        \par%
+        \split@two##2%
         % Test if title needs number
         \IfBooleanTF{##1}%
         {%
             % Call base env with * (boxdefinition*)
-            \begin{#2*}{\csuse{xa@#2}}%
+            \begin{#2*}{\x@a}%
                 % Set paragraph skip inside box
                 \setlength{\parskip}{6pt}%
                 % Body here
@@ -133,10 +120,8 @@
         }%
         {%
             % Call base env without * (boxdefinition)
-            % Only create label when label (\xb@#2) is not empty
-            \ifcsempty{xb@#2}%
-            {\begin{#2}{\csuse{xa@#2}}{}}%
-            {\begin{#2}{\csuse{xa@#2}}{\csuse{xb@#2}}}%
+            % Only create label when label (\x@b) is not empty
+            \ifdefempty{\x@b}{\begin{#2}{\x@a}{}}{\begin{#2}{\x@a}{\x@b}}%
                 % Set paragraph skip inside box
                 \setlength{\parskip}{6pt}%
                 % Body here
@@ -216,8 +201,6 @@
     % Create wrapper env (JPSentence) based on base env (jpsentence)
     \NewDocumentEnvironment{#1}{+g+b}%
     {%
-        % Box should always be a new paragraph
-        \par%
         % Call base env
         \begin{#2}%
             % Set footnote symbol

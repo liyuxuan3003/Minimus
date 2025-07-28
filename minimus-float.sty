@@ -5,6 +5,8 @@
 \RequirePackage{etoolbox}
 % Load package <xparse> : New way to define command and environment
 \RequirePackage{xparse} 
+% Handler of split argument
+\RequirePackage{semi-split}
 
 % -------------------------------- %
 % Load package <float> : Provide [H] to disable float
@@ -100,19 +102,7 @@
 % #5                    -> body (+b to allow paragraph break)
 \NewDocumentEnvironment{Table}{s>{\SplitArgument{1}{;}}O{}t!t!+b}%
 {%
-    % ----------------
-    % \split@table split #2 to \xa@table (caption) and \xb@table (label)
-    \NewDocumentCommand{\split@table}{mm}%
-    {%
-        % Assign \xa@table (caption)
-        \def\xa@table{##1}%
-        % Assign \xb@table (label)
-        % If label is not given, use caption as label
-        \IfValueTF{##2}{\def\xb@table{##2}}{\def\xb@table{##1}}%
-    }%
-    % ----------------
-    % Split #2
-    \split@table#2%
+    \split@two#2%
     % Test if it is long table
     \IfBooleanTF{#4}%
     {%
@@ -135,14 +125,14 @@
             {%
                 % Make caption*
                 % Use \vspace{\ltabcapvskipabove} and \vspace{\ltabcapvskipbelow} here
-                \ifdefempty{\xa@table}{}{\vspace{\ltabcapvskipabove}\captionof*{table}{\xa@table}\vspace{\ltabcapvskipbelow}}%
+                \ifdefempty{\x@a}{}{\vspace{\ltabcapvskipabove}\captionof*{table}{\x@a}\vspace{\ltabcapvskipbelow}}%
             }%
             {%
                 % Make caption
                 % Use \vspace{\ltabcapvskipabove} and \vspace{\ltabcapvskipbelow} here
-                \ifdefempty{\xa@table}{\vspace{\ltabcapvskipabove}\captionof{table}{}\vspace{\ltabcapvskipbelow}}{\vspace{\ltabcapvskipabove}\captionof{table}{\xa@table}\vspace{\ltabcapvskipbelow}}%
+                \ifdefempty{\x@a}{\vspace{\ltabcapvskipabove}\captionof{table}{}\vspace{\ltabcapvskipbelow}}{\vspace{\ltabcapvskipabove}\captionof{table}{\x@a}\vspace{\ltabcapvskipbelow}}%
                 % Make label
-                \ifdefempty{\xb@table}{}{\label{tab:\xb@table}}%
+                \ifdefempty{\x@b}{}{\label{tab:\x@b}}%
             }%
         }%
         % Define middlehead
@@ -184,13 +174,13 @@
             \IfBooleanTF{#1}%
             {%
                 % Make caption*
-                \ifdefempty{\xa@table}{}{\captionof{table}*{\xa@table}}%
+                \ifdefempty{\x@a}{}{\captionof{table}*{\x@a}}%
             }%
             {%
                 % Make caption 
-                \ifdefempty{\xa@table}{\captionof{table}{}}{\captionof{table}{\xa@table}}%
+                \ifdefempty{\x@a}{\captionof{table}{}}{\captionof{table}{\x@a}}%
                 % Make label
-                \ifdefempty{\xb@table}{}{\label{tab:\xb@table}}%
+                \ifdefempty{\x@b}{}{\label{tab:\x@b}}%
             }%
             % Body here
             \makebox[\linewidth]{#5}%
@@ -211,19 +201,7 @@
 % #4                    -> body (+b to allow paragraph break)
 \NewDocumentEnvironment{Figure}{s>{\SplitArgument{1}{;}}O{}t!+b}%
 {%
-    % ----------------
-    % \split@figure split #2 to \xa@figure (caption) and \xb@figure (label)
-    \NewDocumentCommand{\split@figure}{mm}%
-    {%
-        % Assign \xa@figure (caption)
-        \def\xa@figure{##1}%
-        % Assign \xb@figure (label)
-        % If label is not given, use caption as label
-        \IfValueTF{##2}{\def\xb@figure{##2}}{\def\xb@figure{##1}}%
-    }%
-    % ----------------
-    % Split #2
-    \split@figure#2%
+    \split@two#2%
     % Use figure environment [htbp] / [H]
     \IfBooleanTF{#3}{\begin{figure}[htbp]}{\begin{figure}[H]}%
         % Center the figure
@@ -236,13 +214,13 @@
         \IfBooleanTF{#1}%
         {%
             % Make caption*
-            \ifdefempty{\xa@figure}{}{\caption*{\xa@figure}}%
+            \ifdefempty{\x@a}{}{\caption*{\x@a}}%
         }%
         {%
             % Make caption 
-            \ifdefempty{\xa@figure}{\caption{}}{\caption{\xa@figure}}%
+            \ifdefempty{\x@a}{\caption{}}{\caption{\x@a}}%
             % Make label
-            \ifdefempty{\xb@figure}{}{\label{fig:\xb@figure}}%
+            \ifdefempty{\x@b}{}{\label{fig:\x@b}}%
         }%
     \end{figure}%
 }{}%
@@ -258,20 +236,8 @@
 % #3 {graphics}         -> include graphics command
 % #4 {length}           -> width of subfigure (length\linewidth)
 \NewDocumentCommand{\figuresub}{s>{\SplitArgument{1}{;}}O{}mg}%
-{{%
-    % ----------------
-    % \split@figuresub split #2 to \xa@figuresub (caption) and \xb@figuresub (label)
-    \NewDocumentCommand{\split@figuresub}{mm}%
-    {%
-        % Assign \xa@figuresub (caption)
-        \def\xa@figuresub{##1}%
-        % Assign \xb@figuresub (label)
-        % If label is not given, use caption as label
-        \IfValueTF{##2}{\def\xb@figuresub{##2}}{\def\xb@figuresub{##1}}%
-    }%
-    % ----------------
-    % Split #2
-    \split@figuresub#2%
+{%
+    \split@two#2%
     % Test if caption needs number
     \IfBooleanTF{#1}%
     {%
@@ -279,14 +245,14 @@
         % In this case, if caption also has empty text, just use makebox instead 
         % Test if sub caption width is assigned
         \IfValueTF{#4}%
-        {\ifdefempty{\xa@figuresub}{\makebox[#4\linewidth]{#3}}{\subcaptionbox*{\xa@figuresub}[#4\linewidth]{#3}}}%
-        {\ifdefempty{\xa@figuresub}{\makebox{#3}}{\subcaptionbox*{\xa@figuresub}{#3}}}%
+        {\ifdefempty{\x@a}{\makebox[#4\linewidth]{#3}}{\subcaptionbox*{\x@a}[#4\linewidth]{#3}}}%
+        {\ifdefempty{\x@a}{\makebox{#3}}{\subcaptionbox*{\x@a}{#3}}}%
     }%
     {%
         % Make subcaptionbox
         % Test if sub caption width is assigned
         \IfValueTF{#4}%
-        {\subcaptionbox{\xa@figuresub\ifdefempty{\xb@figuresub}{}{\label{fig:\xb@figuresub}}}[#4\linewidth]{#3}}%
-        {\subcaptionbox{\xa@figuresub\ifdefempty{\xb@figuresub}{}{\label{fig:\xb@figuresub}}}{#3}}%
+        {\subcaptionbox{\x@a\ifdefempty{\x@b}{}{\label{fig:\x@b}}}[#4\linewidth]{#3}}%
+        {\subcaptionbox{\x@a\ifdefempty{\x@b}{}{\label{fig:\x@b}}}{#3}}%
     }%
-}}%
+}%
