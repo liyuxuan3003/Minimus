@@ -5,6 +5,8 @@
 \RequirePackage{etoolbox}
 % Load package <xparse> : New way to define command and environment
 \RequirePackage{xparse}
+% Handler of split argument
+\RequirePackage{semi-split}
 
 % -------------------------------- %
 % Load package <listings> : Typeset source code
@@ -99,19 +101,7 @@
 % #3 {language}         -> language (should be a lst style, default=plain)
 \NewDocumentEnvironment{Code}{s>{\SplitArgument{1}{;}}O{}G{plain}b}%
 {%
-    % ----------------
-    % \split@code split #2 to \xa@code (caption) and \xb@code (label)
-    \NewDocumentCommand{\split@code}{mm}%
-    {%
-        % Assign \xa@code (caption)
-        \def\xa@code{##1}%
-        % Assign \xb@code (label)
-        % If label is not given, use caption as label
-        \IfValueTF{##2}{\def\xb@code{##2}}{\def\xb@code{##1}}%
-    }%
-    % ----------------
-    % Split #2
-    \split@code#2%
+    \split@two#2%
     % Set the lst style and do not add to \lstlistoflistings
     % The caption of \lstinputlisting[]{} can not handle empty caption properly
     % So use \captionof{code}{} to take over
@@ -122,15 +112,15 @@
     \IfBooleanTF{#1}%
     {%
         % Make caption*
-        \captionof*{lstlisting}{\xa@code}%
+        \captionof*{lstlisting}{\x@a}%
     }%
     {%
         % Make caption
-        \ifdefempty{\xa@code}%
+        \ifdefempty{\x@a}%
         {\captionof{lstlisting}{}}%
-        {\captionof{lstlisting}{\xa@code}}%
+        {\captionof{lstlisting}{\x@a}}%
         % Make label
-        \ifdefempty{\xb@code}{}{\label{code:\xb@code}}%
+        \ifdefempty{\x@b}{}{\label{code:\x@b}}%
     }%
     % Body here
     #4%
