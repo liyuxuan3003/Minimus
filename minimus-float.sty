@@ -202,6 +202,8 @@
 \NewDocumentEnvironment{Figure}{s>{\SplitArgument{1}{;}}O{}t!+b}%
 {%
     \split@two#2%
+    \NewCommandCopy{\xbck@a}{\x@a}%
+    \NewCommandCopy{\xbck@b}{\x@b}%
     % Use figure environment [htbp] / [H]
     \IfBooleanTF{#3}{\begin{figure}[htbp]}{\begin{figure}[H]}%
         % Center the figure
@@ -210,6 +212,8 @@
         \setlength{\parskip}{6pt}%
         % Body here
         #4%
+        \def\x@a{\xbck@a}%
+        \def\x@b{\xbck@b}%
         % Test if caption needs number
         \IfBooleanTF{#1}%
         {%
