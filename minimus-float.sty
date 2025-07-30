@@ -50,12 +50,15 @@
 % Define line none
 \newlength{\linenone}
 \setlength{\linenone}{0.0pt}
-% Define line thin
-\newlength{\linethin}
-\setlength{\linethin}{0.4pt}
-% Define line thick
-\newlength{\linethick}
-\setlength{\linethick}{1.0pt}
+% Define line split
+\newlength{\linesplit}
+\setlength{\linesplit}{0.2pt}
+% Define line middle
+\newlength{\linemiddle}
+\setlength{\linemiddle}{0.4pt}
+% Define line border
+\newlength{\lineborder}
+\setlength{\lineborder}{1.0pt}
 
 % -------------------------------- %
 % Define extra vspace for long table to align with short table
@@ -91,7 +94,7 @@
 % Environment Table
 % Design to use with tblr from tabularray
 % ----------------
-% \begin{Table}*[caption;label]!!
+% \begin{Table}*[caption;label]&&!!
 %    \begin{tblr}{colspec={XX}}
 %        A&alpha\\
 %        B&beta\\
@@ -100,14 +103,16 @@
 % ----------------
 % #1 *                  -> no number
 % #2 [caption;label]    -> caption and label
-% #3 !                  -> enable float, use [htbp] instead [H] (as !)
-% #4 !                  -> enable longtable (as !!)
-% #5                    -> body (+b to allow paragraph break)
-\NewDocumentEnvironment{Table}{s>{\SplitArgument{1}{;}}O{}t!t!+b}%
+% #3 &                  -> remove middle line and head
+% #4 &                  -> remove border line
+% #5 !                  -> enable float, use [htbp] instead [H] (as !)
+% #6 !                  -> enable longtable (as !!)
+% #7                    -> body (+b to allow paragraph break)
+\NewDocumentEnvironment{Table}{s>{\SplitArgument{1}{;}}O{}t&t&t!t!+b}%
 {%
     \split@two#2%
     % Test if it is long table
-    \IfBooleanTF{#4}%
+    \IfBooleanTF{#6}%
     {%
         % ---- Long Table ----%
         % Long table do not need table environment!
@@ -143,11 +148,15 @@
         % Define lasthead
         \DefTblrTemplate{lasthead}{default}{\captionof*{table}{续表}}%
         % Set inner
-        % hline{1,Z}={\linethick} -> head line and foot line
-        % hline{2}={\linethin} -> middle line
+        % hline{1,Z}={\lineborder} -> head line and foot line
+        % hline{2}={\linemiddle} -> middle line
         % rowhead = 1 -> repeat first line for every new page
         % cells={font=\small} -> set font to small
-        \SetTblrInner[tblr]{hline{1,Z}={\linethick},hline{2}={\linethin},rowhead=1,cells={font=\small}}%
+        \SetTblrInner[tblr]{hline{1,Z}={\lineborder},hline{2}={\linemiddle},rowhead=1,cells={font=\small}}%
+        % Remove middle line if requested (also set rowhead=0)
+        \IfBooleanT{#3}{\SetTblrInner{hline{2}={\linenone},rowhead=0}}
+        % Remove border line if requested 
+        \IfBooleanT{#4}{\SetTblrInner{hline{1,Z}={\linenone}}}
         % Set outer
         % long -> use long table
         % headsep=0pt -> remove headsep (\captionof have already taken care of this)
@@ -157,19 +166,19 @@
         % postsep=\ltabpostsep -> vskip below table, align with short table
         \SetTblrOuter[tblr]{long,headsep=0pt,entry=none,label=none,presep=\ltabpresep,postsep=\ltabpostsep}%
         % Body here
-        #5%
+        #7%
     }%
     {%
         % ---- Short Table ---- %
         % Set inner
-        % hline{1,Z}={\linethick} -> head line and foot line
-        % hline{2}={\linethin} -> middle line
+        % hline{1,Z}={\lineborder} -> head line and foot line
+        % hline{2}={\linemiddle} -> middle line
         % cells={font=\small} -> set font to small
-        \SetTblrInner[tblr]{hline{1,Z}={\linethick},hline{2}={\linethin},cells={font=\small}}%
+        \SetTblrInner[tblr]{hline{1,Z}={\lineborder},hline{2}={\linemiddle},cells={font=\small}}%
         % Set outer
         \SetTblrOuter[tblr]{}%
         % Use table environment [htbp] / [H]
-        \IfBooleanTF{#3}{\begin{table}[htbp]}{\begin{table}[H]}%
+        \IfBooleanTF{#5}{\begin{table}[htbp]}{\begin{table}[H]}%
             % Center the table
             \centering%
             % Test if caption needs number
@@ -186,7 +195,7 @@
                 \ifdefempty{\x@b}{}{\label{tab:\x@b}}%
             }%
             % Body here
-            \makebox[\linewidth]{#5}%
+            \makebox[\linewidth]{#7}%
         \end{table}%
     }%
 }{}%
