@@ -12,10 +12,14 @@
 % Load package <listings> : Typeset source code
 \RequirePackage{listings}
 
-% Define the title of \lstinputlisting{}
-\renewcommand{\lstlistingname}{代码}
-% Define the title of \lstlistoflistings
-\renewcommand{\lstlistlistingname}{代码}
+% Only modify listing title for zh-cn
+\@ifpackageloaded{ctex}%
+{%
+    % Define the title of \lstinputlisting{}
+    \renewcommand{\lstlistingname}{代码}%
+    % Define the title of \lstlistoflistings
+    \renewcommand{\lstlistlistingname}{代码}%
+}{}%
 
 % Define the base style of listings
 \lstset%

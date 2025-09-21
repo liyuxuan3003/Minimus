@@ -79,36 +79,36 @@
 \NewDocumentCommand{\make@crefformat@innerjoin}{mmm}%
 {%
     % ----------------
-    \crefformat{#1}
-    {\CJKsetecglue{}##2{{#2}{##1}{#3}}##3}
-    \Crefformat{#1}
-    {\CJKsetecglue{}##2{{#2}{##1}{#3}}##3}
+    \crefformat{#1}%
+    {\CJKsetecglue{}##2{{#2}{##1}{#3}}##3}%
+    \Crefformat{#1}%
+    {\CJKsetecglue{}##2{{#2}{##1}{#3}}##3}%
     % ----------------
-    \crefrangeformat{#1}
-    {\CJKsetecglue{}##3{{#2}{##1}}##4--##5{{##2}{#3}}##6}
-    \Crefrangeformat{#1}
-    {\CJKsetecglue{}##3{{#2}{##1}}##4--##5{{##2}{#3}}##6}
+    \crefrangeformat{#1}%
+    {\CJKsetecglue{}##3{{#2}{##1}}##4--##5{{##2}{#3}}##6}%
+    \Crefrangeformat{#1}%
+    {\CJKsetecglue{}##3{{#2}{##1}}##4--##5{{##2}{#3}}##6}%
     % ----------------
-    \crefmultiformat{#1}
-    {\CJKsetecglue{}##2{{#2}{##1}}##3}
-    {\CJKsetecglue{},\,##2{{##1}{#3}}##3}
-    {\CJKsetecglue{},\,##2{{##1}}##3}
-    {\CJKsetecglue{},\,##2{{##1}{#3}}##3}
-    \Crefmultiformat{#1}
-    {\CJKsetecglue{}##2{{#2}{##1}}##3}
-    {\CJKsetecglue{},\,##2{{##1}{#3}}##3}
-    {\CJKsetecglue{},\,##2{{##1}}##3}
-    {\CJKsetecglue{},\,##2{{##1}{#3}}##3}
+    \crefmultiformat{#1}%
+    {\CJKsetecglue{}##2{{#2}{##1}}##3}%
+    {\CJKsetecglue{},\,##2{{##1}{#3}}##3}%
+    {\CJKsetecglue{},\,##2{{##1}}##3}%
+    {\CJKsetecglue{},\,##2{{##1}{#3}}##3}%
+    \Crefmultiformat{#1}%
+    {\CJKsetecglue{}##2{{#2}{##1}}##3}%
+    {\CJKsetecglue{},\,##2{{##1}{#3}}##3}%
+    {\CJKsetecglue{},\,##2{{##1}}##3}%
+    {\CJKsetecglue{},\,##2{{##1}{#3}}##3}%
     % ----------------
-    \crefrangemultiformat{#1}
-    {\CJKsetecglue{}##3{{#2}{##1}}##4--##5{{##2}{#3}}##6}
-    {\CJKsetecglue{},\,##3{{#2}{##1}}##4--##5{{##2}{#3}}##6}
-    {\CJKsetecglue{},\,##3{{#2}{##1}}##4--##5{{##2}{#3}}##6}
-    {\CJKsetecglue{},\,##3{{#2}{##1}}##4--##5{{##2}{#3}}##6}
-    \Crefrangemultiformat{#1}
-    {\CJKsetecglue{}##3{{#2}{##1}}##4--##5{{##2}{#3}}##6}
-    {\CJKsetecglue{},\,##3{{#2}{##1}}##4--##5{{##2}{#3}}##6}
-    {\CJKsetecglue{},\,##3{{#2}{##1}}##4--##5{{##2}{#3}}##6}
+    \crefrangemultiformat{#1}%
+    {\CJKsetecglue{}##3{{#2}{##1}}##4--##5{{##2}{#3}}##6}%
+    {\CJKsetecglue{},\,##3{{#2}{##1}}##4--##5{{##2}{#3}}##6}%
+    {\CJKsetecglue{},\,##3{{#2}{##1}}##4--##5{{##2}{#3}}##6}%
+    {\CJKsetecglue{},\,##3{{#2}{##1}}##4--##5{{##2}{#3}}##6}%
+    \Crefrangemultiformat{#1}%
+    {\CJKsetecglue{}##3{{#2}{##1}}##4--##5{{##2}{#3}}##6}%
+    {\CJKsetecglue{},\,##3{{#2}{##1}}##4--##5{{##2}{#3}}##6}%
+    {\CJKsetecglue{},\,##3{{#2}{##1}}##4--##5{{##2}{#3}}##6}%
     {\CJKsetecglue{},\,##3{{#2}{##1}}##4--##5{{##2}{#3}}##6}  
 }%
 
@@ -124,101 +124,106 @@
 \NewDocumentCommand{\make@crefformat@outerjoin}{mmm}%
 {%
     % ----------------
-    \crefformat{#1}
-    {\CJKsetecglue{}##2{{#2}{##1}{#3}}##3}
-    \Crefformat{#1}
-    {\CJKsetecglue{}##2{{#2}{##1}{#3}}##3}
+    \crefformat{#1}%
+    {\CJKsetecglue{}##2{{#2}{##1}{#3}}##3}%
+    \Crefformat{#1}%
+    {\CJKsetecglue{}##2{{#2}{##1}{#3}}##3}%
     % ----------------
-    \crefrangeformat{#1}
-    {\CJKsetecglue{}##3{{#2}{##1}{#3}}##4至##5{{#2}{##2}{#3}}##6}
-    \Crefrangeformat{#1}
-    {\CJKsetecglue{}##3{{#2}{##1}{#3}}##4至##5{{#2}{##2}{#3}}##6}
+    \crefrangeformat{#1}%
+    {\CJKsetecglue{}##3{{#2}{##1}{#3}}##4至##5{{#2}{##2}{#3}}##6}%
+    \Crefrangeformat{#1}%
+    {\CJKsetecglue{}##3{{#2}{##1}{#3}}##4至##5{{#2}{##2}{#3}}##6}%
     % ----------------
-    \crefmultiformat{#1}
-    {\CJKsetecglue{}##2{{#2}{##1}{#3}}##3}
-    {\CJKsetecglue{}和##2{{#2}{##1}{#3}}##3}
-    {\CJKsetecglue{}、##2{{#2}{##1}{#3}}##3}
-    {\CJKsetecglue{}、##2{{#2}{##1}{#3}}##3}
-    \Crefmultiformat{#1}
-    {\CJKsetecglue{}##2{{#2}{##1}{#3}}##3}
-    {\CJKsetecglue{}和##2{{#2}{##1}{#3}}##3}
-    {\CJKsetecglue{}、##2{{#2}{##1}{#3}}##3}
-    {\CJKsetecglue{}、##2{{#2}{##1}{#3}}##3}
+    \crefmultiformat{#1}%
+    {\CJKsetecglue{}##2{{#2}{##1}{#3}}##3}%
+    {\CJKsetecglue{}和##2{{#2}{##1}{#3}}##3}%
+    {\CJKsetecglue{}、##2{{#2}{##1}{#3}}##3}%
+    {\CJKsetecglue{}、##2{{#2}{##1}{#3}}##3}%
+    \Crefmultiformat{#1}%
+    {\CJKsetecglue{}##2{{#2}{##1}{#3}}##3}%
+    {\CJKsetecglue{}和##2{{#2}{##1}{#3}}##3}%
+    {\CJKsetecglue{}、##2{{#2}{##1}{#3}}##3}%
+    {\CJKsetecglue{}、##2{{#2}{##1}{#3}}##3}%
     % ----------------
-    \crefrangemultiformat{#1}
-    {\CJKsetecglue{}##3{{#2}{##1}{#3}}##4至##5{{#2}{##2}{#3}}##6}
-    {\CJKsetecglue{}和##3{{#2}{##1}{#3}}##4至##5{{#2}{##2}{#3}}##6}
-    {\CJKsetecglue{}、##3{{#2}{##1}{#3}}##4至##5{{#2}{##2}{#3}}##6}
-    {\CJKsetecglue{}、##3{{#2}{##1}{#3}}##4至##5{{#2}{##2}{#3}}##6}
-    \Crefrangemultiformat{#1}
-    {\CJKsetecglue{}##3{{#2}{##1}{#3}}##4至##5{{#2}{##2}{#3}}##6}
-    {\CJKsetecglue{}和##3{{#2}{##1}{#3}}##4至##5{{#2}{##2}{#3}}##6}
-    {\CJKsetecglue{}、##3{{#2}{##1}{#3}}##4至##5{{#2}{##2}{#3}}##6}
-    {\CJKsetecglue{}、##3{{#2}{##1}{#3}}##4至##5{{#2}{##2}{#3}}##6}
+    \crefrangemultiformat{#1}%
+    {\CJKsetecglue{}##3{{#2}{##1}{#3}}##4至##5{{#2}{##2}{#3}}##6}%
+    {\CJKsetecglue{}和##3{{#2}{##1}{#3}}##4至##5{{#2}{##2}{#3}}##6}%
+    {\CJKsetecglue{}、##3{{#2}{##1}{#3}}##4至##5{{#2}{##2}{#3}}##6}%
+    {\CJKsetecglue{}、##3{{#2}{##1}{#3}}##4至##5{{#2}{##2}{#3}}##6}%
+    \Crefrangemultiformat{#1}%
+    {\CJKsetecglue{}##3{{#2}{##1}{#3}}##4至##5{{#2}{##2}{#3}}##6}%
+    {\CJKsetecglue{}和##3{{#2}{##1}{#3}}##4至##5{{#2}{##2}{#3}}##6}%
+    {\CJKsetecglue{}、##3{{#2}{##1}{#3}}##4至##5{{#2}{##2}{#3}}##6}%
+    {\CJKsetecglue{}、##3{{#2}{##1}{#3}}##4至##5{{#2}{##2}{#3}}##6}%
 }%
 
 % -------------------------------- %
-% Reference format of part 
-\make@crefformat@outerjoin{part}{第}{部分}
-% Reference format of chapter 
-\make@crefformat@outerjoin{chapter}{第}{章}
-% Reference format of section 
-\make@crefformat@innerjoin{section}{第}{节}
-% Reference format of subsection 
-\make@crefformat@innerjoin{subsection}{第}{小节}
-% Reference format of subsubsection 
-\make@crefformat@innerjoin{subsubsection}{第}{小节}
-% Reference format of appendix 
-\make@crefformat@innerjoin{appendix}{附录}{}
+% Only modify cref format for zh-cn
+\@ifpackageloaded{ctex}%
+{%
+    % -------------------------------- %
+    % Reference format of part 
+    \make@crefformat@outerjoin{part}{第}{部分}%
+    % Reference format of chapter 
+    \make@crefformat@outerjoin{chapter}{第}{章}%
+    % Reference format of section 
+    \make@crefformat@innerjoin{section}{第}{节}%
+    % Reference format of subsection 
+    \make@crefformat@innerjoin{subsection}{第}{小节}%
+    % Reference format of subsubsection 
+    \make@crefformat@innerjoin{subsubsection}{第}{小节}%
+    % Reference format of appendix 
+    \make@crefformat@innerjoin{appendix}{附录}{}%
 
-% -------------------------------- %
-% Reference format of figure
-\make@crefformat@innerjoin{figure}{图}{}
-% Reference format of table
-\make@crefformat@innerjoin{table}{表}{}
-% Reference format of equation
-\make@crefformat@innerjoin{equation}{式(}{)}
-% Reference format of code
-\make@crefformat@innerjoin{listing}{代码}{}
+    % -------------------------------- %
+    % Reference format of figure
+    \make@crefformat@innerjoin{figure}{图}{}%
+    % Reference format of table
+    \make@crefformat@innerjoin{table}{表}{}%
+    % Reference format of equation
+    \make@crefformat@innerjoin{equation}{式(}{)}%
+    % Reference format of code
+    \make@crefformat@innerjoin{listing}{代码}{}%
 
-% -------------------------------- %
-% Reference format of boxdefinition
-\make@crefformat@innerjoin{boxdefinition}{定义}{}
-% Reference format of boxtheorem
-\make@crefformat@innerjoin{boxtheorem}{定理}{}
-% Reference format of boxlemma
-\make@crefformat@innerjoin{boxlemma}{引理}{}
-% Reference format of boxcorollary
-\make@crefformat@innerjoin{boxcorollary}{推论}{}
-% Reference format of boxproposition
-\make@crefformat@innerjoin{boxproposition}{命题}{}
-% Reference format of boxproperty
-\make@crefformat@innerjoin{boxproperty}{性质}{}
-% Reference format of boxformula
-\make@crefformat@innerjoin{boxformula}{公式}{}
-% Reference format of boxequation
-\make@crefformat@innerjoin{boxequation}{方程}{}
-% Reference format of boxexample
-\make@crefformat@innerjoin{boxexample}{例}{}
-% Reference format of boxdesignprinciple
-\make@crefformat@innerjoin{boxdesignprinciple}{设计原则}{}
+    % -------------------------------- %
+    % Reference format of boxdefinition
+    \make@crefformat@innerjoin{boxdefinition}{定义}{}%
+    % Reference format of boxtheorem
+    \make@crefformat@innerjoin{boxtheorem}{定理}{}%
+    % Reference format of boxlemma
+    \make@crefformat@innerjoin{boxlemma}{引理}{}%
+    % Reference format of boxcorollary
+    \make@crefformat@innerjoin{boxcorollary}{推论}{}%
+    % Reference format of boxproposition
+    \make@crefformat@innerjoin{boxproposition}{命题}{}%
+    % Reference format of boxproperty
+    \make@crefformat@innerjoin{boxproperty}{性质}{}%
+    % Reference format of boxformula
+    \make@crefformat@innerjoin{boxformula}{公式}{}%
+    % Reference format of boxequation
+    \make@crefformat@innerjoin{boxequation}{方程}{}%
+    % Reference format of boxexample
+    \make@crefformat@innerjoin{boxexample}{例}{}%
+    % Reference format of boxdesignprinciple
+    \make@crefformat@innerjoin{boxdesignprinciple}{设计原则}{}%
 
-% -------------------------------- %
-% Define format between different type of reference
-% range
-\NewDocumentCommand{\crefrangeconjunction}{}{至}
-% multi-single second
-\NewDocumentCommand{\crefpairconjunction}{}{和}
-% multi-single middle
-\NewDocumentCommand{\crefmiddleconjunction}{}{、}
-% multi-single last
-\NewDocumentCommand{\creflastconjunction}{}{、}
-% multi-range second
-\NewDocumentCommand{\crefpairgroupconjunction}{}{和}
-% multi-range middle
-\NewDocumentCommand{\crefmiddlegroupconjunction}{}{、}
-% multi-range last
-\NewDocumentCommand{\creflastgroupconjunction}{}{、}
+    % -------------------------------- %
+    % Define format between different type of reference
+    % range
+    \NewDocumentCommand{\crefrangeconjunction}{}{至}%
+    % multi-single second
+    \NewDocumentCommand{\crefpairconjunction}{}{和}%
+    % multi-single middle
+    \NewDocumentCommand{\crefmiddleconjunction}{}{、}%
+    % multi-single last
+    \NewDocumentCommand{\creflastconjunction}{}{、}%
+    % multi-range second
+    \NewDocumentCommand{\crefpairgroupconjunction}{}{和}%
+    % multi-range middle
+    \NewDocumentCommand{\crefmiddlegroupconjunction}{}{、}%
+    % multi-range last
+    \NewDocumentCommand{\creflastgroupconjunction}{}{、}%
+}{}%
 
 % -------------------------------- %
 % Fix \cref on \section will cause error in beamer class
