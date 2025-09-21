@@ -91,6 +91,18 @@
 }{}%
 
 % -------------------------------- %
+% Table continue text for zh-cn and en-us
+\@ifpackageloaded{ctex}%
+{%
+    % For zh-cn
+    \NewDocumentCommand{\text@tablecontinue}{}{续表}%
+}%
+{%
+    % For en-us
+    \NewDocumentCommand{\text@tablecontinue}{}{Continued}%
+}%
+
+% -------------------------------- %
 % Environment Table
 % Design to use with tblr from tabularray
 % ----------------
@@ -144,9 +156,9 @@
             }%
         }%
         % Define middlehead
-        \DefTblrTemplate{middlehead}{default}{\captionof*{table}{续表}}%
+        \DefTblrTemplate{middlehead}{default}{\captionof*{table}{\text@tablecontinue}}%
         % Define lasthead
-        \DefTblrTemplate{lasthead}{default}{\captionof*{table}{续表}}%
+        \DefTblrTemplate{lasthead}{default}{\captionof*{table}{\text@tablecontinue}}%
         % Set inner
         % hline{1,Z}={\lineborder} -> head line and foot line
         % hline{2}={\linemiddle} -> middle line
