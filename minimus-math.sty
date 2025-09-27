@@ -254,6 +254,12 @@
 \NewDocumentCommand{\dirac}{}{\updelta}
 
 % -------------------------------- %
+% Symbol for deep Learning
+\DeclareMathOperator{\softmax}{softmax}
+\DeclareMathOperator{\sigmoid}{sigmoid}
+\DeclareMathOperator{\ReLU}{ReLU}
+
+% -------------------------------- %
 % Symbol of transformation
 % Fourier Transform
 \NewDocumentCommand{\FT}{sg}{\mathcal{F}\IfBooleanT{#1}{^{-1}}\IfValueT{#2}{\qty{#2}}}
