@@ -303,6 +303,29 @@
 % Angle bracket
 \def\<#1>{\left\langle#1\right\rangle}
 
+\NewDocumentCommand{\anglebkt}{sm}%
+{%
+    \IfBooleanT{#1}%
+    {\langle#2\rangle}%
+    {\left\langle#2\right\rangle}%
+}%
+
+% Floor
+\NewDocumentCommand{\floor}{sm}%
+{%
+    \IfBooleanT{#1}%
+    {\lfloor#2\rfloor}%
+    {\left\lfloor#2\right\rfloor}%
+}%
+
+% Ceil
+\NewDocumentCommand{\ceil}{sm}%
+{%
+    \IfBooleanT{#1}%
+    {\lceil#2\rceil}%
+    {\left\lceil#2\right\rceil}%
+}%
+
 % -------------------------------- %
 % Macro to force center equation
 
