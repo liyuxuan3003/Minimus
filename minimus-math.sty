@@ -26,6 +26,15 @@
 \NewCommandCopy\qnumlist\qtylist
 \NewCommandCopy\qnumrange\qtyrange
 \NewCommandCopy\qnumproduct\qtyproduct
+% Redefine all the binary prefix (Prefer KB than Kib)
+\DeclareBinaryPrefix{\kibi}{K}{10}
+\DeclareBinaryPrefix{\mebi}{M}{20}
+\DeclareBinaryPrefix{\gibi}{G}{30}
+\DeclareBinaryPrefix{\tebi}{T}{40}
+\DeclareBinaryPrefix{\pebi}{P}{50}
+\DeclareBinaryPrefix{\exbi}{E}{60}
+\DeclareBinaryPrefix{\zebi}{Z}{70}
+\DeclareBinaryPrefix{\yobi}{Y}{80}
 
 % Format of list
 % Example: 1.0nm, 1.5nm, 2.0nm
