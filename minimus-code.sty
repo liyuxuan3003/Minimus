@@ -122,7 +122,7 @@
     \IfBooleanTF{#1}%
     {%
         % Make caption*
-        \captionof*{lstlisting}{\x@a}%
+        \ifdefempty{\x@a}{}{\captionof*{lstlisting}{\x@a}}%
     }%
     {%
         % Make caption
