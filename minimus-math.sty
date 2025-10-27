@@ -26,6 +26,7 @@
 \NewCommandCopy\qnumlist\qtylist
 \NewCommandCopy\qnumrange\qtyrange
 \NewCommandCopy\qnumproduct\qtyproduct
+
 % Redefine all the binary prefix (Prefer KB than Kib)
 \DeclareBinaryPrefix{\kibi}{K}{10}
 \DeclareBinaryPrefix{\mebi}{M}{20}
@@ -35,6 +36,49 @@
 \DeclareBinaryPrefix{\exbi}{E}{60}
 \DeclareBinaryPrefix{\zebi}{Z}{70}
 \DeclareBinaryPrefix{\yobi}{Y}{80}
+
+% Define all the binary unit (K KB Kb Kbps)
+% --------
+% K M G T
+\DeclareSIUnit{\Kibi}{K}
+\DeclareSIUnit{\Mebi}{M}
+\DeclareSIUnit{\Gibi}{G}
+\DeclareSIUnit{\Tebi}{T}
+\DeclareSIUnit{\Pebi}{P}
+\DeclareSIUnit{\Exbi}{E}
+\DeclareSIUnit{\Zebi}{Z}
+\DeclareSIUnit{\Yobi}{Y}
+% --------
+% KB MB GB TB
+\DeclareSIUnit{\KB}{\kibi\byte}
+\DeclareSIUnit{\MB}{\mebi\byte}
+\DeclareSIUnit{\GB}{\gibi\byte}
+\DeclareSIUnit{\TB}{\tebi\byte}
+\DeclareSIUnit{\PB}{\pebi\byte}
+\DeclareSIUnit{\EB}{\exbi\byte}
+\DeclareSIUnit{\ZB}{\zebi\byte}
+\DeclareSIUnit{\YB}{\yobi\byte}
+% --------
+% Kb Mb Gb Tb
+\DeclareSIUnit{\Kb}{\kibi\bit}
+\DeclareSIUnit{\Mb}{\mebi\bit}
+\DeclareSIUnit{\Gb}{\gibi\bit}
+\DeclareSIUnit{\Tb}{\tebi\bit}
+\DeclareSIUnit{\Pb}{\pebi\bit}
+\DeclareSIUnit{\Eb}{\exbi\bit}
+\DeclareSIUnit{\Zb}{\zebi\bit}
+\DeclareSIUnit{\Yb}{\yobi\bit}
+% --------
+% Kbps Mbps Gbps Tbps
+\DeclareSIUnit{\bps}{bps}
+\DeclareSIUnit{\Kbps}{\kibi\bps}
+\DeclareSIUnit{\Mbps}{\mebi\bps}
+\DeclareSIUnit{\Gbps}{\gibi\bps}
+\DeclareSIUnit{\Tbps}{\tebi\bps}
+\DeclareSIUnit{\Pbps}{\pebi\bps}
+\DeclareSIUnit{\Ebps}{\exbi\bps}
+\DeclareSIUnit{\Zbps}{\zebi\bps}
+\DeclareSIUnit{\Ybps}{\yobi\bps}
 
 % Format of list
 % Example: 1.0nm, 1.5nm, 2.0nm
