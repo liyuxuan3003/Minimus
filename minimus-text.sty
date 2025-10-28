@@ -9,11 +9,14 @@
 % -------------------------------- %
 % Load package <ulem> : Provide various types of underlines that can span across lines
 \RequirePackage{ulem}
-% Load package <xeCJKfntef> : Fixed ulem can not work with chinese
-\RequirePackage{xeCJKfntef}
 
-% \dotcnuline -> only one dot for every chinese character
-\NewDocumentCommand{\dotcnuline}{m}{\CJKunderdot{#1}}
+\@ifpackageloaded{xeCJK}%
+{%
+    % Load package <xeCJKfntef> : Fixed ulem can not work with chinese
+    \RequirePackage{xeCJKfntef}%
+    % \dotcnuline -> only one dot for every chinese character
+    \NewDocumentCommand{\dotcnuline}{m}{\CJKunderdot{#1}}%
+}{}%
 
 % -------------------------------- %
 % Load package <xurl> : Fixed url can not break properly
