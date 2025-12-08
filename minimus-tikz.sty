@@ -147,6 +147,11 @@
 % Support for advance node
 \usetikztiminglibrary{advnodes}
 
+% Declare both background and foreground
+\pgfdeclarelayer{background}
+\pgfdeclarelayer{foreground}
+\pgfsetlayers{background,main,foreground}
+
 % -------------------------------- %
 % Load package <chemfig> : Draw molecule
 \RequirePackage{chemfig}
