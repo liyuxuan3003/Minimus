@@ -135,6 +135,23 @@
 % Load package <tikz-timing> : Draw timing diagram
 \RequirePackage{tikz-timing}
 
+% Support for timing character E
+\usetikztiminglibrary{either}
+
+% Support for overlay
+\usetikztiminglibrary{overlays}
+
+% Support for counter
+\usetikztiminglibrary{counters}
+
+% Support for advance node
+\usetikztiminglibrary{advnodes}
+
+% Declare both background and foreground
+\pgfdeclarelayer{background}
+\pgfdeclarelayer{foreground}
+\pgfsetlayers{background,main,foreground}
+
 % -------------------------------- %
 % Load package <chemfig> : Draw molecule
 \RequirePackage{chemfig}
