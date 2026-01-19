@@ -301,6 +301,19 @@
 \NewDocumentCommand{\hodge}{}{\star}
 
 % -------------------------------- %
+% Symbol of matrix computations
+% Diag Matrix
+\DeclareMathOperator{\Diag}{Diag}
+% Subspace
+\NewDocumentCommand{\subspace}{}{\mathcal{S}}
+% Colspace
+\NewDocumentCommand{\colspace}{}{\mathcal{R}}
+% Nullspace
+\NewDocumentCommand{\nullspace}{}{\mathcal{N}}
+% Span
+\DeclareMathOperator{\vspan}{span}
+
+% -------------------------------- %
 % Symbol of engineering function
 % Sign Function
 \DeclareMathOperator{\sgn}{sgn}
@@ -314,7 +327,7 @@
 \NewDocumentCommand{\dirac}{}{\updelta}
 
 % -------------------------------- %
-% Symbol for deep Learning
+% Symbol for deep learning
 \DeclareMathOperator{\softmax}{softmax}
 \DeclareMathOperator{\sigmoid}{sigmoid}
 \DeclareMathOperator{\ReLU}{ReLU}
