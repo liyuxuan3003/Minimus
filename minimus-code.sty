@@ -9,6 +9,24 @@
 \RequirePackage{semi-split}
 
 % -------------------------------- %
+% Load package <algorithm2e> : Typeset source code
+\RequirePackage{algorithm2e}
+% Disable semicolon at end of the line
+\DontPrintSemicolon
+
+% -------------------------------- %
+% Environment Algoplain
+% Wrapper for plain algorithm fixed with floating option H
+\NewDocumentEnvironment{Algoplain}{+b}%
+{%
+    \par%
+    \begin{algorithm}[H]%
+        #1%
+    \end{algorithm}%
+}{}%
+
+
+% -------------------------------- %
 % Load package <listings> : Typeset source code
 \RequirePackage{listings}
 

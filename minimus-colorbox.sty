@@ -20,6 +20,7 @@
 \newcounter{cntboxdef}[section]
 \newcounter{cntboxthm}[section]
 \newcounter{cntboxexp}[section]
+\newcounter{cntboxalg}[section]
 \newcounter{cntboxdespri}[section]
 
 % Define alias counter for box env
@@ -32,6 +33,8 @@
 \newaliascnt{boxformula}{cntboxthm}
 \newaliascnt{boxequation}{cntboxthm}
 \newaliascnt{boxexample}{cntboxexp}
+\newaliascnt{boxalgorithm}{cntboxalg}
+\newaliascnt{boxprocess}{cntboxalg}
 \newaliascnt{boxdesignprinciple}{cntboxdespri}
 
 % -------------------------------- %
@@ -175,6 +178,16 @@
 % Environment BoxExample
 \NewTcbTheorem[number within=section,use counter=boxexample]{boxexample}{例}{boxexpstyle}{exp}
 \make@boxthm{BoxExample}{boxexample}
+
+% -------------------------------- %
+% Environment BoxAlgorithm
+\NewTcbTheorem[number within=section,use counter=boxalgorithm]{boxalgorithm}{算法}{boxtxtstyle}{alg}
+\make@boxthm{BoxAlgorithm}{boxalgorithm}
+
+% -------------------------------- %
+% Environment BoxProcess
+\NewTcbTheorem[number within=section,use counter=boxprocess]{boxprocess}{流程}{boxtxtstyle}{pro}
+\make@boxthm{BoxProcess}{boxprocess}
 
 % -------------------------------- %
 % Environment BoxDesignPrinciple
