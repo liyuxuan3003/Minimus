@@ -440,11 +440,11 @@
 % Tag will stay at the same line
 % However, if relly set to zero width, it will abnormally reduce vertical spacing before the equation.
 % It's uncertain what the minimum value should be, but 0.4\linewidth usually does the trick. 
-\NewDocumentCommand{\forcezero}{m}{\mathmakebox[0.4\linewidth]{#1}}%
+\NewDocumentCommand{\forcezero}{O{0.4}m}{\mathmakebox[#1\linewidth]{#2}}%
 
 % Set equation into a line width math box to force it center
 % Tag will move to the next lien
-\NewDocumentCommand{\forceline}{m}{\mathmakebox[1.0\linewidth]{#1}}%
+\NewDocumentCommand{\forceline}{O{1.0}m}{\mathmakebox[#1\linewidth]{#2}}%
 
 % \mathmakebox is provided by mathtools
 
