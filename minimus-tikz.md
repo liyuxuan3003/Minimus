@@ -128,14 +128,14 @@ MOS管有时需要翻转和旋转，但文字不应被一并变换，需要反�
 
 | 样式 | 命令 | X翻转 | Y翻转 | 逆时针90度旋转 |
 |------|------|-------|-------|----------------|
-| `f++r+` | `\fliprotate++{text}++` | 否 | 否 | 否 |
-| `f-+r+` | `\fliprotate-+{text}++` | 是 | 否 | 否 |
-| `f+-r+` | `\fliprotate+-{text}++` | 否 | 是 | 否 |
-| `f--r+` | `\fliprotate--{text}++` | 是 | 是 | 否 |
-| `f++r-` | `\fliprotate++{text}+-` | 否 | 否 | 是 |
-| `f-+r-` | `\fliprotate-+{text}+-` | 是 | 否 | 是 |
-| `f+-r-` | `\fliprotate+-{text}+-` | 否 | 是 | 是 |
-| `f--r-` | `\fliprotate--{text}+-` | 是 | 是 | 是 |
+| `f++r+` | `\fliprotate++{text}++` | 0 | 0 | 0 |
+| `f-+r+` | `\fliprotate-+{text}++` | 1 | 0 | 0 |
+| `f+-r+` | `\fliprotate+-{text}++` | 0 | 1 | 0 |
+| `f--r+` | `\fliprotate--{text}++` | 1 | 1 | 0 |
+| `f++r-` | `\fliprotate++{text}+-` | 0 | 0 | 1 |
+| `f-+r-` | `\fliprotate-+{text}+-` | 1 | 0 | 1 |
+| `f+-r-` | `\fliprotate+-{text}+-` | 0 | 1 | 1 |
+| `f--r-` | `\fliprotate--{text}+-` | 1 | 1 | 1 |
 
 ### `semi thick`、`tlvdd`、`tlvss`、`mw`、`mh`
 
