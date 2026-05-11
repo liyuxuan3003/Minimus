@@ -326,6 +326,37 @@ AMS 数学系列宏包。
 | `\subto` | $\operatorname{subject\ to}$，约束条件 |
 | `\relint` | $\operatorname{relint}$，相对内部 |
 
+### `\sgn`、`\rect`、`\sinc`、`\erfc`、`\dirac`
+
+工程函数符号的快捷写法。
+
+| 命令 | 说明 |
+|------|------|
+| `\sgn` | $\operatorname{sgn}$，符号函数 |
+| `\rect` | $\operatorname{rect}$，矩形函数 |
+| `\sinc` | $\operatorname{sinc}$，采样函数（$\sin x/x$） |
+| `\erfc` | $\operatorname{erfc}$，互补误差函数 |
+| `\dirac` | $\updelta$，Dirac冲激函数 |
+
+### `\softmax`、`\sigmoid`、`\ReLU`
+
+深度学习常用激活函数的快捷写法。
+
+| 命令 | 说明 |
+|------|------|
+| `\softmax` | $\operatorname{softmax}$ |
+| `\sigmoid` | $\operatorname{sigmoid}$ |
+| `\ReLU` | $\operatorname{ReLU}$ |
+
+### `\kB`、`\Emf`
+
+物理常量与电磁量符号的快捷写法。
+
+| 命令 | 说明 |
+|------|------|
+| `\kB` | $k_{\mathrm{B}}$，Boltzmann常数 |
+| `\Emf` | $\mathscr{E}$，电动势 |
+
 ### `\FT`、`\LT`
 
 傅里叶变换与拉普拉斯变换的快捷写法，带`*`表示逆变换。
