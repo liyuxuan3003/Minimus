@@ -43,17 +43,20 @@ TikZ绘图核心。
 | `americaninductors` | 美式波浪电感 |
 | `americanvoltages` | 美式电压符号 |
 | `americancurrents` | 美式电流符号 |
-| `RPvoltages` | rising potential voltages |
+| `RPvoltages` | 电源方向 |
+| `voltage/distance from node=0.85` | 电压标记距节点距离 |
 | `resistors/scale=0.65` | 电阻缩放 |
 | `capacitors/scale=0.75` | 电容缩放 |
 | `inductors/scale=0.70` | 电感缩放 |
 | `diodes/scale=0.75` | 二极管缩放 |
 | `sources/scale=0.9` | 独立源缩放 |
-| `tripoles/mos style/arrows` | MOS管：箭头+圆圈 |
-| `logic ports=ieee` | IEEE风格逻辑门 |
+| `csources/scale=0.9` | 受控源缩放 |
+| `tripoles/mos style/arrows` | MOS管：箭头 + 圆圈 |
+| `logic ports=ieee` | 逻辑门风格 |
 | `logic ports/scale=0.65` | 逻辑门缩放 |
 | `quadpoles/transformer/inner=1.0` | 变压器移除水平线 |
-| `voltage/distance from node=0.85` | 电压标记距节点距离 |
+| `quadpoles/transformer/width=1.0` | 变压器移除水平线 |
+
 
 ### `tikz-timing`
 
@@ -92,11 +95,17 @@ TikZ绘图核心。
 
 ## 自定义命令
 
-### `\fliprotate`
+### `\fliprotate`、`f++r+`
 
-MOS管方向控制命令。circuitikz在通过`xscale=-1`、`yscale=-1`或`rotate=90`翻转晶体管时，节点文字也会跟着镜像或旋转，导致无法正常阅读。`\fliprotate`和对应的8种快捷样式（`f++r+`等）通过反向操作（`\ctikzflipx`、`\ctikzflipy`、`\ctikzflipxy`、`\rotatebox{-90}`）将文字翻回正常方向。
+MOS管有时需要翻转和旋转，但文字不应被一并变换，需要反变换补偿，以下样式和命令组合来解决这个问题。
 
-`f`部分（前两个`+`/`-`）控制x/y方向的翻转补偿，`r`部分（最后一个`+`/`-`）控制旋转补偿。
+```latex
+\path (0,0) node[nmos,f+-r+] {\fliprotate+-{$M_1$}+} ;
+```
+
+<!-- circuitikz在通过`xscale=-1`、`yscale=-1`或`rotate=90`翻转晶体管时，节点文字也会跟着镜像或旋转，导致无法正常阅读。`\fliprotate`和对应的8种快捷样式（`f++r+`等）通过反向操作（`\ctikzflipx`、`\ctikzflipy`、`\ctikzflipxy`、`\rotatebox{-90}`）将文字翻回正常方向。 -->
+
+<!-- `f`部分（前两个`+`/`-`）控制x/y方向的翻转补偿，`r`部分（最后一个`+`/`-`）控制旋转补偿。 -->
 
 | 命令 | 说明 |
 |------|------|
@@ -104,15 +113,27 @@ MOS管方向控制命令。circuitikz在通过`xscale=-1`、`yscale=-1`或`rotat
 
 | 序号 | 格式 | 类型 | 说明 |
 |------|------|------|------|
-| 1 | `+`/`-` | 标记 | 第一个标记 |
-| 2 | `+`/`-` | 标记 | 第二个标记 |
-| 3 | `+`/`-` | 标记 | 第三个标记 |
-| 4 | `+`/`-` | 标记 | 第四个标记 |
+| 1 | `+` | 标记 | 第一个标记 |
+| 2 | `-` | 标记 | 第二个标记 |
+| 3 | `+` | 标记 | 第三个标记 |
+| 4 | `-` | 标记 | 第四个标记 |
 | 5 | `{text}` | 必选 | 要显示的文字 |
-| 6 | `+`/`-` | 标记 | 第五个标记（`r+`水平/`r-`垂直） |
-| 7 | `+`/`-` | 标记 | 第六个标记 |
+| 6 | `+` | 标记 | 第五个标记|
+| 7 | `-` | 标记 | 第六个标记 |
 
-预定义的8种快捷样式（用作TikZ`node`选项）及其内部补偿行为：
+该命令的参数组合是经过精心构造的，用法上和样式一一对应，用于补偿样式对文字的影响
+- 第一组`+/-`控制MOS是否沿X翻转。
+- 第二组`+/-`控制MOS是否沿Y翻转。
+- 第三组`+/-`控制MOS是否顺时针旋转90度。
+- 样式作用顺序是X翻转、Y翻转、逆时针90度旋转。
+ 
+样式是关键！只关心要什么方向的MOS管（例如`f+-r+`），文字用对应命令（例如`\fliprotate+-{text}+`）即一定会对。
+
+| 样式 | 命令 | X翻转 | Y翻转 | 逆时针90度旋转 |
+|------|------|------|------|------|
+| `f++r+` | `\fliprotate++{text}++` | 0 | 0 | 0 |
+
+
 
 | 样式 | 管子的变换 | `\fliprotate`对文字的补偿 |
 |------|-----------|--------------------------|
@@ -124,12 +145,6 @@ MOS管方向控制命令。circuitikz在通过`xscale=-1`、`yscale=-1`或`rotat
 | `f-+r-` | xscale=-1, rotate=90 | `\rotatebox{-90}{\ctikzflipx{text}}` |
 | `f+-r-` | yscale=-1, rotate=90 | `\rotatebox{-90}{\ctikzflipy{text}}` |
 | `f--r-` | xscale=-1, yscale=-1, rotate=90 | `\rotatebox{-90}{\ctikzflipxy{text}}` |
-
-```latex
-\path (xAmp|-yAmp) node[op amp,f++r+,color=blue] (Amp) {} ;
-
-\path (Mp.S|-yA) node[rground,f+-r+,anchor=south] (VIN) {};
-```
 
 ### `semi thick`、`tlvdd`、`tlvss`、`mw`、`mh`
 
