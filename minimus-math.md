@@ -305,6 +305,27 @@ AMS 数学系列宏包。
 | `\colpiv` | $\operatorname{colpiv}$，列主元 |
 | `\Obig` | $\mathcal{O}$，大O记号 |
 
+### `\aff`、`\conv`、`\cone`、`\polyhedra`、`\Symm`、`\Herm`、`\dom`、`\epi`、`\hypo`、`\minimize`、`\maximize`、`\find`、`\subto`、`\relint`
+
+凸优化相关符号的快捷写法。带`*`的运算符（`\minimize`、`\maximize`、`\find`、`\subto`）在行间模式中会在下方显示条件。
+
+| 命令 | 说明 |
+|------|------|
+| `\aff` | $\operatorname{aff}$，仿射包 |
+| `\conv` | $\operatorname{conv}$，凸包 |
+| `\cone` | $\operatorname{cone}$，锥包 |
+| `\polyhedra` | $\mathcal{P}$，多面体 |
+| `\Symm` | $\mathbb{S}$，对称矩阵集 |
+| `\Herm` | $\mathbb{H}$，Hermitian矩阵集 |
+| `\dom` | $\operatorname{dom}$，定义域 |
+| `\epi` | $\operatorname{epi}$，上图 |
+| `\hypo` | $\operatorname{hypo}$，下图 |
+| `\minimize` | $\operatorname{minimize}$，极小化 |
+| `\maximize` | $\operatorname{maximize}$，极大化 |
+| `\find` | $\operatorname{find}$，求解 |
+| `\subto` | $\operatorname{subject\ to}$，约束条件 |
+| `\relint` | $\operatorname{relint}$，相对内部 |
+
 ### `\FT`、`\LT`
 
 傅里叶变换与拉普拉斯变换的快捷写法，带`*`表示逆变换。
