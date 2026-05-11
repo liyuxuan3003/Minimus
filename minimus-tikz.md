@@ -37,23 +37,23 @@ TikZ绘图核心。
 
 预配置（`\PassOptionsToPackage`和`\ctikzset`）：
 
-| 选项 | 值 | 说明 |
-|------|-----|------|
-| `europeanresistors` | | 欧式方块电阻 |
-| `americaninductors` | | 美式波浪电感 |
-| `americanvoltages` | | 美式电压符号 |
-| `americancurrents` | | 美式电流符号 |
-| `RPvoltages` | | rising potential voltages |
-| `resistors/scale` | `0.65` | 电阻缩放 |
-| `capacitors/scale` | `0.75` | 电容缩放 |
-| `inductors/scale` | `0.70` | 电感缩放 |
-| `diodes/scale` | `0.75` | 二极管缩放 |
-| `sources/scale` | `0.9` | 独立源缩放 |
-| `tripoles/mos style/arrows` | | MOS管：箭头+圆圈 |
-| `logic ports` | `ieee` | IEEE风格逻辑门 |
-| `logic ports/scale` | `0.65` | 逻辑门缩放 |
-| `quadpoles/transformer/inner` | `1.0` | 变压器移除水平线 |
-| `voltage/distance from node` | `0.85` | 电压标记距节点距离 |
+| 选项 | 说明 |
+|------|------|
+| `europeanresistors` | 欧式方块电阻 |
+| `americaninductors` | 美式波浪电感 |
+| `americanvoltages` | 美式电压符号 |
+| `americancurrents` | 美式电流符号 |
+| `RPvoltages` | rising potential voltages |
+| `resistors/scale=0.65` | 电阻缩放 |
+| `capacitors/scale=0.75` | 电容缩放 |
+| `inductors/scale=0.70` | 电感缩放 |
+| `diodes/scale=0.75` | 二极管缩放 |
+| `sources/scale=0.9` | 独立源缩放 |
+| `tripoles/mos style/arrows` | MOS管：箭头+圆圈 |
+| `logic ports=ieee` | IEEE风格逻辑门 |
+| `logic ports/scale=0.65` | 逻辑门缩放 |
+| `quadpoles/transformer/inner=1.0` | 变压器移除水平线 |
+| `voltage/distance from node=0.85` | 电压标记距节点距离 |
 
 ### `tikz-timing`
 
