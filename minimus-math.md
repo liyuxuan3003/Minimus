@@ -289,6 +289,22 @@ AMS 数学系列宏包。
 | `\FermiF` | $\operatorname{F}$，Fermi函数 |
 | `\hodge` | $\star$，Hodge星算子 |
 
+### `\diag`、`\subspace`、`\rangespace`、`\nullspace`、`\vspan`、`\piv`、`\rowpiv`、`\colpiv`、`\Obig`
+
+矩阵计算相关符号的快捷写法。
+
+| 命令 | 说明 |
+|------|------|
+| `\diag` | $\operatorname{diag}$，对角矩阵 |
+| `\subspace` | $\mathcal{S}$，子空间 |
+| `\rangespace` | $\mathcal{R}$，值域 |
+| `\nullspace` | $\mathcal{N}$，零空间 |
+| `\vspan` | $\operatorname{span}$，张成空间（`\span`已被占用） |
+| `\piv` | $\operatorname{piv}$，主元 |
+| `\rowpiv` | $\operatorname{rowpiv}$，行主元 |
+| `\colpiv` | $\operatorname{colpiv}$，列主元 |
+| `\Obig` | $\mathcal{O}$，大O记号 |
+
 ### `\FT`、`\LT`
 
 傅里叶变换与拉普拉斯变换的快捷写法，带`*`表示逆变换。
