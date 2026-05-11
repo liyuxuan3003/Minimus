@@ -255,6 +255,40 @@ AMS 数学系列宏包。
 | `\Var` | 方差$\operatorname{Var}$ |
 | `\Cov` | 协方差$\operatorname{Cov}$ |
 
+### `\arsinh`、`\arcosh`、`\artanh`、`\arcoth`、`\arsech`、`\arcsch`、`\atantwo`
+
+反双曲函数与`atan2`的快捷写法。
+
+| 命令 | 说明 |
+|------|------|
+| `\arsinh` | $\operatorname{arsinh}$ |
+| `\arcosh` | $\operatorname{arcosh}$ |
+| `\artanh` | $\operatorname{artanh}$ |
+| `\arcoth` | $\operatorname{arcoth}$ |
+| `\arsech` | $\operatorname{arsech}$ |
+| `\arcsch` | $\operatorname{arcsch}$ |
+| `\atantwo` | $\operatorname{atan2}$ |
+
+### `\Beta`、`\PolyGamma`、`\BesselJ`、`\BesselN`、`\BesselH`、`\BesselI`、`\BesselK`、`\LegendreP`、`\LegendreQ`、`\SphericalY`、`\HermiteH`、`\FermiF`、`\hodge`
+
+特殊函数的快捷写法。
+
+| 命令 | 说明 |
+|------|------|
+| `\Beta` | $\operatorname{B}$，Beta函数（Gamma的推广） |
+| `\PolyGamma` | $\uppsi$，PolyGamma函数 |
+| `\BesselJ` | $\operatorname{J}$，第一类Bessel函数 |
+| `\BesselN` | $\operatorname{N}$，第二类Bessel函数（Neumann） |
+| `\BesselH` | $\operatorname{H}$，第三类Bessel函数（Hankel） |
+| `\BesselI` | $\operatorname{I}$，第一类修正Bessel函数 |
+| `\BesselK` | $\operatorname{K}$，第二类修正Bessel函数 |
+| `\LegendreP` | $\operatorname{P}$，第一类Legendre函数 |
+| `\LegendreQ` | $\operatorname{Q}$，第二类Legendre函数 |
+| `\SphericalY` | $\operatorname{Y}$，球谐函数 |
+| `\HermiteH` | $\operatorname{H}$，Hermite多项式 |
+| `\FermiF` | $\operatorname{F}$，Fermi函数 |
+| `\hodge` | $\star$，Hodge星算子 |
+
 ### `\FT`、`\LT`
 
 傅里叶变换与拉普拉斯变换的快捷写法，带`*`表示逆变换。
