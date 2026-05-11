@@ -171,9 +171,9 @@ AMS 数学系列宏包。
 
 | 命令 | 说明 |
 |------|------|
-| `\dx` | 对$x$的微分$\dd{x}$ |
-| `\dy` | 对$y$的微分$\dd{y}$ |
-| `\dz` | 对$z$的微分$\dd{z}$ |
+| `\dx` | 对$x$的微分$\mathrm{d}x$ |
+| `\dy` | 对$y$的微分$\mathrm{d}y$ |
+| `\dz` | 对$z$的微分$\mathrm{d}z$ |
 
 ### `\vi`、`\vj`、`\vk`
 
@@ -181,9 +181,9 @@ AMS 数学系列宏包。
 
 | 命令 | 说明 |
 |------|------|
-| `\vi` | $\vb*{i}$ |
-| `\vj` | $\vb*{j}$ |
-| `\vk` | $\vb*{k}$ |
+| `\vi` | $\mathbf{i}$ |
+| `\vj` | $\mathbf{j}$ |
+| `\vk` | $\mathbf{k}$ |
 
 ### `\Sum`、`\Prod`、`\BigCap`、`\BigCup`、`\BigOplus`、`\BigOdot`、`\BigOtimes`
 
@@ -276,7 +276,7 @@ AMS 数学系列宏包。
 | 命令 | 说明 |
 |------|------|
 | `\Beta` | $\operatorname{B}$，Beta函数（Gamma的推广） |
-| `\PolyGamma` | $\uppsi$，PolyGamma函数 |
+| `\PolyGamma` | $\psi$（直立），PolyGamma函数 |
 | `\BesselJ` | $\operatorname{J}$，第一类Bessel函数 |
 | `\BesselN` | $\operatorname{N}$，第二类Bessel函数（Neumann） |
 | `\BesselH` | $\operatorname{H}$，第三类Bessel函数（Hankel） |
@@ -336,7 +336,7 @@ AMS 数学系列宏包。
 | `\rect` | $\operatorname{rect}$，矩形函数 |
 | `\sinc` | $\operatorname{sinc}$，采样函数（$\sin x/x$） |
 | `\erfc` | $\operatorname{erfc}$，互补误差函数 |
-| `\dirac` | $\updelta$，Dirac冲激函数 |
+| `\dirac` | $\delta$（直立），Dirac冲激函数 |
 
 ### `\softmax`、`\sigmoid`、`\ReLU`
 
@@ -417,7 +417,7 @@ $0_+$与$0_-$的快捷写法。
 | `\xwav{content}` | `\widetilde`的别名，上方宽波浪线 |
 | `\xvec{content}` | `\overrightarrow`的别名，上方宽箭头 |
 | `\xbar{content}` | `\overline`的别名，上方宽线 |
-| `\bbar{content}` | 下方短线$\underaccent{\bar}{x}$ |
+| `\bbar{content}` | 下方添加短线的重音符号 |
 
 ### `\mal`、`\mas`、`\te`、`\<`
 
