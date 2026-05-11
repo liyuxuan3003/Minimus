@@ -10,15 +10,17 @@
 
 | 宏包 | 说明 |
 |------|------|
-| `algorithm2e` | 提供`algorithm`环境和丰富的伪代码排版命令，预配置`tworuled`（双线标题）、`linesnumbered`（行号）、`rightnl`（注释右对齐），默认不显示行末分号 |
+| `algorithm2e` | 提供`algorithm`环境和丰富的伪代码排版命令 |
 
-预定义了`\Function`块命令（`\SetKwProg`）：
+预配置（`\PassOptionsToPackage`等）：
 
-```latex
-\Function{name}{params}{
-  body
-}
-```
+| 选项 | 说明 |
+|------|------|
+| `tworuled` | 双线标题 |
+| `linesnumbered` | 显示行号 |
+| `rightnl` | 注释右对齐 |
+| `DontPrintSemicolon` | 不显示行末分号 |
+| `SetKwProg{Function}{function}{}{end}` | 定义`\Function`块命令 |
 
 ### `listings`
 
@@ -28,13 +30,30 @@
 |------|------|
 | `listings` | 提供`\lstinputlisting`、`\lstinline`命令和`lstlisting`环境 |
 
-预配置的全局`\lstset`：
+预配置的`\lstset`：
 
-- 基础样式：`\ttfamily`字体，左侧行号，顶置标题，四周框线
-- 自动换行：`breaklines=true`
-- 制表符宽度：`tabsize=4`
+| 选项 | 说明 |
+|------|------|
+| `basicstyle=\ttfamily` | 等宽字体 |
+| `numbers=left` | 左侧行号 |
+| `captionpos=t` | 顶置标题 |
+| `frame=lrtb` | 四周框线 |
+| `breaklines=true` | 自动换行 |
+| `tabsize=4` | 制表符宽度 |
 
-预定义了的listings语言样式：`bash`、`c`、`cpp`、`python`、`scala`、`verilog`、`riscv`、`latex`、`plain`。
+预定义的listings样式：
+
+| 样式 | 语言 |
+|------|------|
+| `bash` | Shell |
+| `c` | C |
+| `cpp` | C++ |
+| `python` | Python |
+| `scala` | Scala |
+| `verilog` | Verilog |
+| `riscv` | RISC-V汇编 |
+| `latex` | LaTeX |
+| `plain` | 纯文本 |
 
 
 
