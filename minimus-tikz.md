@@ -37,15 +37,17 @@ TikZ绘图核心。
 
 预配置：
 
-- 电阻：欧式方块（`europeanresistors`），缩放`0.65`
-- 电感：美式波浪（`americaninductors`），缩放`0.70`
-- 电容：缩放`0.75`
-- 二极管：缩放`0.75`
-- 独立源：缩放`0.9`
-- MOS管：箭头+圆圈（`tripoles/mos style/arrows`）
-- 逻辑门：IEEE风格（`logic ports=ieee`），缩放`0.65`
-- 变压器：移除水平线（`inner=1.0`）
-- 电压标记：距节点`0.85`
+| 设置项 | 值 | 说明 |
+|--------|-----|------|
+| 电阻 | `resistors/scale=0.65` | 欧式方块（`europeanresistors`） |
+| 电容 | `capacitors/scale=0.75` | |
+| 电感 | `inductors/scale=0.70` | 美式波浪（`americaninductors`） |
+| 二极管 | `diodes/scale=0.75` | |
+| 独立源 | `sources/scale=0.9` | |
+| MOS管 | `tripoles/mos style/arrows` | 箭头+圆圈 |
+| 逻辑门 | `logic ports=ieee`，`logic ports/scale=0.65` | IEEE风格 |
+| 变压器 | `quadpoles/transformer/inner=1.0` | 移除水平线 |
+| 电压标记 | `voltage/distance from node=0.85` | 距节点距离 |
 
 ### `tikz-timing`
 
@@ -55,7 +57,16 @@ TikZ绘图核心。
 |------|------|
 | `tikz-timing` | 提供`tikztimingtable`环境 |
 
-预加载的时序库：`either`（双态符号`E`）、`overlays`（覆盖层）、`counters`（计数器）、`advnodes`（高级节点）。背景层和前景层已预定义（`background`、`foreground`）。
+预加载的时序库：
+
+| 库 | 说明 |
+|----|------|
+| `either` | 双态符号`E` |
+| `overlays` | 覆盖层 |
+| `counters` | 计数器 |
+| `advnodes` | 高级节点 |
+
+背景层和前景层已预定义（`background`、`foreground`）。
 
 ### `ifthen`
 
