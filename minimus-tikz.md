@@ -35,19 +35,25 @@ TikZ绘图核心。
 |------|------|
 | `circuitikz` | 提供`circuitikz`环境和电路元件命令 |
 
-预配置：
+预配置（`\PassOptionsToPackage`和`\ctikzset`）：
 
-| 设置项 | 值 | 说明 |
-|--------|-----|------|
-| 电阻 | `resistors/scale=0.65` | 欧式方块（`europeanresistors`） |
-| 电容 | `capacitors/scale=0.75` | |
-| 电感 | `inductors/scale=0.70` | 美式波浪（`americaninductors`） |
-| 二极管 | `diodes/scale=0.75` | |
-| 独立源 | `sources/scale=0.9` | |
-| MOS管 | `tripoles/mos style/arrows` | 箭头+圆圈 |
-| 逻辑门 | `logic ports=ieee`，`logic ports/scale=0.65` | IEEE风格 |
-| 变压器 | `quadpoles/transformer/inner=1.0` | 移除水平线 |
-| 电压标记 | `voltage/distance from node=0.85` | 距节点距离 |
+| 选项 | 值 | 说明 |
+|------|-----|------|
+| `europeanresistors` | | 欧式方块电阻 |
+| `americaninductors` | | 美式波浪电感 |
+| `americanvoltages` | | 美式电压符号 |
+| `americancurrents` | | 美式电流符号 |
+| `RPvoltages` | | rising potential voltages |
+| `resistors/scale` | `0.65` | 电阻缩放 |
+| `capacitors/scale` | `0.75` | 电容缩放 |
+| `inductors/scale` | `0.70` | 电感缩放 |
+| `diodes/scale` | `0.75` | 二极管缩放 |
+| `sources/scale` | `0.9` | 独立源缩放 |
+| `tripoles/mos style/arrows` | | MOS管：箭头+圆圈 |
+| `logic ports` | `ieee` | IEEE风格逻辑门 |
+| `logic ports/scale` | `0.65` | 逻辑门缩放 |
+| `quadpoles/transformer/inner` | `1.0` | 变压器移除水平线 |
+| `voltage/distance from node` | `0.85` | 电压标记距节点距离 |
 
 ### `tikz-timing`
 
@@ -88,25 +94,40 @@ TikZ绘图核心。
 
 ### `\fliprotate`
 
-晶体管方向控制命令。通过参数控制管子的翻转和旋转方向。
+MOS管方向控制命令。通过7个`+`/`-`标记配合控制管子的翻转和旋转方向。该命令通常配合`circuitikz`的`nmos`/`pmos`等节点样式使用。
 
 | 命令 | 说明 |
 |------|------|
-| `\fliprotate++++-{node}{text}` | 按`f`/`r`（正向/反向）和`+`/`-`（源漏极性）组合控制晶体管方向和文字标注 |
-
-参数为四个标记（`+-`）加一个标记（`+-`）：
+| `\fliprotate+-+-{text}+-` | 控制晶体管方向和文字标注，`+`和`-`按位置对应不同行为 |
 
 | 序号 | 格式 | 类型 | 说明 |
 |------|------|------|------|
-| 1 | `+`/`-` | 标记 | 正向信号极性 |
-| 2 | `+`/`-` | 标记 | 反向信号极性 |
-| 3 | `+`/`-` | 标记 | 正向偏置极性 |
-| 4 | `+`/`-` | 标记 | 反向偏置极性 |
-| 5 | `{node}` | 必选 | 晶体管节点名 |
-| 6 | `+`/`-` | 标记 | 方向（`+`水平，`-`垂直） |
-| 7 | `{text}` | 必选 | 文字标注内容 |
+| 1 | `+`/`-` | 标记 | 第一个标记，控制`f++r`系列xscale |
+| 2 | `+`/`-` | 标记 | 第二个标记，控制`f-+r`系列xscale和`f+-r`系列yscale |
+| 3 | `+`/`-` | 标记 | 第三个标记，控制`f++r`和`f-+r`系列 |
+| 4 | `+`/`-` | 标记 | 第四个标记，控制`f--r`系列 |
+| 5 | `{text}` | 必选 | 晶体管节点名或文字标注 |
+| 6 | `+`/`-` | 标记 | 第五个标记，`+`为水平（`f++r`系列），`-`为垂直（`f--r`系列） |
+| 7 | `+`/`-` | 标记 | 第六个标记，配合第六个标记的`-`使用 |
 
-同时定义了8种晶体管方向样式作为快捷方式：`f++r+`、`f-+r+`、`f+-r+`、`f--r+`、`f++r-`、`f-+r-`、`f+-r-`、`f--r-`。
+预定义的8种快捷样式：
+
+| 样式 | 对应参数 | xscale | yscale | rotate | 说明 |
+|------|----------|--------|--------|--------|------|
+| `f++r+` | `++++-` | 1 | 1 | 0 | 正向水平，无翻转 |
+| `f-+r+` | `-+++-` | -1 | 1 | 0 | 正向水平，x翻转 |
+| `f+-r+` | `+-+-+` | 1 | -1 | 0 | 正向水平，y翻转 |
+| `f--r+` | `--+-+` | -1 | -1 | 0 | 正向水平，xy翻转 |
+| `f++r-` | `+++--` | 1 | 1 | 90 | 正向垂直，无翻转 |
+| `f-+r-` | `-++--` | -1 | 1 | 90 | 正向垂直，x翻转 |
+| `f+-r-` | `+-+--` | 1 | -1 | 90 | 正向垂直，y翻转 |
+| `f--r-` | `--+--` | -1 | -1 | 90 | 正向垂直，xy翻转 |
+
+```latex
+\path (xAmp|-yAmp) node[op amp,f++r+,color=blue] (Amp) {} ;
+
+\path (Mp.S|-yA) node[rground,f+-r+,anchor=south] (VIN) {};
+```
 
 ### `semi thick`、`tlvdd`、`tlvss`、`mw`、`mh`
 
