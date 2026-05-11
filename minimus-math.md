@@ -22,7 +22,16 @@ AMS 数学系列宏包。
 
 | 宏包 | 说明 |
 |------|------|
-| `siunitx` | 提供`\qty`、`\unit`、`\num`等命令，用于排版带单位的物理量。`\qty`系列被重命名为`\qnum`/`\qnumlist`/`\qnumrange`/`\qnumproduct`，以避免与`physics`冲突 |
+| `siunitx` | 提供`\qty`、`\unit`、`\num`等命令，用于排版带单位的物理量 |
+
+为了避免与`physics`宏包的`\qty`命令冲突，siunitx原有的`\qty`系列被重命名：
+
+| 命令 | 说明 |
+|------|------|
+| `\qnum{value}{unit}` | 原`\qty`，排版物理量（如`\qnum{3.0}{nm}`） |
+| `\qnumlist{values}{unit}` | 原`\qtylist`，排版物理量列表 |
+| `\qnumrange{low}{high}{unit}` | 原`\qtyrange`，排版物理量范围 |
+| `\qnumproduct{values}` | 原`\qtyproduct`，排版物理量乘积 |
 
 预配置设置：
 
@@ -33,7 +42,26 @@ AMS 数学系列宏包。
 | `group-digits` | `none` | 不分组数字 |
 | `inter-unit-product` | `{\cdot}` | 单位间用`·`连接 |
 
-同时预配置了二进制单位（`\KB`、`\MB`、`\GB`、`\Kb`、`\Mb`、`\Kbps`、`\Mbps`等）。
+二进制前缀被重定义为短格式（`\kibi`→K, `\mebi`→M, `\gibi`→G等），并预定义了对应的二进制单位：
+
+| 命令 | 说明 |
+|------|------|
+| `\KB` | KiB |
+| `\MB` | MiB |
+| `\GB` | GiB |
+| `\TB` | TiB |
+| `\PB` | PiB |
+| `\EB` | EiB |
+| `\ZB` | ZiB |
+| `\YB` | YiB |
+| `\Kb` | Kib（bit） |
+| `\Mb` | Mib（bit） |
+| `\Gb` | Gib（bit） |
+| `\Tb` | Tib（bit） |
+| `\Kbps` | Kibps |
+| `\Mbps` | Mibps |
+| `\Gbps` | Gibps |
+| `\Tbps` | Tibps |
 
 ### `physics`
 
