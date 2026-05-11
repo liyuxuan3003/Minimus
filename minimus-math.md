@@ -406,6 +406,43 @@ $0_+$与$0_-$的快捷写法。
 | 1 | `*` | 标记 | 自适应大小 |
 | 2 | `{content}` | 必选 | 括号内的内容 |
 
+### `\xpar`、`\xhat`、`\xwav`、`\xvec`、`\xbar`、`\bbar`
+
+宽重音符号的快捷写法。
+
+| 命令 | 说明 |
+|------|------|
+| `\xpar{content}` | `\wideparen`的别名，上方宽弧 |
+| `\xhat{content}` | `\widehat`的别名，上方宽帽 |
+| `\xwav{content}` | `\widetilde`的别名，上方宽波浪线 |
+| `\xvec{content}` | `\overrightarrow`的别名，上方宽箭头 |
+| `\xbar{content}` | `\overline`的别名，上方宽线 |
+| `\bbar{content}` | 下方短线$\underaccent{\bar}{x}$ |
+
+### `\mal`、`\mas`、`\te`、`\<`
+
+数学排版工具命令。
+
+| 命令 | 说明 |
+|------|------|
+| `\mal{content}` | `\mathlarger`的别名，放大数学符号 |
+| `\mas{content}` | `\mathsmaller`的别名，缩小数学符号 |
+| `\te{content}` | `\mathrm`的缩写，如`\te{sin}`→$\mathrm{sin}$ |
+| `\<content>` | 自适应尖括号$\left\langle x\right\rangle$ |
+
+### `\forcezero`、`\forceline`
+
+方程强制居中命令。默认情况下中等长度的编号公式会偏向标签一侧，这两个命令可以纠正。
+
+| 命令 | 说明 |
+|------|------|
+| `\forcezero[width]{content}` | 将公式置入零宽盒子强制居中，标签保持同行 |
+| `\forceline[width]{content}` | 将公式置入行宽盒子强制居中，标签移至下一行 |
+
+| 序号 | 格式 | 类型 | 说明 |
+|------|------|------|------|
+| 1 | `[width]` | 可选 | 盒子宽度（`width\linewidth`），默认`0.4`（`\forcezero`）或`1.0`（`\forceline`） |
+
 ## 自定义环境
 
 ### `Equation`
