@@ -62,8 +62,8 @@ URL断行工具。
 
 | 命令 | 说明 |
 |------|------|
-| `\circnum{n}` | 白色圈数字，n取值1-10 |
-| `\circnumdark{n}` | 黑色实心圈数字，n取值1-10 |
+| `\circnum{n}` | 空心圈数字，`n`取值1-10 |
+| `\circnumdark{n}` | 实心圈数字，`n`取值1-10 |
 
 ### `\romannum`、`\Romannum`
 
@@ -71,8 +71,8 @@ URL断行工具。
 
 | 命令 | 说明 |
 |------|------|
-| `\romannum{n}` | 小写罗马数字（`\romannumeral`的别名），如`\romannum{4}`输出iv |
-| `\Romannum{n}` | 大写罗马数字，如`\Romannum{4}`输出IV |
+| `\romannum{n}` | 小写罗马数字，如`\romannum{6}`输出vi |
+| `\Romannum{n}` | 大写罗马数字，如`\Romannum{6}`输出VI |
 
 ### `\fg`
 
