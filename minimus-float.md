@@ -46,7 +46,7 @@
 | `graphicx` | 提供`\includegraphics`命令，支持插入PDF、PNG、JPG等图片 |
 | `pdfpages` | 提供`\includepdf`命令，支持插入完整PDF页面 |
 
-依赖`etoolbox`、`xparse`和`semi-split`作为基础工具。依赖`tikz`（已在`minimus-text`中加载）。
+
 
 ## 自定义命令
 

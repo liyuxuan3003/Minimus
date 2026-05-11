@@ -12,4 +12,4 @@
 |------|------|
 | `gbt7714` | 提供`\bibliographystyle{gbt7714-numerical}`，自动将参考文献格式设置为顺序编码制 |
 
-该宏包同时依赖`etoolbox`和`xparse`作为基础设施。
+

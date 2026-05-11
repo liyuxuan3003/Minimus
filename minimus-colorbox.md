@@ -46,7 +46,7 @@ AMS定理环境。
 | 日语例句（`boxjpsetstyle`） | 蓝色，圆角`1.0mm` |
 | 日语对话（`boxjpcovstyle`） | 绿色，圆角`1.0mm` |
 
-依赖`etoolbox`、`xparse`和`semi-split`作为基础工具。
+
 
 ## 自定义环境
 

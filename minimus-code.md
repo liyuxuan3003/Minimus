@@ -36,7 +36,7 @@
 
 预定义了的listings语言样式：`bash`、`c`、`cpp`、`python`、`scala`、`verilog`、`riscv`、`latex`、`plain`。
 
-依赖`etoolbox`、`xparse`和`semi-split`作为基础工具。
+
 
 ## 自定义命令
 
