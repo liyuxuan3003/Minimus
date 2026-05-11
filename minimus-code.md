@@ -62,6 +62,10 @@
 
 等价于`\begin{algorithm}[H]...\end{algorithm}`，伪代码始终固定在当前位置。
 
+| 环境 | 说明 |
+|------|------|
+| `Algoplain` | 固定位置的`algorithm`环境（`[H]`模式） |
+
 ### `Code`
 
 带标题的代码清单环境。
@@ -79,7 +83,7 @@
 | 3 | `{style}` | 可选 | listings样式名称，默认`plain` |
 
 ```latex
-\begin{Code}[Python示例;py-example]{python}
+\begin{Code}[Python Example;py-example]{python}
   \lstinputlisting{script.py}
 \end{Code}
 ```

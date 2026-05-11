@@ -61,10 +61,6 @@
 | `\linemiddle` | $0.4\mathrm{pt}$，中间线 |
 | `\lineborder` | $1.0\mathrm{pt}$，边框线 |
 
-### `\ltabcapvskipabove`、`\ltabcapvskipbelow`、`\ltabpresep`、`\ltabpostsep`
-
-长表格间距控制。用于对齐长表格和短表格的垂直间距。根据文档类（`beamer`或`book`）自动设置不同值。
-
 ### `\figuresub`
 
 子图命令，须在`Figure`环境内使用。
@@ -81,8 +77,8 @@
 | 4 | `{width}` | 可选 | 子图宽度（`width\linewidth`），默认自适应 |
 
 ```latex
-\figuresub[左图;a]{\includegraphics{left.pdf}}{0.45}
-\figuresub[右图;b]{\includegraphics{right.pdf}}{0.45}
+\figuresub[Left;a]{\includegraphics{left.pdf}}{0.45}
+\figuresub[Right;b]{\includegraphics{right.pdf}}{0.45}
 ```
 
 ## 自定义环境
@@ -107,7 +103,7 @@
 | 6 | `!` | 标记 | 启用长表格（两个`!`写成`!!`） |
 
 ```latex
-\begin{Table}[表格标题;mytable]!
+\begin{Table}[Table Caption;mytable]!
   \begin{tblr}{colspec={XX},hline{1,Z}={\lineborder},hline{2}={\linemiddle}}
     A & B \\
     C & D \\
@@ -115,10 +111,10 @@
 \end{Table}
 ```
 
-长表格示例：
+Long table example:
 
 ```latex
-\begin{Table}[长表格标题;longtable]!!
+\begin{Table}[Long Table Caption;longtable]!!
   \begin{tblr}{colspec={XXX}}
     A & B & C \\
     D & E & F \\
@@ -143,7 +139,7 @@
 | 3 | `!` | 标记 | 启用浮动，使用`[htbp]`而非`[H]` |
 
 ```latex
-\begin{Figure}[示例图片;example]!
+\begin{Figure}[Example Figure;example]!
   \includegraphics{image.pdf}
 \end{Figure}
 ```

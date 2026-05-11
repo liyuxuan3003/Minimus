@@ -68,10 +68,10 @@ minimus-reference不定义新的用户命令，而是预配置`\cref`和`\Cref`�
 | 范围 | 至 | 图1.1至1.3 |
 
 ```latex
-\cref{sec:intro}                    % 第1.1节
-\cref{fig:a,fig:b}                  % 图1.1和图1.2
-\cref{fig:a,fig:b,fig:c}            % 图1.1、1.2和1.3
-\cref{tab:a,tab:d}                  % 表1.1至表1.4
+\cref{sec:intro}                    % Section 1.1
+\cref{fig:a,fig:b}                  % Figure 1.1 and 1.2
+\cref{fig:a,fig:b,fig:c}            % Figure 1.1, 1.2 and 1.3
+\cref{tab:a,tab:d}                  % Table 1.1 to Table 1.4
 ```
 
 beamer文档类中`\cref`的超链接仅指向第一个引用目标（技术限制的折中方案）。

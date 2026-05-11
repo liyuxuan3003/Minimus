@@ -57,9 +57,9 @@ minimus-section不定义新的用户命令，而是重定义标准LaTeX章节命
 | `\subsubsection{名称;intro}` | `subsubsec:intro` | |
 
 ```latex
-\section{引言;intro}
+\section{Introduction;intro}
 
-参见\cref{sec:intro}。
+See \cref{sec:intro}.
 ```
 
 带`*`时不会创建标签。含编号时才创建标签。
