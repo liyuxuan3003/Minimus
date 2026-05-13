@@ -28,25 +28,29 @@ AMS数学系列宏包。
 
 尽管这个包的名字叫`physics`，但实际上提供了许多便捷数学命令，解决了许多数学排版的痛点
 - 向量用`\vb{a}`和`\vb*{\alpha}`
-- 微分用`\dd{x}`，导数用`\dv{y}{x}`
+- 微分用`\dd{x}`，导数用`\dv{y}{x}`和`\pdv{y}{x}`
 - 自适应括号用`\qty(...)`、`\qty[...]`、`\qty{...}`
 
 ### `siunitx`
 
-物理量与单位的排版。
+物理量与物理单位的排版。
 
 | 宏包 | 说明 |
 |------|------|
 | `siunitx` | 提供`\qty`、`\unit`、`\num`等命令，用于排版带单位的物理量 |
 
-为了避免与`physics`宏包的`\qty`命令冲突，siunitx原有的`\qty`系列被重命名：
+`siunitx`旧版的排版带单位量的命令是`\SI{1}{\us}`，而新版是`\qty{1}{\us}`。
+
+`siunitx`的`\qty`命令与`physics`宏包表示自适应括号的`\qty`命令存在命名冲突，因此不可用，存在以下重命名
 
 | 命令 | 说明 |
 |------|------|
-| `\qnum{value}{unit}` | 原`\qty`，排版物理量（如`\qnum{3.0}{nm}`） |
+| `\qnum{value}{unit}` | 原`\qty`，排版物理量 |
 | `\qnumlist{values}{unit}` | 原`\qtylist`，排版物理量列表 |
 | `\qnumrange{low}{high}{unit}` | 原`\qtyrange`，排版物理量范围 |
 | `\qnumproduct{values}` | 原`\qtyproduct`，排版物理量乘积 |
+
+若追求兼容性，可以继续使用`\SI`的命令。
 
 预配置设置：
 
@@ -509,7 +513,7 @@ $0_+$与$0_-$的快捷写法。
 | 5 | `!` | 标记 | 强制行宽居中（`!!`） |
 
 ```latex
-\begin{Split}[mysplit]
+\begin{Split}[quadratic]
     f(x) &= ax^4 + bx^3 \\
          &+ cx^2 + dx + e
 \end{Split}
@@ -532,11 +536,11 @@ $0_+$与$0_-$的快捷写法。
 | 3 | `{factor}` | 可选 | 行间距缩放因子（`\jot`倍数），默认`1.0` |
 | 4 | `&` | 分隔 | 无实际作用，用于分隔`{factor}`和`{width}` |
 | 5 | `{width}` | 可选 | 总宽度（`\linewidth`倍数），默认自适应 |
-| 6 | `!` | 标记 | 强制零宽居中（`!`） |
+| 6 | `!` | 标记 | 强制零宽居中 |
 | 7 | `!` | 标记 | 强制行宽居中（`!!`） |
 
 ```latex
-\begin{Multline}[mymultline]
+\begin{Multline}[long]
     f(x) = ax^4 + bx^3 \\
          + cx^2 + dx + e
 \end{Multline}
@@ -554,13 +558,13 @@ $0_+$与$0_-$的快捷写法。
 | 序号 | 格式 | 类型 | 说明 |
 |------|------|------|------|
 | 1 | `*` | 标记 | 公式不编号 |
-| 2 | `[prefix]` | 可选 | 标签前缀（`\id{a}`产生`eq:prefixa`），默认无 |
-| 3 | `{factor}` | 可选 | 行间距缩放因子（`\jot`倍数），默认`1.0` |
+| 2 | `[prefix]` | 可选 | 标签前缀，使用`\id{a}`得到`eq:prefixa`，默认无 |
+| 3 | `{factor}` | 可选 | 行间距缩放因子），默认`1.0` |
 
 ```latex
-\begin{Align}[myalign]
-    f(x) &= ax^4 + bx^3 + cx^2 + dx + e \id{a} \\
-    g(x) &= \sin(x) \id{b}
+\begin{Align}[sys]
+    x + y &= 5 \id{a} \\
+    x - y &= 3 \id{b}
 \end{Align}
 ```
 
@@ -578,11 +582,11 @@ $0_+$与$0_-$的快捷写法。
 |------|------|------|------|
 | 1 | `*` | 标记 | 公式不编号 |
 | 2 | `[prefix]` | 可选 | 标签前缀（`\id{a}`产生`eq:prefixa`），默认无 |
-| 3 | `{factor}` | 可选 | 行间距缩放因子（`\jot`倍数），默认`1.0` |
+| 3 | `{factor}` | 可选 | 行间距缩放因子，默认`1.0` |
 
 ```latex
-\begin{Gather}[mygather]
-    f(x) = ax^4 + bx^3 + cx^2 + dx + e \id{a} \\
-    g(x) = \sin(x) \id{b}
+\begin{Gather}[poly]
+    f(x) = x^4 + 2x^3 - x^2 + 3x + 1 \id{a} \\
+    g(x) = 2x + 5 \id{b}
 \end{Gather}
 ```
