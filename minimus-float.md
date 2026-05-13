@@ -30,20 +30,13 @@
 | `captionsetup[subfigure]{belowskip=0pt}` | 子图标题间距 |
 | `subcaptionsetup{labelformat=simple}` | 子图标签仅显示`(a)` |
 
-长表格对齐参数根据文档类自动设置：
-
-| 文档类 | `\ltabpresep` | `\ltabpostsep` | `\ltabcapvskipabove` | `\ltabcapvskipbelow` |
-|--------|---------------|----------------|----------------------|----------------------|
-| `beamer` | `1.5\bigskipamount` | `10.0pt` | `6.3pt` | `2.0pt` |
-| `book` | `13.0pt` | `20.9pt` | `0.0pt` | `0.0pt` |
-
 ### `tabularray`
 
 现代表格排版。
 
 | 宏包 | 说明 |
 |------|------|
-| `tabularray` | 提供`tblr`环境，是`Table`环境的基础表格引擎 |
+| `tabularray` | 提供`tblr`环境，现代化的表格环境支持 |
 
 ### `multirow`
 
@@ -62,8 +55,6 @@
 | `graphicx` | 提供`\includegraphics`命令，支持插入PDF、PNG、JPG等图片 |
 | `pdfpages` | 提供`\includepdf`命令，支持插入完整PDF页面 |
 
-
-
 ## 自定义命令
 
 ### `\linenone`、`\linesplit`、`\linemiddle`、`\lineborder`
@@ -72,14 +63,16 @@
 
 | 命令 | 说明 |
 |------|------|
-| `\linenone` | $0.0\mathrm{pt}$，无宽度线 |
-| `\linesplit` | $0.2\mathrm{pt}$，分隔线 |
-| `\linemiddle` | $0.4\mathrm{pt}$，中间线 |
-| `\lineborder` | $1.0\mathrm{pt}$，边框线 |
+| `\linenone` | 0.0pt，无宽度线 |
+| `\linesplit` | 0.2pt，分隔线 |
+| `\linemiddle` | 0.4pt，中间线 |
+| `\lineborder` | 1.0pt，边框线 |
+
+该设置是用在`tblr`环境的格式设置上，例如`hline{even[2-Z]}={\linesplit}`。
 
 ### `\figuresub`
 
-子图命令，须在`Figure`环境内使用。
+子图命令，在`Figure`环境内使用。
 
 | 命令 | 说明 |
 |------|------|
@@ -88,9 +81,9 @@
 | 序号 | 格式 | 类型 | 说明 |
 |------|------|------|------|
 | 1 | `*` | 标记 | 子图不编号 |
-| 2 | `[caption;label]` | 可选 | 标题和标签，格式为`\label{fig:label}`（见下） |
+| 2 | `[caption;label]` | 可选 | 标题和标签，格式为`\label{fig:label}`|
 | 3 | `{graphics}` | 必选 | `\includegraphics{...}`命令 |
-| 4 | `{width}` | 可选 | 子图宽度（`width\linewidth`），默认自适应 |
+| 4 | `{width}` | 可选 | `width\linewidth`的子图宽度，默认自适应 |
 
 `[caption;label]`有几种用法
 - `[caption]`，标题为`caption`，标签为`caption`。
@@ -99,16 +92,11 @@
 - `[caption;label]`，标题为`caption`，标签为`label`。
 - 在带`*`时，由于已经禁止编号，此时不会创建标签。
 
-```latex
-\figuresub[Left;a]{\includegraphics{left.pdf}}{0.45}
-\figuresub[Right;b]{\includegraphics{right.pdf}}{0.45}
-```
-
 ## 自定义环境
 
 ### `Table`
 
-表格环境。基于`tblr`，支持短表格和长表格（`!!`）。
+表格环境，是`table`环境的包装，默认使用`[H]`。
 
 ```latex
 \begin{Table}*[caption;label]&&!!
@@ -119,11 +107,11 @@
 | 序号 | 格式 | 类型 | 说明 |
 |------|------|------|------|
 | 1 | `*` | 标记 | 表格不编号 |
-| 2 | `[caption;label]` | 可选 | 标题和标签，格式为`\label{tab:label}`（见下） |
+| 2 | `[caption;label]` | 可选 | 标题和标签，格式为`tab:label` |
 | 3 | `&` | 标记 | 移除中间线 |
 | 4 | `&` | 标记 | 移除边框线 |
-| 5 | `!` | 标记 | 启用浮动，使用`[htbp]`而非`[H]` |
-| 6 | `!` | 标记 | 启用长表格（两个`!`写成`!!`） |
+| 5 | `!` | 标记 | 启用浮动体，使用`[htbp]`而非`[H]` |
+| 6 | `!` | 标记 | 启用长表格 |
 
 `[caption;label]`有几种用法
 - `[caption]`，标题为`caption`，标签为`caption`。
@@ -132,29 +120,33 @@
 - `[caption;label]`，标题为`caption`，标签为`label`。
 - 在带`*`时，由于已经禁止编号，此时不会创建标签。
 
+`Table`环境是专门为`tblr`适配的，自动产生三线表。
+
 ```latex
-\begin{Table}[Table Caption;mytable]!
-    \begin{tblr}{colspec={XX},hline{1,Z}={\lineborder},hline{2}={\linemiddle}}
-    A & B \\
-    C & D \\
+\begin{Table}[My Table;mytable]!
+    \begin{tblr}{colspec={XX}}
+        English & Greek \\
+        A & $\alpha$ \\
+        B & $\beta$ \\
+        C & $\theta$ \\
+        D & $\delta$ \\
     \end{tblr}
 \end{Table}
 ```
 
-Long table example:
+```latex
+% Use ! suffix to have float table
+\begin{Table}[My Float Table]!
+```
 
 ```latex
-\begin{Table}[Long Table Caption;longtable]!!
-    \begin{tblr}{colspec={XXX}}
-    A & B & C \\
-    D & E & F \\
-    \end{tblr}
-\end{Table}
+% Use !! suffix to have long table
+\begin{Table}[My Long Table]!!
 ```
 
 ### `Figure`
 
-图片环境。支持浮动控制和子图。
+图片环境，是`figure`环境的包装，默认使用`[H]`。
 
 ```latex
 \begin{Figure}*[caption;label]!
@@ -165,7 +157,7 @@ Long table example:
 | 序号 | 格式 | 类型 | 说明 |
 |------|------|------|------|
 | 1 | `*` | 标记 | 图片不编号 |
-| 2 | `[caption;label]` | 可选 | 标题和标签，格式为`\label{fig:label}`（见下） |
+| 2 | `[caption;label]` | 可选 | 标题和标签，格式为`fig:label`|
 | 3 | `!` | 标记 | 启用浮动，使用`[htbp]`而非`[H]` |
 
 `[caption;label]`有几种用法
@@ -175,8 +167,24 @@ Long table example:
 - `[caption;label]`，标题为`caption`，标签为`label`。
 - 在带`*`时，由于已经禁止编号，此时不会创建标签。
 
+`Figure`环境中如果要排版多行的子图，可以简单的用一个空行。
+
 ```latex
-\begin{Figure}[Example Figure;example]!
+\begin{Figure}[My Figure;myfigure]
     \includegraphics{image.pdf}
 \end{Figure}
+```
+
+```latex
+\begin{Figure}[Many Figures]
+    \figuresub[PartA;a]{\includegraphics{PartA.pdf}}{0.35}
+    \figuresub[PartB;b]{\includegraphics{PartB.pdf}}{0.45}
+
+    \figuresub[PartC]{\includegraphics{PartC.pdf}}
+\end{Figure}
+```
+
+```latex
+% Use ! suffix to have float figure
+\begin{Figure}[My Float Figure]!
 ```

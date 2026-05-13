@@ -88,7 +88,7 @@
 
 ```latex
 \begin{Code}*[caption;label]{style}
-    \lstinputlisting{...}
+    ...
 \end{Code}
 ```
 
