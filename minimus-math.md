@@ -63,34 +63,18 @@ AMS数学系列宏包。
 | `group-digits` | `none` | 不分组数字 |
 | `inter-unit-product` | `{\cdot}` | 单位间用`·`连接 |
 
-二进制前缀被重定义为短格式（`\kibi`输出K，`\mebi`输出M，`\gibi`输出G等），并预定义了对应的二进制单位：
+额外定义的二进制单位：
 
-| 命令 | 说明 |
-|------|------|
-| `\KB` | KiB |
-| `\MB` | MiB |
-| `\GB` | GiB |
-| `\TB` | TiB |
-| `\PB` | PiB |
-| `\EB` | EiB |
-| `\ZB` | ZiB |
-| `\YB` | YiB |
-| `\Kb` | Kib（bit） |
-| `\Mb` | Mib（bit） |
-| `\Gb` | Gib（bit） |
-| `\Tb` | Tib（bit） |
-| `\Pb` | Pib（bit） |
-| `\Eb` | Eib（bit） |
-| `\Zb` | Zib（bit） |
-| `\Yb` | Yib（bit） |
-| `\Kbps` | Kibps |
-| `\Mbps` | Mibps |
-| `\Gbps` | Gibps |
-| `\Tbps` | Tibps |
-| `\Pbps` | Pibps |
-| `\Ebps` | Eibps |
-| `\Zbps` | Zibps |
-| `\Ybps` | Yibps |
+| 命令 | 说明 | 命令 | 说明 | 命令 | 说明 | 命令 | 说明 |
+|------|------|------|------|------|------|------|------|
+| `\Kibi` | 二进制单位 | `\KB` | 二进制单位 | `\Kb` | 二进制单位 | `\Kbps` | 二进制单位 |
+| `\Mebi` | 二进制单位 | `\MB` | 二进制单位 | `\Mb` | 二进制单位 | `\Mbps` | 二进制单位 |
+| `\Gibi` | 二进制单位 | `\GB` | 二进制单位 | `\Gb` | 二进制单位 | `\Gbps` | 二进制单位 |
+| `\Tebi` | 二进制单位 | `\TB` | 二进制单位 | `\Tb` | 二进制单位 | `\Tbps` | 二进制单位 |
+| `\Pebi` | 二进制单位 | `\PB` | 二进制单位 | `\Pb` | 二进制单位 | `\Pbps` | 二进制单位 |
+| `\Exbi` | 二进制单位 | `\EB` | 二进制单位 | `\Eb` | 二进制单位 | `\Ebps` | 二进制单位 |
+| `\Zebi` | 二进制单位 | `\ZB` | 二进制单位 | `\Zb` | 二进制单位 | `\Zbps` | 二进制单位 |
+| `\Yobi` | 二进制单位 | `\YB` | 二进制单位 | `\Yb` | 二进制单位 | `\Ybps` | 二进制单位 |
 
 ### `mhchem`
 
