@@ -11,7 +11,7 @@ AMS数学系列宏包。
 | 宏包 | 说明 |
 |------|------|
 | `amsmath` | 提供`align`、`gather`、`split`等数学环境 |
-| `amsthm` | 提供定理环境支持 |
+| `amsthm` | 提供`theroem`、`proof`等定理环境 |
 | `amssymb` | 提供`\mathbb`、`\mathcal`等数学字体符号 |
 
 方程编号设为按节递增（`\numberwithin{equation}{section}`）。
@@ -79,11 +79,16 @@ AMS数学系列宏包。
 
 ### `physics`
 
-物理排版命令。
+数学符号的便捷排版。
 
 | 宏包 | 说明 |
 |------|------|
-| `physics` | 提供`\vb`（向量）、`\dd`（微分）、`\pdv`（偏导）、`\qty`（括号）等物理排版命令 |
+| `physics` | 提供`\vb`、`\dd`、`\qty`等命令，用于更方便排版数学符号 |
+
+尽管这个包的名字叫`physics`，但实际上提供了许多便捷数学命令，解决了许多数学排版的痛点
+- 向量用`\vb{a}`和`\vb*{\alpha}`
+- 微分用`\dd{x}`，导数用`\dv{y}{x}`
+- 自适应括号用`\qty(...)`、`\qty[...]`、`\qty{...}`
 
 ### `mathtools`
 
@@ -91,7 +96,7 @@ AMS数学系列宏包。
 
 | 宏包 | 说明 |
 |------|------|
-| `mathtools` | 提供`\mathmakebox`（数学盒子宽度控制）、`\mathclap`、`\mathllap`、`\mathrlap`等增强命令 |
+| `mathtools` | 提供`\mathmakebox`、`\mathclap`、`\mathllap`、`\mathrlap`等增强命令 |
 
 ### `mhchem`
 
@@ -99,7 +104,7 @@ AMS数学系列宏包。
 
 | 宏包 | 说明 |
 |------|------|
-| `mhchem` | 提供`\ce`命令，用于排版化学式，如`\ce{H2O}`、`\ce{^{227}_{90}Th+}` |
+| `mhchem` | 提供`\ce`命令，用于排版化学式 |
 
 ### `esint`
 
