@@ -30,10 +30,19 @@ AMS定理环境。
 
 全局`\tcbset`预配置：
 
-- 圆角`0.1mm`，浅灰背景，左边距`0.2cm`
-- 标题加粗正体，标题上下间距`0.05cm`
-- 允许跨页分割（`breakable`）
-- 定理标题分隔符为空格
+| 选项 | 说明 |
+|------|------|
+| `arc=0.1mm` | 圆角 |
+| `colback=black!3!white` | 浅灰背景 |
+| `left=0.2cm` | 左边距 |
+| `right=0.2cm` | 右边距 |
+| `toptitle=0.05cm` | 标题上方间距 |
+| `bottomtitle=0.05cm` | 标题下方间距 |
+| `fonttitle=\bfseries\rmfamily` | 标题加粗正体 |
+| `breakable` | 允许跨页分割 |
+| `lines before break=1` | 至少1行后才允许断页 |
+| `separator sign={\ }` | 定理标题分隔符为空格 |
+| `theorem hanging indent=0pt` | 长标题第二行左边对齐 |
 
 各类型盒子的配色：
 
