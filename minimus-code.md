@@ -36,11 +36,23 @@
 | 选项 | 说明 |
 |------|------|
 | `basicstyle=\ttfamily` | 等宽字体 |
+| `keywordstyle=\bfseries\color{blue}` | 关键字加粗蓝色 |
+| `ndkeywordstyle=\bfseries\color{teal}` | 次要关键字加粗青色 |
+| `commentstyle=\color{red}` | 注释红色 |
+| `stringstyle=\color{magenta}` | 字符串品红色 |
 | `numbers=left` | 左侧行号 |
+| `numberstyle=\tiny\ttfamily` | 行号缩小等宽 |
 | `captionpos=t` | 顶置标题 |
 | `frame=lrtb` | 四周框线 |
 | `breaklines=true` | 自动换行 |
+| `columns=fixed` | 固定列宽 |
+| `basewidth=0.5em` | 字符宽度 |
 | `tabsize=4` | 制表符宽度 |
+| `flexiblecolumns` | 弹性列 |
+| `showspaces=false` | 不显示空格 |
+| `showstringspaces=false` | 不显示字符串中空格 |
+
+在中文环境下（`xeCJK`），`\lstlistingname`和`\lstlistlistingname`设为"代码"；英文环境下设为"List of Listings"。
 
 预定义的listings样式：
 
