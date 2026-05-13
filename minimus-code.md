@@ -19,8 +19,9 @@
 | `tworuled` | 双线标题 |
 | `linesnumbered` | 显示行号 |
 | `rightnl` | 注释右对齐 |
-| `DontPrintSemicolon` | 不显示行末分号 |
-| `SetKwProg{Function}{function}{}{end}` | 定义`\Function`块命令 |
+| `\DontPrintSemicolon` | 不显示行末分号 |
+| `\SetKwProg{Function}{function}{}{end}` | 定义`\Function`块命令 |
+| `\SetCommentSty{textrm}` | 定义注释格式 |
 
 ### `listings`
 
@@ -54,8 +55,6 @@
 | `riscv` | RISC-V汇编 |
 | `latex` | LaTeX |
 | `plain` | 纯文本 |
-
-
 
 ## 自定义命令
 
@@ -98,8 +97,15 @@
 | 序号 | 格式 | 类型 | 说明 |
 |------|------|------|------|
 | 1 | `*` | 标记 | 清单不编号 |
-| 2 | `[caption;label]` | 可选 | 标题和标签（分号分割），标签自动补全为`code:label` |
+| 2 | `[caption;label]` | 可选 | 标题和标签，格式为`\label{code:label}` |
 | 3 | `{style}` | 可选 | listings样式名称，默认`plain` |
+
+`[caption;label]`有几种用法
+- `[caption]`，标题为`caption`，标签为`caption`。
+- `[caption;]`，标题为`caption`，无标签。
+- `[;label]`，无标题，标签为`label`。
+- `[caption;label]`，标题为`caption`，标签为`label`。
+- 在带`*`时，由于已经禁止编号，此时不会创建标签。
 
 ```latex
 \begin{Code}[Python Example;py-example]{python}
