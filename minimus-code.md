@@ -68,29 +68,13 @@
 
 ## 自定义环境
 
-### `Algoplain`
-
-固定位置的伪代码环境。
-
-```latex
-\begin{Algoplain}
-    ...
-\end{Algoplain}
-```
-
-等价于`\begin{algorithm}[H]...\end{algorithm}`，伪代码始终固定在当前位置。
-
-| 环境 | 说明 |
-|------|------|
-| `Algoplain` | 固定位置的`algorithm`环境（`[H]`模式） |
-
 ### `Code`
 
-带标题的代码清单环境。
+代码环境，搭配`\lstinputlisting`使用。
 
 ```latex
 \begin{Code}*[caption;label]{style}
-    ...
+    \lstinputlisting{...}
 \end{Code}
 ```
 
@@ -112,3 +96,19 @@
     \lstinputlisting{script.py}
 \end{Code}
 ```
+
+### `Algoplain`
+
+无标题的伪代码环境。
+
+```latex
+\begin{Algoplain}
+    ...
+\end{Algoplain}
+```
+
+等价于`\begin{algorithm}[H]...\end{algorithm}`，伪代码始终固定在当前位置。
+
+| 环境 | 说明 |
+|------|------|
+| `Algoplain` | 固定位置的`algorithm`环境（`[H]`模式） |
