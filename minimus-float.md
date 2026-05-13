@@ -18,8 +18,24 @@
 
 | 宏包 | 说明 |
 |------|------|
-| `caption` | 提供`\caption`、`\captionof`命令，预配置表格和图片的标题间距 |
-| `subcaption` | 提供`\subcaptionbox`命令，预配置子图编号格式为`(a)` |
+| `caption` | 提供`\caption`、`\captionof`命令 |
+| `subcaption` | 提供`\subcaptionbox`命令 |
+
+预配置设置：
+
+| 选项 | 说明 |
+|------|------|
+| `captionsetup[table]{skip=6.0pt}` | 表格标题间距 |
+| `captionsetup[figure]{skip=6.0pt,belowskip=-8pt}` | 图片标题间距 |
+| `captionsetup[subfigure]{belowskip=0pt}` | 子图标题间距 |
+| `subcaptionsetup{labelformat=simple}` | 子图标签仅显示`(a)` |
+
+长表格对齐参数根据文档类自动设置：
+
+| 文档类 | `\ltabpresep` | `\ltabpostsep` | `\ltabcapvskipabove` | `\ltabcapvskipbelow` |
+|--------|---------------|----------------|----------------------|----------------------|
+| `beamer` | `1.5\bigskipamount` | `10.0pt` | `6.3pt` | `2.0pt` |
+| `book` | `13.0pt` | `20.9pt` | `0.0pt` | `0.0pt` |
 
 ### `tabularray`
 
