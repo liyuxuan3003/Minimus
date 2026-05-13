@@ -4,7 +4,7 @@
 
 ## 引入的宏包
 
-### `amsmath`、`amsthm`、`amssymb`
+### `amsmath`、`amsthm`、`amssymb`、`mathtools`、`mathrsfs`
 
 AMS数学系列宏包。
 
@@ -13,8 +13,23 @@ AMS数学系列宏包。
 | `amsmath` | 提供`align`、`gather`、`split`等数学环境 |
 | `amsthm` | 提供`theroem`、`proof`等定理环境 |
 | `amssymb` | 提供`\mathbb`、`\mathcal`等数学字体符号 |
+| `mathtools` | 提供`\mathmakebox`、`\mathclap`、`\mathllap`、`\mathrlap`等增强命令 |
+| `mathrsfs` | 提供`\mathscr`命令，排版花体字母（如$\mathscr{E}$） |
 
 方程编号设为按节递增（`\numberwithin{equation}{section}`）。
+
+### `physics`
+
+数学符号的便捷排版。
+
+| 宏包 | 说明 |
+|------|------|
+| `physics` | 提供`\vb`、`\dd`、`\qty`等命令，用于更方便排版数学符号 |
+
+尽管这个包的名字叫`physics`，但实际上提供了许多便捷数学命令，解决了许多数学排版的痛点
+- 向量用`\vb{a}`和`\vb*{\alpha}`
+- 微分用`\dd{x}`，导数用`\dv{y}{x}`
+- 自适应括号用`\qty(...)`、`\qty[...]`、`\qty{...}`
 
 ### `siunitx`
 
@@ -77,27 +92,6 @@ AMS数学系列宏包。
 | `\Zbps` | Zibps |
 | `\Ybps` | Yibps |
 
-### `physics`
-
-数学符号的便捷排版。
-
-| 宏包 | 说明 |
-|------|------|
-| `physics` | 提供`\vb`、`\dd`、`\qty`等命令，用于更方便排版数学符号 |
-
-尽管这个包的名字叫`physics`，但实际上提供了许多便捷数学命令，解决了许多数学排版的痛点
-- 向量用`\vb{a}`和`\vb*{\alpha}`
-- 微分用`\dd{x}`，导数用`\dv{y}{x}`
-- 自适应括号用`\qty(...)`、`\qty[...]`、`\qty{...}`
-
-### `mathtools`
-
-`amsmath`的增强包。
-
-| 宏包 | 说明 |
-|------|------|
-| `mathtools` | 提供`\mathmakebox`、`\mathclap`、`\mathllap`、`\mathrlap`等增强命令 |
-
 ### `mhchem`
 
 化学式排版。
@@ -137,14 +131,6 @@ AMS数学系列宏包。
 | 宏包 | 说明 |
 |------|------|
 | `xfrac` | 提供`\sfrac{num}{den}`命令，排版小型行内分数 |
-
-### `mathrsfs`
-
-额外数学花体字体。
-
-| 宏包 | 说明 |
-|------|------|
-| `mathrsfs` | 提供`\mathscr`命令，用于排版花体字母（如$\mathscr{E}$） |
 
 ### `mathdots`
 
