@@ -75,7 +75,7 @@
 
 ```latex
 \begin{Algoplain}
-  ...
+    ...
 \end{Algoplain}
 ```
 
@@ -91,7 +91,7 @@
 
 ```latex
 \begin{Code}*[caption;label]{style}
-  ...
+    ...
 \end{Code}
 ```
 
@@ -103,6 +103,6 @@
 
 ```latex
 \begin{Code}[Python Example;py-example]{python}
-  \lstinputlisting{script.py}
+    \lstinputlisting{script.py}
 \end{Code}
 ```

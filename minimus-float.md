@@ -89,7 +89,7 @@
 
 ```latex
 \begin{Table}*[caption;label]&&!!
-  ...
+    ...
 \end{Table}
 ```
 
@@ -104,10 +104,10 @@
 
 ```latex
 \begin{Table}[Table Caption;mytable]!
-  \begin{tblr}{colspec={XX},hline{1,Z}={\lineborder},hline{2}={\linemiddle}}
+    \begin{tblr}{colspec={XX},hline{1,Z}={\lineborder},hline{2}={\linemiddle}}
     A & B \\
     C & D \\
-  \end{tblr}
+    \end{tblr}
 \end{Table}
 ```
 
@@ -115,10 +115,10 @@ Long table example:
 
 ```latex
 \begin{Table}[Long Table Caption;longtable]!!
-  \begin{tblr}{colspec={XXX}}
+    \begin{tblr}{colspec={XXX}}
     A & B & C \\
     D & E & F \\
-  \end{tblr}
+    \end{tblr}
 \end{Table}
 ```
 
@@ -128,7 +128,7 @@ Long table example:
 
 ```latex
 \begin{Figure}*[caption;label]!
-  ...
+    ...
 \end{Figure}
 ```
 
@@ -140,6 +140,6 @@ Long table example:
 
 ```latex
 \begin{Figure}[Example Figure;example]!
-  \includegraphics{image.pdf}
+    \includegraphics{image.pdf}
 \end{Figure}
 ```

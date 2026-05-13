@@ -479,7 +479,7 @@ $0_+$与$0_-$的快捷写法。
 
 ```latex
 \begin{Equation}*[label]!!
-  ...
+    ...
 \end{Equation}
 ```
 
@@ -492,11 +492,11 @@ $0_+$与$0_-$的快捷写法。
 
 ```latex
 \begin{Equation}[einstein]
-  E = mc^2
+    E = mc^2
 \end{Equation}
 
 \begin{Equation}*
-  ax^2 + bx + c = 0
+    ax^2 + bx + c = 0
 \end{Equation}
 ```
 
@@ -506,7 +506,7 @@ $0_+$与$0_-$的快捷写法。
 
 ```latex
 \begin{Split}*[label]{factor}!!
-  f(x) &= x^2 + y^2 \\
+    f(x) &= x^2 + y^2 \\
        &+ \alpha + \beta + \gamma
 \end{Split}
 ```
@@ -525,8 +525,8 @@ $0_+$与$0_-$的快捷写法。
 
 ```latex
 \begin{Align}*[prefix]{factor}
-  f(x) &= x^2 + y^2 \id{a} \\
-  g(x) &= \alpha + \beta \id{b}
+    f(x) &= x^2 + y^2 \id{a} \\
+    g(x) &= \alpha + \beta \id{b}
 \end{Align}
 ```
 
@@ -542,8 +542,8 @@ $0_+$与$0_-$的快捷写法。
 
 ```latex
 \begin{Gather}*[prefix]{factor}
-  f(x) = x^2 + y^2 \id{a} \\
-  g(x) = \alpha + \beta \id{b}
+    f(x) = x^2 + y^2 \id{a} \\
+    g(x) = \alpha + \beta \id{b}
 \end{Gather}
 ```
 
@@ -559,7 +559,7 @@ $0_+$与$0_-$的快捷写法。
 
 ```latex
 \begin{Multline}*[label]{factor}&{width}!!
-  f(x) = x^2 + y^2 \\
+    f(x) = x^2 + y^2 \\
        + \alpha + \beta + \gamma
 \end{Multline}
 ```

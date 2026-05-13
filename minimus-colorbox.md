@@ -58,7 +58,7 @@ AMS定理环境。
 
 ```latex
 \begin{BoxDefinition}*[title;label]
-  ...
+    ...
 \end{BoxDefinition}
 ```
 
@@ -111,7 +111,7 @@ AMS定理环境。
 
 ```latex
 \begin{JPSentence}{translation}
-  japanese text
+    japanese text
 \end{JPSentence}
 ```
 
@@ -125,7 +125,7 @@ AMS定理环境。
 
 ```latex
 \begin{Proof}[reference]
-  ...
+    ...
 \end{Proof}
 ```
 
@@ -135,7 +135,7 @@ AMS定理环境。
 
 ```latex
 \begin{Proof}[\cref{thm:main}]
-  ...
+    ...
 \end{Proof}
 ```
 
