@@ -559,8 +559,8 @@ $0_+$与$0_-$的快捷写法。
 
 ```latex
 \begin{Align}[sys]
-    f(x) = ax^4 + bx^3 + cx^2 + dx + e \id{a} \\
-    g(x) = \sin(x) \id{b}
+    f(x) &= ax^4 + bx^3 + cx^2 + dx + e \id{a} \\
+    g(x) &= \sin(x) \id{b}
 \end{Align}
 ```
 
