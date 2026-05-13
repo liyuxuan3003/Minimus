@@ -223,9 +223,9 @@ AMS数学系列宏包。
 
 | 命令 | 说明 |
 |------|------|
-| `\vi` | $\mathbf{i}$ |
-| `\vj` | $\mathbf{j}$ |
-| `\vk` | $\mathbf{k}$ |
+| `\vi` | 单位向量i$\mathbf{i}$ |
+| `\vj` | 单位向量j$\mathbf{j}$ |
+| `\vk` | 单位向量k$\mathbf{k}$ |
 
 ### `\Sum`、`\Prod`、`\BigCap`、`\BigCup`、`\BigOplus`、`\BigOdot`、`\BigOtimes`
 
@@ -238,8 +238,8 @@ AMS数学系列宏包。
 | `\BigCap[sub][sup]` | 交$\bigcap$的快捷写法 |
 | `\BigCup[sub][sup]` | 并$\bigcup$的快捷写法 |
 | `\BigOplus[sub][sup]` | 直和$\bigoplus$的快捷写法 |
-| `\BigOdot[sub][sup]` | $\bigodot$的快捷写法 |
-| `\BigOtimes[sub][sup]` | $\bigotimes$的快捷写法 |
+| `\BigOdot[sub][sup]` | 与积$\bigodot$的快捷写法 |
+| `\BigOtimes[sub][sup]` | 外积$\bigotimes$的快捷写法 |
 
 | 序号 | 格式 | 类型 | 说明 |
 |------|------|------|------|
@@ -303,13 +303,13 @@ AMS数学系列宏包。
 
 | 命令 | 说明 |
 |------|------|
-| `\arsinh` | $\operatorname{arsinh}$ |
-| `\arcosh` | $\operatorname{arcosh}$ |
-| `\artanh` | $\operatorname{artanh}$ |
-| `\arcoth` | $\operatorname{arcoth}$ |
-| `\arsech` | $\operatorname{arsech}$ |
-| `\arcsch` | $\operatorname{arcsch}$ |
-| `\atantwo` | $\operatorname{atan2}$ |
+| `\arsinh` | 反双曲正弦$\operatorname{arsinh}$ |
+| `\arcosh` | 反双曲余弦$\operatorname{arcosh}$ |
+| `\artanh` | 反双曲正切$\operatorname{artanh}$ |
+| `\arcoth` | 反双曲余切$\operatorname{arcoth}$ |
+| `\arsech` | 反双曲正割$\operatorname{arsech}$ |
+| `\arcsch` | 反双曲余割$\operatorname{arcsch}$ |
+| `\atantwo` | atan2函数$\operatorname{atan2}$ |
 
 ### `\Beta`、`\PolyGamma`、`\BesselJ`、`\BesselN`、`\BesselH`、`\BesselI`、`\BesselK`、`\LegendreP`、`\LegendreQ`、`\SphericalY`、`\HermiteH`、`\FermiF`、`\hodge`
 
@@ -317,19 +317,19 @@ AMS数学系列宏包。
 
 | 命令 | 说明 |
 |------|------|
-| `\Beta` | $\operatorname{B}$，Beta函数（Gamma的推广） |
-| `\PolyGamma` | $\psi$（直立），PolyGamma函数 |
-| `\BesselJ` | $\operatorname{J}$，第一类Bessel函数 |
-| `\BesselN` | $\operatorname{N}$，第二类Bessel函数（Neumann） |
-| `\BesselH` | $\operatorname{H}$，第三类Bessel函数（Hankel） |
-| `\BesselI` | $\operatorname{I}$，第一类修正Bessel函数 |
-| `\BesselK` | $\operatorname{K}$，第二类修正Bessel函数 |
-| `\LegendreP` | $\operatorname{P}$，第一类Legendre函数 |
-| `\LegendreQ` | $\operatorname{Q}$，第二类Legendre函数 |
-| `\SphericalY` | $\operatorname{Y}$，球谐函数 |
-| `\HermiteH` | $\operatorname{H}$，Hermite多项式 |
-| `\FermiF` | $\operatorname{F}$，Fermi函数 |
-| `\hodge` | $\star$，Hodge星算子 |
+| `\Beta` | Beta函数（Gamma的推广）$\operatorname{B}$ |
+| `\PolyGamma` | PolyGamma函数$\psi$（直立） |
+| `\BesselJ` | 第一类Bessel函数$\operatorname{J}$ |
+| `\BesselN` | 第二类Bessel函数（Neumann）$\operatorname{N}$ |
+| `\BesselH` | 第三类Bessel函数（Hankel）$\operatorname{H}$ |
+| `\BesselI` | 第一类修正Bessel函数$\operatorname{I}$ |
+| `\BesselK` | 第二类修正Bessel函数$\operatorname{K}$ |
+| `\LegendreP` | 第一类Legendre函数$\operatorname{P}$ |
+| `\LegendreQ` | 第二类Legendre函数$\operatorname{Q}$ |
+| `\SphericalY` | 球谐函数$\operatorname{Y}$ |
+| `\HermiteH` | Hermite多项式$\operatorname{H}$ |
+| `\FermiF` | Fermi函数$\operatorname{F}$ |
+| `\hodge` | Hodge星算子$\star$ |
 
 ### `\diag`、`\subspace`、`\rangespace`、`\nullspace`、`\vspan`、`\piv`、`\rowpiv`、`\colpiv`、`\Obig`
 
@@ -337,15 +337,15 @@ AMS数学系列宏包。
 
 | 命令 | 说明 |
 |------|------|
-| `\diag` | $\operatorname{diag}$，对角矩阵 |
-| `\subspace` | $\mathcal{S}$，子空间 |
-| `\rangespace` | $\mathcal{R}$，值域 |
-| `\nullspace` | $\mathcal{N}$，零空间 |
-| `\vspan` | $\operatorname{span}$，张成空间（`\span`已被占用） |
-| `\piv` | $\operatorname{piv}$，主元 |
-| `\rowpiv` | $\operatorname{rowpiv}$，行主元 |
-| `\colpiv` | $\operatorname{colpiv}$，列主元 |
-| `\Obig` | $\mathcal{O}$，大O记号 |
+| `\diag` | 对角矩阵$\operatorname{diag}$ |
+| `\subspace` | 子空间$\mathcal{S}$ |
+| `\rangespace` | 值域$\mathcal{R}$ |
+| `\nullspace` | 零空间$\mathcal{N}$ |
+| `\vspan` | 张成空间$\operatorname{span}$（`\span`已被占用） |
+| `\piv` | 主元$\operatorname{piv}$ |
+| `\rowpiv` | 行主元$\operatorname{rowpiv}$ |
+| `\colpiv` | 列主元$\operatorname{colpiv}$ |
+| `\Obig` | 大O记号$\mathcal{O}$ |
 
 ### `\aff`、`\conv`、`\cone`、`\polyhedra`、`\Symm`、`\Herm`、`\dom`、`\epi`、`\hypo`、`\minimize`、`\maximize`、`\find`、`\subto`、`\relint`
 
@@ -353,20 +353,20 @@ AMS数学系列宏包。
 
 | 命令 | 说明 |
 |------|------|
-| `\aff` | $\operatorname{aff}$，仿射包 |
-| `\conv` | $\operatorname{conv}$，凸包 |
-| `\cone` | $\operatorname{cone}$，锥包 |
-| `\polyhedra` | $\mathcal{P}$，多面体 |
-| `\Symm` | $\mathbb{S}$，对称矩阵集 |
-| `\Herm` | $\mathbb{H}$，Hermitian矩阵集 |
-| `\dom` | $\operatorname{dom}$，定义域 |
-| `\epi` | $\operatorname{epi}$，上图 |
-| `\hypo` | $\operatorname{hypo}$，下图 |
-| `\minimize` | $\operatorname{minimize}$，极小化 |
-| `\maximize` | $\operatorname{maximize}$，极大化 |
-| `\find` | $\operatorname{find}$，求解 |
-| `\subto` | $\operatorname{subject\ to}$，约束条件 |
-| `\relint` | $\operatorname{relint}$，相对内部 |
+| `\aff` | 仿射包$\operatorname{aff}$ |
+| `\conv` | 凸包$\operatorname{conv}$ |
+| `\cone` | 锥包$\operatorname{cone}$ |
+| `\polyhedra` | 多面体$\mathcal{P}$ |
+| `\Symm` | 对称矩阵集$\mathbb{S}$ |
+| `\Herm` | Hermitian矩阵集$\mathbb{H}$ |
+| `\dom` | 定义域$\operatorname{dom}$ |
+| `\epi` | 上图$\operatorname{epi}$ |
+| `\hypo` | 下图$\operatorname{hypo}$ |
+| `\minimize` | 极小化$\operatorname{minimize}$ |
+| `\maximize` | 极大化$\operatorname{maximize}$ |
+| `\find` | 求解$\operatorname{find}$ |
+| `\subto` | 约束条件$\operatorname{subject\ to}$ |
+| `\relint` | 相对内部$\operatorname{relint}$ |
 
 ### `\sgn`、`\rect`、`\sinc`、`\erfc`、`\dirac`
 
@@ -374,11 +374,11 @@ AMS数学系列宏包。
 
 | 命令 | 说明 |
 |------|------|
-| `\sgn` | $\operatorname{sgn}$，符号函数 |
-| `\rect` | $\operatorname{rect}$，矩形函数 |
-| `\sinc` | $\operatorname{sinc}$，采样函数（$\sin x/x$） |
-| `\erfc` | $\operatorname{erfc}$，互补误差函数 |
-| `\dirac` | $\delta$（直立），Dirac冲激函数 |
+| `\sgn` | 符号函数$\operatorname{sgn}$ |
+| `\rect` | 矩形函数$\operatorname{rect}$ |
+| `\sinc` | 采样函数（$\sin x/x$）$\operatorname{sinc}$ |
+| `\erfc` | 互补误差函数$\operatorname{erfc}$ |
+| `\dirac` | Dirac冲激函数$\delta$（直立） |
 
 ### `\softmax`、`\sigmoid`、`\ReLU`
 
@@ -386,9 +386,9 @@ AMS数学系列宏包。
 
 | 命令 | 说明 |
 |------|------|
-| `\softmax` | $\operatorname{softmax}$ |
-| `\sigmoid` | $\operatorname{sigmoid}$ |
-| `\ReLU` | $\operatorname{ReLU}$ |
+| `\softmax` | softmax函数$\operatorname{softmax}$ |
+| `\sigmoid` | sigmoid函数$\operatorname{sigmoid}$ |
+| `\ReLU` | ReLU函数$\operatorname{ReLU}$ |
 
 ### `\kB`、`\Emf`
 
@@ -396,8 +396,8 @@ AMS数学系列宏包。
 
 | 命令 | 说明 |
 |------|------|
-| `\kB` | $k_{\mathrm{B}}$，Boltzmann常数 |
-| `\Emf` | $\mathscr{E}$，电动势 |
+| `\kB` | Boltzmann常数$k_{\mathrm{B}}$ |
+| `\Emf` | 电动势$\mathscr{E}$ |
 
 ### `\FT`、`\LT`
 
