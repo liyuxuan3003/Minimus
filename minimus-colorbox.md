@@ -59,11 +59,11 @@ AMS定理环境。
 
 ## 自定义环境
 
-以下定理类环境均支持`*`（禁止编号）和`[title;label]`（标题与标签，分号分割，标签自动带前缀）。`BoxDesignPrinciple`不支持`*`。
+以下定理类环境均支持`*`（禁止编号）和`[title;label]`（标题与标签，分号分割，标签自动带前缀）。
 
-### `BoxDefinition`、`BoxTheorem`、`BoxLemma`、`BoxCorollary`、`BoxProposition`、`BoxProperty`、`BoxFormula`、`BoxEquation`
+### `BoxDefinition`、`BoxTheorem`、`BoxLemma`、`BoxCorollary`、`BoxProposition`、`BoxProperty`、`BoxFormula`、`BoxEquation`、`BoxExample`、`BoxAlgorithm`、`BoxProcess`、`BoxDesignPrinciple`
 
-定理类盒子。分别对应：定义、定理、引理、推论、命题、性质、公式、方程。
+定理类盒子，统一参数格式。
 
 ```latex
 \begin{BoxDefinition}*[title;label]
@@ -83,43 +83,20 @@ AMS定理环境。
 - `[title;label]`，标题为`title`，标签为`label`。
 - 在带`*`时，由于已经禁止编号，此时不会创建标签。
 
-所有定理类盒子共享同一参数格式，标签前缀如下：
-
-| 环境 | 标签前缀 | 计数器 |
-|------|----------|--------|
-| `BoxDefinition` | `def:label` | `boxdefinition` |
-| `BoxTheorem` | `thm:label` | `boxtheorem` |
-| `BoxLemma` | `lem:label` | `boxlemma` |
-| `BoxCorollary` | `col:label` | `boxcorollary` |
-| `BoxProposition` | `pps:label` | `boxproposition` |
-| `BoxProperty` | `ppt:label` | `boxproperty` |
-| `BoxFormula` | `fml:label` | `boxformula` |
-| `BoxEquation` | `eqt:label` | `boxequation` |
-
-### `BoxExample`
-
-示例盒子。
-
-| 标签前缀 | 计数器 |
-|----------|--------|
-| `exp:label` | `boxexample` |
-
-### `BoxAlgorithm`、`BoxProcess`
-
-算法和流程盒子。
-
-| 环境 | 标签前缀 | 计数器 |
-|------|----------|--------|
-| `BoxAlgorithm` | `alg:label` | `boxalgorithm` |
-| `BoxProcess` | `pro:label` | `boxprocess` |
-
-### `BoxDesignPrinciple`
-
-设计原则盒子。无`*`标记，始终编号。
-
-| 标签前缀 | 计数器 |
-|----------|--------|
-| `despri:label` | `boxdesignprinciple` |
+| 环境 | 样式 | 计数 | 标签 | 功能 |
+|------|------|------|------|------|
+| `BoxDefinition` | `boxdefstyle` | `cntboxdef` | `def:label` | 定义 |
+| `BoxTheorem` | `boxthmstyle` | `cntboxthm` | `thm:label` | 定理 |
+| `BoxLemma` | `boxthmstyle` | `cntboxthm` | `lem:label` | 引理 |
+| `BoxCorollary` | `boxthmstyle` | `cntboxthm` | `col:label` | 推论 |
+| `BoxProposition` | `boxthmstyle` | `cntboxthm` | `pps:label` | 命题 |
+| `BoxProperty` | `boxthmstyle` | `cntboxthm` | `ppt:label` | 性质 |
+| `BoxFormula` | `boxthmstyle` | `cntboxthm` | `fml:label` | 公式 |
+| `BoxEquation` | `boxthmstyle` | `cntboxthm` | `eqt:label` | 方程 |
+| `BoxExample` | `boxexpstyle` | `cntboxexp` | `exp:label` | 示例 |
+| `BoxAlgorithm` | `boxtxtstyle` | `cntboxalg` | `alg:label` | 算法 |
+| `BoxProcess` | `boxtxtstyle` | `cntboxalg` | `pro:label` | 流程 |
+| `BoxDesignPrinciple` | `boxtxtstyle` | `cntboxdespri` | `despri:label` | 设计原则 |
 
 ### `JPSentence`、`JPConversation`
 
