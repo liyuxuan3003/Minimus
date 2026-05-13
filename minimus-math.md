@@ -559,8 +559,8 @@ $0_+$与$0_-$的快捷写法。
 
 ```latex
 \begin{Align}[sys]
-    x + y &= 5 \id{a} \\
-    x - y &= 3 \id{b}
+    f(x) = ax^4 + bx^3 + cx^2 + dx + e \id{a} \\
+    g(x) = \sin(x) \id{b}
 \end{Align}
 ```
 
@@ -582,7 +582,7 @@ $0_+$与$0_-$的快捷写法。
 
 ```latex
 \begin{Gather}[poly]
-    f(x) = x^4 + 2x^3 - x^2 + 3x + 1 \id{a} \\
-    g(x) = 2x + 5 \id{b}
+    f(x) = ax^4 + bx^3 + cx^2 + dx + e \id{a} \\
+    g(x) = \sin(x) \id{b}
 \end{Gather}
 ```
