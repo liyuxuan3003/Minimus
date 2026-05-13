@@ -132,21 +132,13 @@ AMS数学系列宏包。
 |------|------|
 | `nicematrix` | 提供`\pNiceMatrix`等命令，支持带行列标签的矩阵、块矩阵等 |
 
-### `relsize`
-
-数学缩放。
-
-| 宏包 | 说明 |
-|------|------|
-| `relsize` | 提供`\mathlarger`和`\mathsmaller`，用于缩放数学符号的大小 |
-
 ### `yhmath`
 
 宽重音符号。
 
 | 宏包 | 说明 |
 |------|------|
-| `yhmath` | 提供`\wideparen`等宽重音符号 |
+| `yhmath` | 提供`\wideparen`、`\widehat`、`\widetilde`等宽重音符号命令 |
 
 ### `accents`
 
@@ -155,6 +147,14 @@ AMS数学系列宏包。
 | 宏包 | 说明 |
 |------|------|
 | `accents` | 提供`\underaccent`命令，用于在符号下方添加重音 |
+
+### `relsize`
+
+数学缩放。
+
+| 宏包 | 说明 |
+|------|------|
+| `relsize` | 提供`\mathlarger`和`\mathsmaller`命令，用于缩放数学符号的大小 |
 
 ## 自定义命令
 
@@ -165,9 +165,9 @@ AMS数学系列宏包。
 | 命令 | 说明 |
 |------|------|
 | `\e` | 自然常数$\mathrm{e}$ |
-| `\i` | 虚数单位$\mathrm{i}$，覆盖了无点i |
-| `\j` | 虚数单位$\mathrm{j}$（物理/工程） |
-| `\k` | 四元数虚部$\mathrm{k}$ |
+| `\i` | 数学的虚数单位$\mathrm{i}$ |
+| `\j` | 工程的虚数单位$\mathrm{j}$ |
+| `\k` | 四元数虚数$\mathrm{k}$ |
 
 ### `\N`、`\Z`、`\Q`、`\R`、`\C`、`\emptyset`
 
@@ -198,23 +198,23 @@ AMS数学系列宏包。
 
 | 命令 | 说明 |
 |------|------|
-| `\vi` | 单位向量i$\mathbf{i}$ |
-| `\vj` | 单位向量j$\mathbf{j}$ |
-| `\vk` | 单位向量k$\mathbf{k}$ |
+| `\vi` | 单位向量$\mathbf{i}$ |
+| `\vj` | 单位向量$\mathbf{j}$ |
+| `\vk` | 单位向量$\mathbf{k}$ |
 
 ### `\Sum`、`\Prod`、`\BigCap`、`\BigCup`、`\BigOplus`、`\BigOdot`、`\BigOtimes`
 
-累加、连乘等大型算符的快捷写法，统一支持`[sub][sup]`参数格式。
+求和符号的快捷写法，例如`\Sum[sub][sup]`展开为`\sum_{sub}^{sup}`。
 
 | 命令 | 说明 |
 |------|------|
-| `\Sum[sub][sup]` | 累加$\sum$的快捷写法 |
-| `\Prod[sub][sup]` | 连乘$\prod$的快捷写法 |
-| `\BigCap[sub][sup]` | 交$\bigcap$的快捷写法 |
-| `\BigCup[sub][sup]` | 并$\bigcup$的快捷写法 |
-| `\BigOplus[sub][sup]` | 直和$\bigoplus$的快捷写法 |
-| `\BigOdot[sub][sup]` | 与积$\bigodot$的快捷写法 |
-| `\BigOtimes[sub][sup]` | 外积$\bigotimes$的快捷写法 |
+| `\Sum[sub][sup]` | 累加$\sum$ |
+| `\Prod[sub][sup]` | 累乘$\prod$ |
+| `\BigCap[sub][sup]` | 交$\bigcap$ |
+| `\BigCup[sub][sup]` | 并$\bigcup$ |
+| `\BigOplus[sub][sup]` | 加$\bigoplus$ |
+| `\BigOdot[sub][sup]` | 点积$\bigodot$ |
+| `\BigOtimes[sub][sup]` | 叉积$\bigotimes$ |
 
 | 序号 | 格式 | 类型 | 说明 |
 |------|------|------|------|
@@ -223,17 +223,19 @@ AMS数学系列宏包。
 
 ### `\Int`、`\Idnt`、`\Itnt`、`\Ilnt`、`\Ilot`、`\Isnt`、`\Isot`
 
-积分符号的快捷写法，统一支持`[low][high]`参数格式。
+积分符号的快捷写法，例如`\Int[sub][sup]`展开为`\int{sub}^{sup}`。
+
+其中`\Ilnt`和`\Isnt`的引入是历史遗留问题，它们与`\Int`和`\Idnt`没有区别。
 
 | 命令 | 说明 |
 |------|------|
-| `\Int[low][high]` | 积分$\int$的快捷写法 |
-| `\Idnt[low][high]` | 二重积分$\iint$的快捷写法 |
-| `\Itnt[low][high]` | 三重积分$\iiint$的快捷写法 |
-| `\Ilnt[low][high]` | 线积分$\int$的快捷写法 |
-| `\Ilot[low][high]` | 闭合线积分$\oint$的快捷写法 |
-| `\Isnt[low][high]` | 面积分$\iint$的快捷写法 |
-| `\Isot[low][high]` | 闭合面积分$\oiint$的快捷写法 |
+| `\Int[low][high]` | 一重积分$\int$ |
+| `\Idnt[low][high]` | 二重积分$\iint$（Double） |
+| `\Itnt[low][high]` | 三重积分$\iiint$ （Triple）|
+| `\Ilnt[low][high]` | 线积分$\int$ （Line）|
+| `\Ilot[low][high]` | 闭合线积分$\oint$ (Line O)|
+| `\Isnt[low][high]` | 面积分$\iint$ （Surface）|
+| `\Isot[low][high]` | 闭合面积分$\oiint$ （Surface O） |
 
 | 序号 | 格式 | 类型 | 说明 |
 |------|------|------|------|
@@ -242,20 +244,22 @@ AMS数学系列宏包。
 
 ### `\Lim`
 
-极限的快捷写法，自动在趋近参数前添加`\to`。
+极限符号的快捷写法，例如`\Lim[a]`和`\Lim[a][b]`分别生成`\lim_{a}`和`\lim_{a\to b}`。
 
 | 命令 | 说明 |
 |------|------|
-| `\Lim[cond][to]` | 极限$\lim$的快捷写法 |
+| `\Lim[a][b]` | 极限$\lim$ |
 
 | 序号 | 格式 | 类型 | 说明 |
 |------|------|------|------|
-| 1 | `[cond]` | 可选 | 极限条件，默认无 |
-| 2 | `[to]` | 可选 | 趋近目标，默认无 |
+| 1 | `[a]` | 可选 | `\to`前的内容 |
+| 2 | `[b]` | 可选 | `\to`后的内容 |
+
+若`\Lim`后只有一个方括号，则该方括号的内容会完整作为下标，没有`\to`生成。
 
 ### `\Grad`、`\Div`、`\Curl`
 
-向量分析算符的快捷写法。
+文字版本的向量算符。
 
 | 命令 | 说明 |
 |------|------|
@@ -265,7 +269,7 @@ AMS数学系列宏包。
 
 ### `\Var`、`\Cov`
 
-概率论中方差与协方差的快捷写法。
+文字版本的方差与协方差。
 
 | 命令 | 说明 |
 |------|------|
@@ -284,7 +288,7 @@ AMS数学系列宏包。
 | `\arcoth` | 反双曲余切$\operatorname{arcoth}$ |
 | `\arsech` | 反双曲正割$\operatorname{arsech}$ |
 | `\arcsch` | 反双曲余割$\operatorname{arcsch}$ |
-| `\atantwo` | atan2函数$\operatorname{atan2}$ |
+| `\atantwo` | 计算机的`atan2`函数$\operatorname{atan2}$ |
 
 ### `\Beta`、`\PolyGamma`、`\BesselJ`、`\BesselN`、`\BesselH`、`\BesselI`、`\BesselK`、`\LegendreP`、`\LegendreQ`、`\SphericalY`、`\HermiteH`、`\FermiF`、`\hodge`
 
@@ -292,11 +296,11 @@ AMS数学系列宏包。
 
 | 命令 | 说明 |
 |------|------|
-| `\Beta` | Beta函数（Gamma的推广）$\operatorname{B}$ |
-| `\PolyGamma` | PolyGamma函数$\psi$（直立） |
+| `\Beta` | Beta函数$\operatorname{B}$ |
+| `\PolyGamma` | PolyGamma函数$\operatorname{\psi}$ |
 | `\BesselJ` | 第一类Bessel函数$\operatorname{J}$ |
-| `\BesselN` | 第二类Bessel函数（Neumann）$\operatorname{N}$ |
-| `\BesselH` | 第三类Bessel函数（Hankel）$\operatorname{H}$ |
+| `\BesselN` | 第二类Bessel函数$\operatorname{N}$ |
+| `\BesselH` | 第三类Bessel函数$\operatorname{H}$ |
 | `\BesselI` | 第一类修正Bessel函数$\operatorname{I}$ |
 | `\BesselK` | 第二类修正Bessel函数$\operatorname{K}$ |
 | `\LegendreP` | 第一类Legendre函数$\operatorname{P}$ |
@@ -310,13 +314,15 @@ AMS数学系列宏包。
 
 矩阵计算相关符号的快捷写法。
 
+其中`\vspan`的命名是用于规避已经被定义的`\span`命令。
+
 | 命令 | 说明 |
 |------|------|
 | `\diag` | 对角矩阵$\operatorname{diag}$ |
 | `\subspace` | 子空间$\mathcal{S}$ |
-| `\rangespace` | 值域$\mathcal{R}$ |
+| `\rangespace` | 列空间$\mathcal{R}$ |
 | `\nullspace` | 零空间$\mathcal{N}$ |
-| `\vspan` | 张成空间$\operatorname{span}$（`\span`已被占用） |
+| `\vspan` | 张成空间$\operatorname{span}$ |
 | `\piv` | 主元$\operatorname{piv}$ |
 | `\rowpiv` | 行主元$\operatorname{rowpiv}$ |
 | `\colpiv` | 列主元$\operatorname{colpiv}$ |
@@ -324,7 +330,7 @@ AMS数学系列宏包。
 
 ### `\aff`、`\conv`、`\cone`、`\polyhedra`、`\Symm`、`\Herm`、`\dom`、`\epi`、`\hypo`、`\minimize`、`\maximize`、`\find`、`\subto`、`\relint`
 
-凸优化相关符号的快捷写法。带`*`的运算符（`\minimize`、`\maximize`、`\find`、`\subto`）在行间模式中会在下方显示条件。
+凸优化相关符号的快捷写法。
 
 | 命令 | 说明 |
 |------|------|
@@ -333,7 +339,7 @@ AMS数学系列宏包。
 | `\cone` | 锥包$\operatorname{cone}$ |
 | `\polyhedra` | 多面体$\mathcal{P}$ |
 | `\Symm` | 对称矩阵集$\mathbb{S}$ |
-| `\Herm` | Hermitian矩阵集$\mathbb{H}$ |
+| `\Herm` | 厄米矩阵集$\mathbb{H}$ |
 | `\dom` | 定义域$\operatorname{dom}$ |
 | `\epi` | 上图$\operatorname{epi}$ |
 | `\hypo` | 下图$\operatorname{hypo}$ |
@@ -351,9 +357,9 @@ AMS数学系列宏包。
 |------|------|
 | `\sgn` | 符号函数$\operatorname{sgn}$ |
 | `\rect` | 矩形函数$\operatorname{rect}$ |
-| `\sinc` | 采样函数（$\sin x/x$）$\operatorname{sinc}$ |
+| `\sinc` | 采样函数$\operatorname{sinc}$ |
 | `\erfc` | 互补误差函数$\operatorname{erfc}$ |
-| `\dirac` | Dirac冲激函数$\delta$（直立） |
+| `\dirac` | Dirac冲激函数$\delta$ |
 
 ### `\softmax`、`\sigmoid`、`\ReLU`
 
@@ -371,7 +377,7 @@ AMS数学系列宏包。
 
 | 命令 | 说明 |
 |------|------|
-| `\kB` | Boltzmann常数$k_{\mathrm{B}}$ |
+| `\kB` | 玻尔兹曼常数$k_{\mathrm{B}}$ |
 | `\Emf` | 电动势$\mathscr{E}$ |
 
 ### `\FT`、`\LT`
@@ -380,24 +386,22 @@ AMS数学系列宏包。
 
 | 命令 | 说明 |
 |------|------|
-| `\FT[content]` | 傅里叶变换$\mathcal{F}\{x\}$ |
-| `\FT*[content]` | 逆傅里叶变换$\mathcal{F}^{-1}\{x\}$ |
-| `\LT[content]` | 拉普拉斯变换$\mathcal{L}\{x\}$ |
-| `\LT*[content]` | 逆拉普拉斯变换$\mathcal{L}^{-1}\{x\}$ |
+| `\FT*[content]` | 傅里叶变换$\mathcal{F}\{x\}$ $\mathcal{F}^{-1}\{x\}$ |
+| `\LT[content]` | 拉普拉斯变换$\mathcal{L}\{x\}$ $\mathcal{L}^{-1}\{x\}$ |
 
 | 序号 | 格式 | 类型 | 说明 |
 |------|------|------|------|
-| 1 | `*` | 标记 | 取逆变换 |
+| 1 | `*` | 标记 | 逆变换 / 正变换 |
 | 2 | `[content]` | 可选 | 变换对象 |
 
 ### `\delt`、`\detv`
 
-差分与导数的快捷写法。
+差分与差分比的快捷写法。
 
 | 命令 | 说明 |
 |------|------|
 | `\delt{x}` | $\Delta x$ |
-| `\detv{x}{y}` | $\frac{\Delta x}{\Delta y}$，差分形式的导数 |
+| `\detv{x}{y}` | $\dfrac{\Delta x}{\Delta y}$，差分形式的导数 |
 
 ### `\zp`、`\zm`
 
@@ -434,7 +438,7 @@ $0_+$与$0_-$的快捷写法。
 | `\xwav{content}` | `\widetilde`的别名，上方宽波浪线 |
 | `\xvec{content}` | `\overrightarrow`的别名，上方宽箭头 |
 | `\xbar{content}` | `\overline`的别名，上方宽线 |
-| `\bbar{content}` | 下方添加短线的重音符号 |
+| `\bbar{content}` | `\underaccent{\bar}`的别名，下方添加短线的重音符号 |
 
 ### `\mal`、`\mas`、`\te`、`\<`
 
