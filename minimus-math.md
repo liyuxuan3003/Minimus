@@ -412,7 +412,7 @@ $0_+$与$0_-$的快捷写法。
 | `\zp` | $0_{+}$ |
 | `\zm` | $0_{-}$ |
 
-### `\anglebkt`、`\floor`、`\ceil`
+### `\anglebkt`、`\floor`、`\ceil`、`\<`
 
 自适应括号的快捷写法，带`*`时自动缩放大小。
 
@@ -421,6 +421,7 @@ $0_+$与$0_-$的快捷写法。
 | `\anglebkt*{content}` | 尖括号$\langle\rangle$，带`*`时自适应大小 |
 | `\floor*{content}` | 下取整$\lfloor\rfloor$，带`*`时自适应大小 |
 | `\ceil*{content}` | 上取整$\lceil\rceil$，带`*`时自适应大小 |
+| `\<content>` | 尖括号简写，始终自适应大小$\left\langle x\right\rangle$ |
 
 | 序号 | 格式 | 类型 | 说明 |
 |------|------|------|------|
@@ -440,16 +441,15 @@ $0_+$与$0_-$的快捷写法。
 | `\xbar{content}` | `\overline`的别名，上方宽线 |
 | `\bbar{content}` | `\underaccent{\bar}`的别名，下方添加短线的重音符号 |
 
-### `\mal`、`\mas`、`\te`、`\<`
+### `\mal`、`\mas`、`\te`
 
-数学排版工具命令。
+数学缩放和缩写的快捷写法。
 
 | 命令 | 说明 |
 |------|------|
 | `\mal{content}` | `\mathlarger`的别名，放大数学符号 |
 | `\mas{content}` | `\mathsmaller`的别名，缩小数学符号 |
 | `\te{content}` | `\mathrm`的缩写，如`\te{sin}`输出$\mathrm{sin}$ |
-| `\<content>` | 自适应尖括号$\left\langle x\right\rangle$ |
 
 ### `\forcezero`、`\forceline`
 
@@ -463,6 +463,7 @@ $0_+$与$0_-$的快捷写法。
 | 序号 | 格式 | 类型 | 说明 |
 |------|------|------|------|
 | 1 | `[width]` | 可选 | 盒子宽度（`width\linewidth`），默认`0.4`（`\forcezero`）或`1.0`（`\forceline`） |
+| 2 | `{content}` | 必选 | 公式内容 |
 
 ## 自定义环境
 
@@ -484,12 +485,16 @@ $0_+$与$0_-$的快捷写法。
 | 4 | `!` | 标记 | 强制公式行宽居中（两个`!`写成`!!`） |
 
 ```latex
-\begin{Equation}[einstein]
-    E = mc^2
+\begin{Equation}[quadratic]
+    ax^2 + bx + c = 0
 \end{Equation}
 
 \begin{Equation}*
-    ax^2 + bx + c = 0
+    x^3 + px + q = 0
+\end{Equation}
+
+\begin{Equation}[short]!
+    a^2 + b^2 = c^2
 \end{Equation}
 ```
 
@@ -499,8 +504,7 @@ $0_+$与$0_-$的快捷写法。
 
 ```latex
 \begin{Split}*[label]{factor}!!
-    f(x) &= x^2 + y^2 \\
-       &+ \alpha + \beta + \gamma
+    ...
 \end{Split}
 ```
 
@@ -512,14 +516,20 @@ $0_+$与$0_-$的快捷写法。
 | 4 | `!` | 标记 | 强制零宽居中 |
 | 5 | `!` | 标记 | 强制行宽居中（`!!`） |
 
+```latex
+\begin{Split}[quadratic]
+    f(x) &= x^3 + px + q \\
+         &- \alpha + \beta - \gamma
+\end{Split}
+```
+
 ### `Align`
 
 公式组对齐环境，每行可独立编号。
 
 ```latex
 \begin{Align}*[prefix]{factor}
-    f(x) &= x^2 + y^2 \id{a} \\
-    g(x) &= \alpha + \beta \id{b}
+    ...
 \end{Align}
 ```
 
@@ -529,14 +539,20 @@ $0_+$与$0_-$的快捷写法。
 | 2 | `[prefix]` | 可选 | 标签前缀（`\id{a}`产生`eq:prefixa`），默认无 |
 | 3 | `{factor}` | 可选 | 行间距缩放因子，默认`1.0` |
 
+```latex
+\begin{Align}[sys]
+    x + y &= 5 \id{a} \\
+    x - y &= 3 \id{b}
+\end{Align}
+```
+
 ### `Gather`
 
 公式组居中环境，每行可独立编号。
 
 ```latex
 \begin{Gather}*[prefix]{factor}
-    f(x) = x^2 + y^2 \id{a} \\
-    g(x) = \alpha + \beta \id{b}
+    ...
 \end{Gather}
 ```
 
@@ -546,14 +562,20 @@ $0_+$与$0_-$的快捷写法。
 | 2 | `[prefix]` | 可选 | 标签前缀（`\id{a}`产生`eq:prefixa`），默认无 |
 | 3 | `{factor}` | 可选 | 行间距缩放因子，默认`1.0` |
 
+```latex
+\begin{Gather}[poly]
+    f(x) = x^4 + 2x^3 - x^2 + 3x + 1 \id{a} \\
+    g(x) = 2x + 5 \id{b}
+\end{Gather}
+```
+
 ### `Multline`
 
 阶梯排列的长公式环境。
 
 ```latex
 \begin{Multline}*[label]{factor}&{width}!!
-    f(x) = x^2 + y^2 \\
-       + \alpha + \beta + \gamma
+    ...
 \end{Multline}
 ```
 
@@ -566,3 +588,10 @@ $0_+$与$0_-$的快捷写法。
 | 5 | `{width}` | 可选 | 总宽度（`width\linewidth`），默认自适应 |
 | 6 | `!` | 标记 | 强制零宽居中 |
 | 7 | `!` | 标记 | 强制行宽居中（`!!`） |
+
+```latex
+\begin{Multline}[long]
+    f(x) = x^4 + 2x^3 - x^2 \\
+          + 3x + 1
+\end{Multline}
+```
