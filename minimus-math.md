@@ -509,7 +509,7 @@ $0_+$与$0_-$的快捷写法。
 | 5 | `!` | 标记 | 强制行宽居中（`!!`） |
 
 ```latex
-\begin{Split}[quadratic]
+\begin{Split}[mysplit]
     f(x) &= ax^4 + bx^3 \\
          &+ cx^2 + dx + e
 \end{Split}
@@ -536,7 +536,7 @@ $0_+$与$0_-$的快捷写法。
 | 7 | `!` | 标记 | 强制行宽居中（`!!`） |
 
 ```latex
-\begin{Multline}[long]
+\begin{Multline}[mymultline]
     f(x) = ax^4 + bx^3 \\
          + cx^2 + dx + e
 \end{Multline}
@@ -558,7 +558,7 @@ $0_+$与$0_-$的快捷写法。
 | 3 | `{factor}` | 可选 | 行间距缩放因子（`\jot`倍数），默认`1.0` |
 
 ```latex
-\begin{Align}[sys]
+\begin{Align}[myalign]
     f(x) &= ax^4 + bx^3 + cx^2 + dx + e \id{a} \\
     g(x) &= \sin(x) \id{b}
 \end{Align}
@@ -581,7 +581,7 @@ $0_+$与$0_-$的快捷写法。
 | 3 | `{factor}` | 可选 | 行间距缩放因子（`\jot`倍数），默认`1.0` |
 
 ```latex
-\begin{Gather}[poly]
+\begin{Gather}[mygather]
     f(x) = ax^4 + bx^3 + cx^2 + dx + e \id{a} \\
     g(x) = \sin(x) \id{b}
 \end{Gather}
