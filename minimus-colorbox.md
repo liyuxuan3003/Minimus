@@ -10,7 +10,7 @@ AMS定理环境。
 
 | 宏包 | 说明 |
 |------|------|
-| `amsthm` | 提供`\newtheorem`命令，`Proof`和`Solution`环境的底层`proof`环境来源 |
+| `amsthm` | 提供`\newtheorem`命令和`proof`环境，基本的定理证明支持 |
 
 ### `aliascnt`
 
@@ -18,17 +18,21 @@ AMS定理环境。
 
 | 宏包 | 说明 |
 |------|------|
-| `aliascnt` | 提供`\newaliascnt`命令，使相关定理类型共享同一计数器 |
+| `aliascnt` | 提供`\newaliascnt`命令，创建计数器别名 |
 
 ### `tcolorbox`
 
-带框文本框。
+彩色文本框。
 
 | 宏包 | 说明 |
 |------|------|
-| `tcolorbox` | 提供`\NewTcbTheorem`、`\NewTColorBox`等命令，预加载`breakable`（跨页分割）和`theorems`（定理支持）库 |
+| `tcolorbox` | 提供`\NewTcbTheorem`等命令，创建彩色文本框|
 
-全局`\tcbset`预配置：
+`\tcbuselibrary`预加载库
+
+，预加载`breakable`（跨页分割）和`theorems`（定理支持）库 
+
+`\tcbset`预配置：
 
 | 选项 | 说明 |
 |------|------|
@@ -46,8 +50,8 @@ AMS定理环境。
 
 各类型盒子的配色：
 
-| 类型 | 配色样式 | 边框颜色 |
-|------|----------|----------|
+| 类型 | 配色样式 |
+|------|----------|
 | 定义类（`boxdefstyle`） | 绿灰色 |
 | 定理类（`boxthmstyle`） | 蓝灰色 |
 | 示例类（`boxexpstyle`） | 青色 |
@@ -55,11 +59,7 @@ AMS定理环境。
 | 日语例句（`boxjpsetstyle`） | 蓝色，圆角`1.0mm` |
 | 日语对话（`boxjpcovstyle`） | 绿色，圆角`1.0mm` |
 
-
-
 ## 自定义环境
-
-以下定理类环境均支持`*`（禁止编号）和`[title;label]`（标题与标签，分号分割，标签自动带前缀）。
 
 ### `BoxDefinition`、`BoxTheorem`、`BoxLemma`、`BoxCorollary`、`BoxProposition`、`BoxProperty`、`BoxFormula`、`BoxEquation`、`BoxExample`、`BoxAlgorithm`、`BoxProcess`、`BoxDesignPrinciple`
 
@@ -100,11 +100,11 @@ AMS定理环境。
 
 ### `JPSentence`、`JPConversation`
 
-日语对照环境。内容写入后，可选的中文翻译以`\tcblower`分割出现在盒子下方。
+日语对照环境。在环境内写日语，在大括号内写中文。
 
 ```latex
 \begin{JPSentence}{translation}
-    japanese text
+    ...
 \end{JPSentence}
 ```
 
@@ -114,7 +114,7 @@ AMS定理环境。
 
 ### `Proof`、`Solution`
 
-证明与解答环境。
+证明与解答环境，标题分别为“证明”和“解”。
 
 ```latex
 \begin{Proof}[reference]
@@ -122,14 +122,18 @@ AMS定理环境。
 \end{Proof}
 ```
 
+```latex
+\begin{Solution}[reference]
+    ...
+\end{Solution}
+```
+
 | 序号 | 格式 | 类型 | 说明 |
 |------|------|------|------|
-| 1 | `[reference]` | 可选 | 引用目标（如`\cref{thm:test}`），默认无 |
+| 1 | `[reference]` | 可选 | 引用目标（如`\cref{thm:test}`），默认为空 |
 
 ```latex
 \begin{Proof}[\cref{thm:main}]
-    ...
+    It is easy to prove.
 \end{Proof}
 ```
-
-标题分别为"证明"和"解"，末尾有水平分割线。
