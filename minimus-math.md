@@ -38,7 +38,13 @@ AMS数学系列宏包。
 | 设置项 | 值 | 说明 |
 |--------|-----|------|
 | `list-separator` | `{, }` | 列表分隔符 |
+| `list-pair-separator` | `{, }` | 两元素列表分隔符 |
+| `list-final-separator` | `{, }` | 多元素最终分隔符 |
+| `list-units` | `repeat` | 列表中每个值重复单位 |
 | `range-phrase` | `{\,\text{\textasciitilde{}}\,}` | 范围连接符 |
+| `range-units` | `single` | 范围只保留一个单位 |
+| `product-symbol` | `{\times}` | 乘积符号 |
+| `product-units` | `repeat` | 乘积中每个值重复单位 |
 | `group-digits` | `none` | 不分组数字 |
 | `inter-unit-product` | `{\cdot}` | 单位间用`·`连接 |
 
@@ -58,10 +64,18 @@ AMS数学系列宏包。
 | `\Mb` | Mib（bit） |
 | `\Gb` | Gib（bit） |
 | `\Tb` | Tib（bit） |
+| `\Pb` | Pib（bit） |
+| `\Eb` | Eib（bit） |
+| `\Zb` | Zib（bit） |
+| `\Yb` | Yib（bit） |
 | `\Kbps` | Kibps |
 | `\Mbps` | Mibps |
 | `\Gbps` | Gibps |
 | `\Tbps` | Tibps |
+| `\Pbps` | Pibps |
+| `\Ebps` | Eibps |
+| `\Zbps` | Zibps |
+| `\Ybps` | Yibps |
 
 ### `physics`
 
