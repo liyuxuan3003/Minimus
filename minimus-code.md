@@ -97,7 +97,7 @@
 | 序号 | 格式 | 类型 | 说明 |
 |------|------|------|------|
 | 1 | `*` | 标记 | 清单不编号 |
-| 2 | `[caption;label]` | 可选 | 标题和标签，格式为`\label{code:label}` |
+| 2 | `[caption;label]` | 可选 | 标题和标签，格式为`code:label` |
 | 3 | `{style}` | 可选 | listings样式名称，默认`plain` |
 
 `[caption;label]`有几种用法

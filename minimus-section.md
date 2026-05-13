@@ -54,11 +54,11 @@
 
 | 命令 | 标签格式 |
 |------|----------|
-| `\part{名称;intro}` | `part:intro` | |
-| `\chapter{名称;intro}` | `chap:intro` / `ap:intro`| |
-| `\section{名称;intro}` | `sec:intro` | |
-| `\subsection{名称;intro}` | `subsec:intro` | |
-| `\subsubsection{名称;intro}` | `subsubsec:intro` | |
+| `\part` | `part:label` | |
+| `\chapter` | `chap:label` / `ap:label`| |
+| `\section` | `sec:label` | |
+| `\subsection` | `subsec:label` | |
+| `\subsubsection` | `subsubsec:label` | |
 
 ```latex
 \section{Introduction;Intro}
