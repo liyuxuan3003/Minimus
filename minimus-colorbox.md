@@ -28,9 +28,12 @@ AMS定理环境。
 |------|------|
 | `tcolorbox` | 提供`\NewTcbTheorem`等命令，创建彩色文本框|
 
-`\tcbuselibrary`预加载库
+`\tcbuselibrary`预加载库：
 
-，预加载`breakable`（跨页分割）和`theorems`（定理支持）库 
+| 库 | 说明 |
+|----|------|
+| `breakable` | 跨页分割 |
+| `theorems` | 定理支持 |
 
 `\tcbset`预配置：
 
