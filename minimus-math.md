@@ -67,14 +67,14 @@ AMS数学系列宏包。
 
 | 命令 | 说明 | 命令 | 说明 | 命令 | 说明 | 命令 | 说明 |
 |------|------|------|------|------|------|------|------|
-| `\Kibi` | 二进制单位 | `\KB` | 二进制单位 | `\Kb` | 二进制单位 | `\Kbps` | 二进制单位 |
-| `\Mebi` | 二进制单位 | `\MB` | 二进制单位 | `\Mb` | 二进制单位 | `\Mbps` | 二进制单位 |
-| `\Gibi` | 二进制单位 | `\GB` | 二进制单位 | `\Gb` | 二进制单位 | `\Gbps` | 二进制单位 |
-| `\Tebi` | 二进制单位 | `\TB` | 二进制单位 | `\Tb` | 二进制单位 | `\Tbps` | 二进制单位 |
-| `\Pebi` | 二进制单位 | `\PB` | 二进制单位 | `\Pb` | 二进制单位 | `\Pbps` | 二进制单位 |
-| `\Exbi` | 二进制单位 | `\EB` | 二进制单位 | `\Eb` | 二进制单位 | `\Ebps` | 二进制单位 |
-| `\Zebi` | 二进制单位 | `\ZB` | 二进制单位 | `\Zb` | 二进制单位 | `\Zbps` | 二进制单位 |
-| `\Yobi` | 二进制单位 | `\YB` | 二进制单位 | `\Yb` | 二进制单位 | `\Ybps` | 二进制单位 |
+| `\Kibi` | K | `\KB` | KB | `\Kb` | Kb | `\Kbps` | Kbps |
+| `\Mebi` | M | `\MB` | MB | `\Mb` | Mb | `\Mbps` | Mbps |
+| `\Gibi` | G | `\GB` | GB | `\Gb` | Gb | `\Gbps` | Gbps |
+| `\Tebi` | T | `\TB` | TB | `\Tb` | Tb | `\Tbps` | Tbps |
+| `\Pebi` | P | `\PB` | PB | `\Pb` | Pb | `\Pbps` | Pbps |
+| `\Exbi` | E | `\EB` | EB | `\Eb` | Eb | `\Ebps` | Ebps |
+| `\Zebi` | Z | `\ZB` | ZB | `\Zb` | Zb | `\Zbps` | Zbps |
+| `\Yobi` | Y | `\YB` | YB | `\Yb` | Yb | `\Ybps` | Ybps |
 
 ### `mhchem`
 
