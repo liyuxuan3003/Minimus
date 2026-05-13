@@ -72,9 +72,16 @@
 | 序号 | 格式 | 类型 | 说明 |
 |------|------|------|------|
 | 1 | `*` | 标记 | 子图不编号 |
-| 2 | `[caption;label]` | 可选 | 标题和标签（分号分割），标签自动补全为`fig:label` |
+| 2 | `[caption;label]` | 可选 | 标题和标签（见下） |
 | 3 | `{graphics}` | 必选 | `\includegraphics{...}`命令 |
 | 4 | `{width}` | 可选 | 子图宽度（`width\linewidth`），默认自适应 |
+
+`[caption;label]`有几种用法
+- `[caption]`，标题为`caption`，标签为`caption`。
+- `[caption;]`，标题为`caption`，无标签。
+- `[;label]`，无标题，标签为`label`。
+- `[caption;label]`，标题为`caption`，标签为`label`。
+- 在带`*`时，由于已经禁止编号，此时不会创建标签。
 
 ```latex
 \figuresub[Left;a]{\includegraphics{left.pdf}}{0.45}
@@ -96,11 +103,18 @@
 | 序号 | 格式 | 类型 | 说明 |
 |------|------|------|------|
 | 1 | `*` | 标记 | 表格不编号 |
-| 2 | `[caption;label]` | 可选 | 标题和标签（分号分割），标签自动补全为`tab:label` |
+| 2 | `[caption;label]` | 可选 | 标题和标签（见下） |
 | 3 | `&` | 标记 | 移除中间线 |
 | 4 | `&` | 标记 | 移除边框线 |
 | 5 | `!` | 标记 | 启用浮动，使用`[htbp]`而非`[H]` |
 | 6 | `!` | 标记 | 启用长表格（两个`!`写成`!!`） |
+
+`[caption;label]`有几种用法
+- `[caption]`，标题为`caption`，标签为`caption`。
+- `[caption;]`，标题为`caption`，无标签。
+- `[;label]`，无标题，标签为`label`。
+- `[caption;label]`，标题为`caption`，标签为`label`。
+- 在带`*`时，由于已经禁止编号，此时不会创建标签。
 
 ```latex
 \begin{Table}[Table Caption;mytable]!
@@ -135,8 +149,15 @@ Long table example:
 | 序号 | 格式 | 类型 | 说明 |
 |------|------|------|------|
 | 1 | `*` | 标记 | 图片不编号 |
-| 2 | `[caption;label]` | 可选 | 标题和标签（分号分割），标签自动补全为`fig:label` |
+| 2 | `[caption;label]` | 可选 | 标题和标签（见下） |
 | 3 | `!` | 标记 | 启用浮动，使用`[htbp]`而非`[H]` |
+
+`[caption;label]`有几种用法
+- `[caption]`，标题为`caption`，标签为`caption`。
+- `[caption;]`，标题为`caption`，无标签。
+- `[;label]`，无标题，标签为`label`。
+- `[caption;label]`，标题为`caption`，标签为`label`。
+- 在带`*`时，由于已经禁止编号，此时不会创建标签。
 
 ```latex
 \begin{Figure}[Example Figure;example]!
