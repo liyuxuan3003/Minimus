@@ -13,12 +13,14 @@ Minimus的目标是创造可持续的LaTeX写作体验，为每个新工程提�
 - **符号缩写**：定义数学符号，例如`\R`、`\e`、`\i`、`\dx`等，为需要特殊字体又具有明确意义的数学符号命名。
 
 Minimus在架构层面是以Git子模块形式引入，这意味着
+
 - Minimus不绑定任何模板，它可以独立的被维护和更新，且可以轻松引入任何项目
 - Minimus不存在因更新破坏依赖的问题，你总是可以使用特定版本
 
 ## 主要优势
 
 Minimus具体解决了以下问题
+
 - 宏包选择和组合经过长期实践检验，先进且稳定，避免了每次都需要引入大量宏包才能开始写作的困难。
 - 引入`physics`宏包，解决了向量和微分等数学排版上的痛点：向量的粗体，微分的正体$\mathrm{d}$，自适应括号的繁琐语法。
 - 引入`siunitx`宏包，解决了物理单位的排版问题（单位和数值间的恰当空格，单位需要正体，尤其是μm和μs）。
@@ -62,13 +64,19 @@ Minimus具体解决了以下问题
 
 ## 引入方式
 
-Minimus以Git子模块形式引入项目：
+Minimus以Git子模块形式引入项目
 
 ```bash
 git submodule add git@github.com:liyuxuan3003/Minimus.git minimus
 ```
 
-使用时在导言区按顺序加载各子包：
+在主文件顶层指定输入路径以找到子模块中的文件
+
+```latex
+\makeatletter\def\input@path{{minimus}}\makeatother
+```
+
+在文档中，推荐引入以下包
 
 ```latex
 \usepackage{minimus-section}
@@ -81,10 +89,10 @@ git submodule add git@github.com:liyuxuan3003/Minimus.git minimus
 \usepackage{minimus-bibtex}
 ```
 
-需要在主文档顶层指定输入路径以找到子模块中的文件：
+在插图中，推荐引入以下包
 
 ```latex
-\makeatletter\def\input@path{{minimus}}\makeatother
+\usepackage{minimus-text}
+\usepackage{minimus-math}
+\usepackage{minimus-tikz}
 ```
-
-编写规范见 [Plan.md](Plan.md)。
