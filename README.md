@@ -4,6 +4,7 @@ Minimus是个人在长期LaTeX写作中整理出的一套宏包，包含许多�
 
 Minimus的名称来源于坎巴拉太空计划（Kerbal Space Program）中对应现实中地球的Kerbin的第二卫星Minmus的错拼。
 
+Minimus是LumosLaTeX计划的一部分：https://github.com/liyuxuan3003/LumosLaTeX
 ## 核心思想
 
 Minimus的目标是创造可持续的LaTeX写作体验，为每个新工程提供一致的环境
