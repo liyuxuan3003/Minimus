@@ -60,4 +60,31 @@ Minimus具体解决了以下问题
 | `minimus-bibtex` | [minimus-bibtex.md](minimus-bibtex.md) |
 | `minimus-tikz` | [minimus-tikz.md](minimus-tikz.md) |
 
+## 引入方式
+
+Minimus以Git子模块形式引入项目：
+
+```bash
+git submodule add git@github.com:liyuxuan3003/Minimus.git minimus
+```
+
+使用时在导言区按顺序加载各子包：
+
+```latex
+\usepackage{minimus-section}
+\usepackage{minimus-text}
+\usepackage{minimus-math}
+\usepackage{minimus-float}
+\usepackage{minimus-code}
+\usepackage{minimus-colorbox}
+\usepackage{minimus-reference}
+\usepackage{minimus-bibtex}
+```
+
+需要在主文档顶层指定输入路径以找到子模块中的文件：
+
+```latex
+\makeatletter\def\input@path{{minimus}}\makeatother
+```
+
 编写规范见 [Plan.md](Plan.md)。
