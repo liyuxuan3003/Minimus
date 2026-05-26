@@ -152,6 +152,14 @@ AMS数学系列宏包。
 |------|------|
 | `accents` | 提供`\underaccent`命令，用于在符号下方添加重音 |
 
+### `longdivision`
+
+长除法排版。
+
+| 宏包 | 说明 |
+|------|------|
+| `longdivision` | 提供`\longdivision`命令，自动排版数学长除法竖式 |
+
 ### `relsize`
 
 数学缩放。
