@@ -42,6 +42,7 @@
 | 样式 | 语言 |
 |------|------|
 | `bash` | Shell |
+| `tcl` | Tcl |
 | `c` | C |
 | `cpp` | C++ |
 | `python` | Python |
