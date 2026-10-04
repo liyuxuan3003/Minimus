@@ -43,6 +43,7 @@
 |------|------|
 | `bash` | Shell |
 | `tcl` | Tcl |
+| `make` | Makefile |
 | `c` | C |
 | `cpp` | C++ |
 | `python` | Python |
